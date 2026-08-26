@@ -19,9 +19,34 @@ const $ = (id) => document.getElementById(id);
 
 /* ---------- helpers ---------- */
 
-const ratingClass = (r) => (r == null ? 'none' : r >= 4.6 ? 'gold' : r >= 4.3 ? 'green' : '');
+/* Rating encoding. Three channels doing three different jobs:
+     shape  — a star marks 愛店 (>= 4.6), a named category rather than "more"
+     colour — 4.3 / 4.4 / 4.5 get three widely-separated steps of one hue, so
+              the step IS the score (1:1, not a bucket) in the only band where
+              telling two restaurants apart actually matters
+     recede — <= 4.2 goes flat grey and stops competing for attention
+   Steps validated for monotone lightness, adjacent gap, surface contrast and
+   CVD separation in both themes. */
+function ratingTier(r) {
+  if (r == null) return 't-none';
+  if (r >= 4.6) return 't-star';
+  if (r >= 4.5) return 't45';
+  if (r >= 4.4) return 't44';
+  if (r >= 4.3) return 't43';
+  return 't-low';
+}
+const TIER_VAR = {
+  't-star': '--r-star', 't45': '--r45', 't44': '--r44',
+  't43': '--r43', 't-low': '--r-low', 't-none': '--r-none',
+};
+const ratingClass = (r) => ratingTier(r);
 const ratingColor = (r) =>
-  r == null ? '#9a958c' : r >= 4.6 ? '#c8912a' : r >= 4.3 ? '#4a7c46' : '#b4531f';
+  getComputedStyle(document.body).getPropertyValue(TIER_VAR[ratingTier(r)]).trim() || '#9a958c';
+
+// Five-point star, outer radius 10, centred on the anchor point.
+const STAR_PATH =
+  'M0.00,-10.00L2.59,-3.56L9.51,-3.09L4.18,1.36L5.88,8.09' +
+  'L0.00,4.40L-5.88,8.09L-4.18,1.36L-9.51,-3.09L-2.59,-3.56Z';
 
 function priceLabel(r) {
   if (r.price_min == null) return null;
@@ -387,13 +412,26 @@ async function saveNote(id, text, btn, status) {
 /* ---------- map ---------- */
 
 function markerIcon(r) {
+  const tier = ratingTier(r.rating);
+  const stroke = getComputedStyle(document.body).getPropertyValue('--bg').trim() || '#ffffff';
+  if (tier === 't-star') {
+    return {
+      path: STAR_PATH,
+      scale: 0.85,
+      fillColor: ratingColor(r.rating),
+      fillOpacity: 1,
+      strokeColor: stroke,
+      strokeWeight: 1.6,
+    };
+  }
   return {
     path: google.maps.SymbolPath.CIRCLE,
-    scale: r.rating != null && r.rating >= 4.6 ? 9 : 7,
+    // Low-rated pins are smaller as well as greyer — two ways of receding.
+    scale: tier === 't-low' || tier === 't-none' ? 5 : 7,
     fillColor: ratingColor(r.rating),
-    fillOpacity: 0.95,
-    strokeColor: '#ffffff',
-    strokeWeight: 2,
+    fillOpacity: tier === 't-low' || tier === 't-none' ? 0.8 : 0.95,
+    strokeColor: stroke,
+    strokeWeight: 1.8,
   };
 }
 
@@ -455,7 +493,14 @@ function initMap() {
     clickableIcons: false,
     styles: mapStyles(dark.matches),
   });
-  dark.addEventListener('change', (e) => S.map.setOptions({ styles: mapStyles(e.matches) }));
+  dark.addEventListener('change', (e) => {
+    S.map.setOptions({ styles: mapStyles(e.matches) });
+    // Tier colours are theme tokens, so the markers have to be repainted too.
+    for (const [id, m] of S.markers) {
+      const r = S.restaurants.find((x) => x.id === id);
+      if (r) m.setIcon(markerIcon(r));
+    }
+  });
 
   // Names appear only once you're zoomed in enough for them not to overlap.
   S.map.addListener('zoom_changed', () => {
@@ -517,6 +562,23 @@ function renderCategories(cats) {
   }
 }
 
+function renderRatingLegend() {
+  const box = $('rating-legend');
+  if (!box) return;
+  const cells = [
+    ['t-low', '\u2264 4.2'], ['t43', '4.3'], ['t44', '4.4'],
+    ['t45', '4.5'], ['t-star', '\u2265 4.6'],
+  ];
+  for (const [cls, label] of cells) {
+    const lg = el('div', 'lg');
+    const sw = el('div', 'sw' + (cls === 't-star' ? ' star' : ''));
+    if (cls === 't-star') sw.textContent = '\u2605';
+    else sw.style.background = `var(${TIER_VAR[cls]})`;
+    lg.append(sw, el('div', 'lb', label));
+    box.append(lg);
+  }
+}
+
 function wireFilters() {
   $('search').addEventListener('input', (e) => {
     S.filters.q = e.target.value;
@@ -574,6 +636,7 @@ async function main() {
   } catch { S.drafts = {}; }
 
   renderCategories(data.categories);
+  renderRatingLegend();
   wireFilters();
   applyFilters();
 

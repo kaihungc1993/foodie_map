@@ -55,9 +55,18 @@ def main():
 
     groups = {}
     skipped_no_location = 0
+    roundups = []
     for pid, post in posts.items():
         ex = extracted.get(pid)
         if not ex or not ex["llm"]["is_restaurant"]:
+            continue
+        # Roundup posts name several restaurants; attributing the whole post to
+        # the first one would be wrong. Held out until they are split properly.
+        if (ex.get("pin_count") or 0) > 1:
+            roundups.append({"id": pid, "url": post.get("url"),
+                             "date": (post.get("timestamp") or "")[:10],
+                             "venues": ex["pin_count"],
+                             "title": (post.get("caption") or "").splitlines()[0][:60]})
             continue
         gk = group_key(post, ex)
         if not gk:
@@ -171,7 +180,15 @@ def main():
         },
     })
 
+    if roundups:
+        common.write_json(common.DATA / "roundups_held_out.json",
+                          sorted(roundups, key=lambda r: r["date"]))
+
     print(f"{len(restaurants)} restaurants from {len(groups)} groups")
+    if roundups:
+        total = sum(r["venues"] for r in roundups)
+        print(f"  {len(roundups)} roundup posts held out "
+              f"({total} venue mentions) -> data/roundups_held_out.json")
     print(f"  {len(missing_geo)} without coordinates, "
           f"{skipped_no_location} posts skipped (no location tag or name)")
     print(f"  {len(merges['suggestions'])} proximity merge suggestions -> data/merges.json")

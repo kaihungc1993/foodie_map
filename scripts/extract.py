@@ -45,7 +45,13 @@ def parse_header(caption):
     out = {
         "name": None, "price_min": None, "price_max": None,
         "visits": None, "rating": None, "tagline": None, "dishes": [],
+        # He usually posts one restaurant per post, but ~2% are roundups
+        # ("五家台北漢堡店") listing several. Taking the first 📍 would invent a
+        # restaurant from the roundup's own (absent) rating and silently drop the
+        # rest, so count the pins and let the builder handle it.
+        "pin_count": 0,
     }
+    out["pin_count"] = len(RE_NAME.findall(caption))
 
     m = RE_NAME.search(caption)
     if m:
