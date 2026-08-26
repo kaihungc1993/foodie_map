@@ -1,0 +1,114 @@
+{
+  "3967076722428283460": {
+    "dishes": [
+      {
+        "favourite": true,
+        "name": "鰻魚套餐-綜合(880)"
+      },
+      {
+        "favourite": false,
+        "name": "鰻丼-蒲燒半隻(480)"
+      },
+      {
+        "favourite": false,
+        "name": "烤綜合時蔬(210)"
+      },
+      {
+        "favourite": false,
+        "name": "炙燒午魚刺身(240)"
+      }
+    ],
+    "llm": {
+      "categories": [
+        "鰻魚",
+        "日本料理",
+        "丼飯定食"
+      ],
+      "is_restaurant": true
+    },
+    "name": "德榮軒脆皮鰻魚飯專賣店",
+    "price_max": 1000,
+    "price_min": 500,
+    "rating": 4.3,
+    "tagline": "提供蒲燒和脆皮鹽燒的鰻魚，搭配多種吃法很有變化",
+    "visits": 2
+  },
+  "3969219525487781146": {
+    "dishes": [
+      {
+        "favourite": false,
+        "name": "生火腿生菜沙拉（290）"
+      },
+      {
+        "favourite": false,
+        "name": "奶油蘑菇濃湯（100）"
+      },
+      {
+        "favourite": true,
+        "name": "拿坡里鯷魚酸豆披薩（420）"
+      },
+      {
+        "favourite": true,
+        "name": "四種起司披薩（410）"
+      }
+    ],
+    "llm": {
+      "categories": [
+        "義式",
+        "披薩"
+      ],
+      "is_restaurant": true
+    },
+    "name": "GiraPizza 旋轉披薩",
+    "price_max": 600,
+    "price_min": 400,
+    "rating": 4.6,
+    "tagline": "目前心中台北最愛的義式披薩，快去訂位！",
+    "visits": 2
+  },
+  "3971428393921017022": {
+    "dishes": [
+      {
+        "favourite": true,
+        "name": "沙丁魚吐司片(400)"
+      },
+      {
+        "favourite": false,
+        "name": "鮪魚塔塔芥末(600)"
+      },
+      {
+        "favourite": true,
+        "name": "法式媽媽蛋(650/4人份)"
+      },
+      {
+        "favourite": false,
+        "name": "炙烤羊排(1300)"
+      },
+      {
+        "favourite": false,
+        "name": "牛排薯條(1000)"
+      },
+      {
+        "favourite": true,
+        "name": "格勒諾布爾風味黃金豬排(850)"
+      },
+      {
+        "favourite": false,
+        "name": "真正的法式吐司(500)"
+      }
+    ],
+    "llm": {
+      "categories": [
+        "法餐",
+        "餐酒館"
+      ],
+      "is_restaurant": true
+    },
+    "name": "Polux by Paul Pairet Taipei",
+    "price_max": 2000,
+    "price_min": 1500,
+    "rating": 4.4,
+    "tagline": "從開幕就討論度很高的法式餐酒館，價格偏貴",
+    "visits": 1
+  }
+}

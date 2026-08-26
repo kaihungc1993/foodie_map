@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Foodie Map — born2eat_taiwan</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><text y='52' font-size='52'>🍜</text></svg>">
+</head>
+<body>
+<div id="app">
+  <aside id="sidebar">
+    <header id="brand">
+      <h1>Foodie Map</h1>
+      <p id="subtitle">from <a href="https://www.instagram.com/born2eat_taiwan/" target="_blank" rel="noopener">@born2eat_taiwan</a></p>
+    </header>
+
+    <section id="filters">
+      <div class="filter">
+        <label for="search">搜尋</label>
+        <input id="search" type="search" placeholder="店名或地址" autocomplete="off">
+      </div>
+
+      <div class="filter">
+        <div class="filter-head">
+          <label for="rating">最低評分 <output id="rating-out">全部</output></label>
+          <button id="rating-reset" class="linkish" type="button">重設</button>
+        </div>
+        <input id="rating" type="range" min="0" max="5" step="0.1" value="0">
+        <div class="scale-hints"><span>4.3 願意再訪</span><span>4.6 愛店</span></div>
+        <label class="check"><input id="include-unrated" type="checkbox" checked> 包含未評分</label>
+      </div>
+
+      <div class="filter">
+        <div class="filter-head">
+          <label>分類</label>
+          <button id="cat-reset" class="linkish" type="button">清除</button>
+        </div>
+        <div id="categories"></div>
+      </div>
+    </section>
+
+    <div id="count"></div>
+    <ul id="list"></ul>
+  </aside>
+
+  <main id="map-wrap">
+    <div id="map"></div>
+    <div id="map-error" hidden></div>
+  </main>
+
+  <section id="detail" hidden aria-live="polite"></section>
+</div>
+
+<div id="token-modal" hidden>
+  <div class="modal-card">
+    <h2>儲存筆記需要 GitHub Token</h2>
+    <p>筆記會 commit 到 <code id="token-repo"></code>。請貼上 fine-grained personal access token，權限只需該 repo 的 <strong>Contents: Read and write</strong>。</p>
+    <p class="warn">Token 只存在這台瀏覽器的 localStorage，不會上傳到任何其他地方。此 repo 為公開，筆記內容會公開可見。</p>
+    <input id="token-input" type="password" placeholder="github_pat_..." autocomplete="off">
+    <div class="modal-actions">
+      <button id="token-cancel" type="button" class="ghost">取消</button>
+      <button id="token-save" type="button" class="primary">儲存</button>
+    </div>
+    <button id="token-forget" type="button" class="linkish">清除已儲存的 token</button>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

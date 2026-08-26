@@ -1,0 +1,26 @@
+{
+  "111511820719562": {
+    "formatted_address": "106台灣臺北市大安區通化街38巷7號1樓",
+    "lat": 25.0310324,
+    "lng": 121.5537964,
+    "place_id": "ChIJ_4anyUerQjQRZUeiivesi1k",
+    "query": "德榮軒 初•一脆皮鰻魚飯專門店 台北",
+    "status": "OK"
+  },
+  "311376863048660": {
+    "formatted_address": "106台灣臺北市大安區通安里安和路二段83號",
+    "lat": 25.0300451,
+    "lng": 121.5522005,
+    "place_id": "ChIJqXNqOe-rQjQR1PFwi2UPatY",
+    "query": "Polux by Paul Pairet 台北",
+    "status": "OK"
+  },
+  "894649207535662": {
+    "formatted_address": "105台灣臺北市松山區中華里敦化北路165巷6號",
+    "lat": 25.0546099,
+    "lng": 121.5503095,
+    "place_id": "ChIJkwhy1ZKrQjQR7TwgoE858CE",
+    "query": "Gira Pizza 旋轉披薩 台北",
+    "status": "OK"
+  }
+}

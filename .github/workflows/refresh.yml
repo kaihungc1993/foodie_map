@@ -1,0 +1,93 @@
+name: Refresh foodie map
+
+on:
+  schedule:
+    # 02:00 UTC on the 1st = 10:00 Taipei. Monthly per requirements.
+    - cron: "0 2 1 * *"
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: "How many recent posts to pull"
+        required: false
+        default: "40"
+      backfill:
+        description: "Pull the full post history (first run only)"
+        type: boolean
+        required: false
+        default: false
+      force_extract:
+        description: "Re-classify every post (use after editing categories.json)"
+        type: boolean
+        required: false
+        default: false
+
+# Never let two refreshes race: both would commit to main.
+concurrency:
+  group: refresh
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Crawl Instagram
+        env:
+          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
+        run: |
+          if [ "${{ inputs.backfill }}" = "true" ]; then
+            python scripts/crawl.py --backfill
+          else
+            python scripts/crawl.py --limit "${{ inputs.limit || 40 }}"
+          fi
+
+      - name: Extract structured fields
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          if [ "${{ inputs.force_extract }}" = "true" ]; then
+            python scripts/extract.py --force
+          else
+            python scripts/extract.py
+          fi
+
+      - name: Geocode new venues
+        env:
+          GOOGLE_GEOCODING_KEY: ${{ secrets.GOOGLE_GEOCODING_KEY }}
+        run: python scripts/geocode.py
+
+      - name: Build site data
+        env:
+          GOOGLE_MAPS_BROWSER_KEY: ${{ secrets.GOOGLE_MAPS_BROWSER_KEY }}
+        run: python scripts/build.py
+
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data docs/data
+          if git diff --cached --quiet; then
+            echo "No changes."
+            exit 0
+          fi
+          git commit -m "refresh: $(date -u +%Y-%m-%d)"
+          # Notes are committed from the browser straight to main, so a push can
+          # lose a race with a note saved while this job was running.
+          for i in 1 2 3; do
+            git pull --rebase --autostash origin main && git push origin HEAD:main && exit 0
+            echo "push attempt $i failed, retrying"
+            sleep 5
+          done
+          exit 1

@@ -1,0 +1,12 @@
+{
+  "_comment": "Closed vocabulary for restaurant categories. Claude must pick from this list only. Add entries here to expand the taxonomy; existing extractions are cached by post id and will not be re-run, so re-add a post to data/extracted.json's skip list to reclassify.",
+  "categories": [
+    "壽司", "日本料理", "居酒屋", "燒肉", "拉麵", "丼飯定食", "鰻魚", "天婦羅", "鐵板燒",
+    "火鍋", "台菜", "中菜", "粵菜港式", "川菜", "熱炒", "小吃",
+    "法餐", "義式", "披薩", "西班牙菜", "美式", "牛排", "漢堡",
+    "泰式", "韓式", "南洋菜", "印度菜", "中東菜",
+    "海鮮", "燒烤", "素食蔬食", "buffet",
+    "早午餐", "咖啡廳", "甜點", "麵包烘焙", "冰品",
+    "酒吧", "餐酒館", "fine dining", "米其林", "無菜單料理"
+  ]
+}
