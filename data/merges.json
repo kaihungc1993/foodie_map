@@ -1,5 +1,17 @@
 {
   "merge": [],
   "split": [],
-  "suggestions": []
+  "suggestions": [
+    {
+      "a": {
+        "id": "loc:260660583",
+        "name": "徐家私廚"
+      },
+      "b": {
+        "id": "loc:109003542208799",
+        "name": "Semi Club 分號俱樂部"
+      },
+      "distance_m": 46.5
+    }
+  ]
 }
