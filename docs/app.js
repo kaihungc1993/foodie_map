@@ -397,13 +397,73 @@ function markerIcon(r) {
   };
 }
 
+/* A muted basemap. Google's default styling puts a coloured icon on every
+   restaurant in Taipei, which is exactly what our own pins have to compete
+   with — so desaturate the base, lighten it, and turn off the business POIs
+   entirely. Inline `styles` only works on a map with no mapId, which is why we
+   don't set one. */
+function mapStyles(dark) {
+  const base = dark
+    ? [
+        { elementType: 'geometry', stylers: [{ color: '#22222a' }] },
+        { elementType: 'labels.text.fill', stylers: [{ color: '#7f7f8c' }] },
+        { elementType: 'labels.text.stroke', stylers: [{ color: '#17171a' }] },
+        { featureType: 'road', elementType: 'geometry', stylers: [{ color: '#2c2c35' }] },
+        { featureType: 'road.arterial', elementType: 'geometry', stylers: [{ color: '#32323d' }] },
+        { featureType: 'water', elementType: 'geometry', stylers: [{ color: '#1b2430' }] },
+        { featureType: 'landscape.natural', elementType: 'geometry', stylers: [{ color: '#1f2620' }] },
+      ]
+    : [
+        { elementType: 'geometry', stylers: [{ saturation: -70 }, { lightness: 35 }] },
+        { elementType: 'labels.text.fill', stylers: [{ color: '#9c968c' }] },
+        { elementType: 'labels.text.stroke', stylers: [{ color: '#ffffff' }, { weight: 3 }] },
+        { featureType: 'road', elementType: 'geometry', stylers: [{ color: '#ffffff' }] },
+        { featureType: 'water', elementType: 'geometry', stylers: [{ color: '#e8eef2' }] },
+        { featureType: 'landscape', elementType: 'geometry', stylers: [{ color: '#f6f5f2' }] },
+      ];
+
+  return base.concat([
+    // The main source of visual noise: Google's own restaurant/shop pins.
+    { featureType: 'poi.business', stylers: [{ visibility: 'off' }] },
+    { featureType: 'poi', elementType: 'labels.icon', stylers: [{ visibility: 'off' }] },
+    { featureType: 'transit', elementType: 'labels.icon', stylers: [{ visibility: 'off' }] },
+    { featureType: 'road', elementType: 'labels.icon', stylers: [{ visibility: 'off' }] },
+  ]);
+}
+
+const LABEL_ZOOM = 15;  // below this, name labels on 600+ pins are unreadable
+
+function markerLabel(r, zoom) {
+  if (zoom < LABEL_ZOOM) return null;
+  return {
+    text: r.name || '',
+    fontSize: '12px',
+    fontWeight: '600',
+    color: getComputedStyle(document.body).getPropertyValue('--text').trim() || '#1c1b19',
+    className: 'pin-label',
+  };
+}
+
 function initMap() {
+  const dark = window.matchMedia('(prefers-color-scheme: dark)');
   S.map = new google.maps.Map($('map'), {
     center: { lat: 25.038, lng: 121.547 },   // Taipei
     zoom: 13,
     mapTypeControl: false,
     streetViewControl: false,
     fullscreenControl: false,
+    clickableIcons: false,
+    styles: mapStyles(dark.matches),
+  });
+  dark.addEventListener('change', (e) => S.map.setOptions({ styles: mapStyles(e.matches) }));
+
+  // Names appear only once you're zoomed in enough for them not to overlap.
+  S.map.addListener('zoom_changed', () => {
+    const z = S.map.getZoom();
+    for (const [id, m] of S.markers) {
+      const r = S.restaurants.find((x) => x.id === id);
+      m.setLabel(markerLabel(r, z));
+    }
   });
 
   for (const r of S.restaurants) {
@@ -413,6 +473,7 @@ function initMap() {
       map: S.map,
       title: `${r.name}${r.rating != null ? ` · ${r.rating}` : ''}`,
       icon: markerIcon(r),
+      label: markerLabel(r, 13),
     });
     m.addListener('click', () => select(r.id, true));
     S.markers.set(r.id, m);
