@@ -47,6 +47,19 @@
 
       <div class="filter">
         <div class="filter-head">
+          <label>用餐時段</label>
+          <button id="meal-reset" class="linkish" type="button">重設</button>
+        </div>
+        <div id="meals">
+          <button class="meal" type="button" data-meal="lunch" aria-pressed="false">午餐</button>
+          <button class="meal" type="button" data-meal="dinner" aria-pressed="false">晚餐</button>
+        </div>
+        <div id="meal-note"></div>
+        <label class="check"><input id="show-closed" type="checkbox"> 顯示已歇業</label>
+      </div>
+
+      <div class="filter">
+        <div class="filter-head">
           <label>分類 <span id="cat-count"></span></label>
           <button id="cat-reset" class="linkish" type="button">清除</button>
         </div>

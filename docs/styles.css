@@ -48,6 +48,8 @@ a { color: var(--accent); }
 #subtitle { margin: 2px 0 0; font-size: 13px; color: var(--muted); }
 #stat { display: block; margin-top: 3px; color: var(--text); font-variant-numeric: tabular-nums; }
 #stat .dim { color: var(--muted); }
+#stat .empty { color: var(--accent); font-weight: 600; }
+#stat .linkish { margin-left: 8px; }
 
 /* The sidebar is filters only now, so let them take the height and scroll. */
 #filters { padding: 4px 20px 20px; overflow-y: auto; flex: 1; min-height: 0; }
@@ -108,6 +110,9 @@ input[type=range] { width: 100%; margin: 8px 0 2px; accent-color: var(--accent);
   font-size: 22px; line-height: 1; color: var(--muted); cursor: pointer; }
 .tagline { margin: 6px 0 14px; color: var(--muted); }
 .aka { margin: 4px 0 0; font-size: 12.5px; color: var(--muted); }
+.badge { margin: 8px 0 0; padding: 8px 10px; font-size: 12.5px; color: var(--muted);
+  background: var(--panel); border: 1px solid var(--border); border-radius: 8px; }
+.post-roundup { margin-top: 4px; font-size: 12px; color: var(--accent); }
 .stats { display: flex; flex-wrap: wrap; gap: 8px 18px; padding: 12px 0;
   border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 .stat { font-size: 13px; }
@@ -196,7 +201,23 @@ details > summary { cursor: pointer; font-size: 12.5px; color: var(--accent); }
 
 #budget-out { font-weight: 700; color: var(--text); text-transform: none; letter-spacing: 0;
   font-variant-numeric: tabular-nums; }
-#budget-note { margin-top: 6px; font-size: 11.5px; color: var(--muted); }
+#budget-note, #meal-note { margin-top: 6px; font-size: 11.5px; color: var(--muted); }
+
+#meals { display: flex; gap: 6px; margin-top: 8px; }
+.meal {
+  flex: 1; padding: 7px 0; font: inherit; font-size: 13px; border-radius: 8px;
+  border: 1px solid var(--border); background: var(--bg); color: var(--muted); cursor: pointer;
+}
+.meal[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+.closed-banner {
+  margin: 8px 0 0; padding: 8px 10px; font-size: 12.5px; border-radius: 8px;
+  background: color-mix(in srgb, #c0392b 12%, var(--bg));
+  border: 1px solid color-mix(in srgb, #c0392b 40%, var(--bg));
+  color: var(--text);
+}
+#hovercard .hc-closed { margin-top: 6px; font-size: 11.5px; font-weight: 600; color: #c0392b; }
+#hovercard .hc-meals { color: var(--muted); }
 
 /* Two range inputs stacked on one track. The inputs themselves are transparent
    and ignore the pointer; only their thumbs are grabbable, so whichever handle
@@ -247,4 +268,6 @@ details > summary { cursor: pointer; font-size: 12.5px; color: var(--accent); }
   background: var(--panel); border: 1px solid var(--border); color: var(--muted); }
 #hovercard .hc-note { margin-top: 8px; padding-top: 7px; border-top: 1px solid var(--border);
   font-size: 11.5px; color: var(--accent); }
+#hovercard .hc-badge { margin-top: 6px; font-size: 11px; color: var(--muted); }
+#hovercard .hc-guide { margin-top: 6px; font-size: 12px; color: var(--r-star); font-weight: 600; }
 @media (hover: none) { #hovercard { display: none !important; } }

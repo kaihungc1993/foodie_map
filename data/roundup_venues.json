@@ -1,0 +1,593 @@
+{
+  "rv:abhouse": {
+    "categories": [
+      "義式"
+    ],
+    "is_restaurant": true
+  },
+  "rv:amalabo": {
+    "categories": [
+      "南洋菜",
+      "無菜單料理"
+    ],
+    "is_restaurant": true
+  },
+  "rv:amalabo⭐️⭐️⭐️": {
+    "categories": [
+      "南洋菜",
+      "無菜單料理"
+    ],
+    "is_restaurant": true
+  },
+  "rv:aromatrattoriatoscana": {
+    "categories": [
+      "義式",
+      "餐酒館"
+    ],
+    "is_restaurant": true
+  },
+  "rv:birdyyakitori燒鳥狂想曲": {
+    "categories": [
+      "日本料理",
+      "居酒屋",
+      "燒烤"
+    ],
+    "is_restaurant": true
+  },
+  "rv:botegadelvin": {
+    "categories": [
+      "義式",
+      "酒吧"
+    ],
+    "is_restaurant": true
+  },
+  "rv:burgerout": {
+    "categories": [
+      "漢堡",
+      "美式"
+    ],
+    "is_restaurant": true
+  },
+  "rv:canvas": {
+    "categories": [
+      "餐酒館"
+    ],
+    "is_restaurant": true
+  },
+  "rv:comfortburgercompany": {
+    "categories": [
+      "漢堡",
+      "美式"
+    ],
+    "is_restaurant": true
+  },
+  "rv:divinotaipei": {
+    "categories": [
+      "義式",
+      "餐酒館",
+      "牛排"
+    ],
+    "is_restaurant": true
+  },
+  "rv:faburger": {
+    "categories": [
+      "漢堡",
+      "美式"
+    ],
+    "is_restaurant": true
+  },
+  "rv:fumée": {
+    "categories": [
+      "燒烤",
+      "居酒屋",
+      "日本料理"
+    ],
+    "is_restaurant": true
+  },
+  "rv:kaïbistroàvin": {
+    "categories": [
+      "義式",
+      "酒吧",
+      "法餐"
+    ],
+    "is_restaurant": true
+  },
+  "rv:kirabistro": {
+    "categories": [
+      "披薩",
+      "義式",
+      "法餐",
+      "酒吧"
+    ],
+    "is_restaurant": true
+  },
+  "rv:kirabistro⭐️⭐️⭐️": {
+    "categories": [
+      "法餐",
+      "fine dining",
+      "無菜單料理"
+    ],
+    "is_restaurant": true
+  },
+  "rv:lilycoco莉莉可可": {
+    "categories": [
+      "餐酒館",
+      "義式",
+      "酒吧"
+    ],
+    "is_restaurant": true
+  },
+  "rv:louis’burgers": {
+    "categories": [
+      "漢堡",
+      "美式"
+    ],
+    "is_restaurant": true
+  },
+  "rv:nikuichi博多店": {
+    "categories": [
+      "燒肉",
+      "日本料理",
+      "燒烤"
+    ],
+    "is_restaurant": true
+  },
+  "rv:painstock天神店": {
+    "categories": [
+      "麵包烘焙",
+      "咖啡廳"
+    ],
+    "is_restaurant": true
+  },
+  "rv:pankoko燒肉會所": {
+    "categories": [
+      "燒肉",
+      "日本料理"
+    ],
+    "is_restaurant": true
+  },
+  "rv:pankoko燒肉會所⭐️⭐️": {
+    "categories": [
+      "燒肉",
+      "日本料理",
+      "燒烤"
+    ],
+    "is_restaurant": true
+  },
+  "rv:paris1930x高山英紀": {
+    "categories": [
+      "法餐",
+      "fine dining",
+      "米其林",
+      "無菜單料理"
+    ],
+    "is_restaurant": true
+  },
+  "rv:sen": {
+    "categories": [
+      "餐酒館",
+      "無菜單料理"
+    ],
+    "is_restaurant": true
+  },
+  "rv:tabeyakiniku吃燒肉": {
+    "categories": [
+      "燒肉",
+      "日本料理",
+      "燒烤"
+    ],
+    "is_restaurant": true
+  },
+  "rv:tempuratanaka": {
+    "categories": [
+      "天婦羅",
+      "日本料理"
+    ],
+    "is_restaurant": true
+  },
+  "rv:theflow": {
+    "categories": [
+      "餐酒館",
+      "義式",
+      "牛排"
+    ],
+    "is_restaurant": true
+  },
+  "rv:thefullfullhakata": {
+    "categories": [
+      "麵包烘焙"
+    ],
+    "is_restaurant": true
+  },
+  "rv:torishou鳥翔": {
+    "categories": [
+      "日本料理",
+      "居酒屋",
+      "燒烤"
+    ],
+    "is_restaurant": true
+  },
+  "rv:triplet": {
+    "categories": [
+      "漢堡",
+      "美式"
+    ],
+    "is_restaurant": true
+  },
+  "rv:vero小酒館": {
+    "categories": [
+      "義式",
+      "酒吧"
+    ],
+    "is_restaurant": true
+  },
+  "rv:yakitorimako": {
+    "categories": [
+      "日本料理",
+      "燒烤",
+      "居酒屋"
+    ],
+    "is_restaurant": true
+  },
+  "rv:一冠割烹": {
+    "categories": [
+      "壽司",
+      "日本料理",
+      "無菜單料理"
+    ],
+    "is_restaurant": true
+  },
+  "rv:一隅日式居酒屋": {
+    "categories": [
+      "居酒屋",
+      "日本料理",
+      "燒烤"
+    ],
+    "is_restaurant": true
+  },
+  "rv:今大滷肉飯": {
+    "categories": [
+      "小吃",
+      "丼飯定食"
+    ],
+    "is_restaurant": true
+  },
+  "rv:你家樓下downstairs": {
+    "categories": [
+      "義式",
+      "餐酒館",
+      "fine dining"
+    ],
+    "is_restaurant": true
+  },
+  "rv:叁坪sanpin": {
+    "categories": [
+      "餐酒館",
+      "義式",
+      "酒吧"
+    ],
+    "is_restaurant": true
+  },
+  "rv:吃麵吧": {
+    "categories": [
+      "拉麵",
+      "小吃"
+    ],
+    "is_restaurant": true
+  },
+  "rv:吃麵吧⭐️⭐️": {
+    "categories": [
+      "拉麵",
+      "小吃"
+    ],
+    "is_restaurant": true
+  },
+  "rv:夏林臭豆腐": {
+    "categories": [
+      "小吃"
+    ],
+    "is_restaurant": true
+  },
+  "rv:夏林臭豆腐⭐️⭐️": {
+    "categories": [
+      "小吃"
+    ],
+    "is_restaurant": true
+  },
+  "rv:大稻埕魯肉飯": {
+    "categories": [
+      "台菜",
+      "小吃",
+      "丼飯定食"
+    ],
+    "is_restaurant": true
+  },
+  "rv:嵩sung": {
+    "categories": [
+      "餐酒館",
+      "義式",
+      "酒吧"
+    ],
+    "is_restaurant": true
+  },
+  "rv:新美香咖哩": {
+    "categories": [
+      "丼飯定食",
+      "日本料理"
+    ],
+    "is_restaurant": true
+  },
+  "rv:施家麻油腰花": {
+    "categories": [
+      "小吃",
+      "台菜"
+    ],
+    "is_restaurant": true
+  },
+  "rv:暖燈": {
+    "categories": [
+      "日本料理",
+      "居酒屋"
+    ],
+    "is_restaurant": true
+  },
+  "rv:曉迪筒仔米糕": {
+    "categories": [
+      "小吃",
+      "台菜"
+    ],
+    "is_restaurant": true
+  },
+  "rv:朗時令料理居酒屋": {
+    "categories": [
+      "居酒屋",
+      "日本料理",
+      "燒烤"
+    ],
+    "is_restaurant": true
+  },
+  "rv:東京。烟火気昭和酒食": {
+    "categories": [
+      "居酒屋",
+      "日本料理",
+      "燒烤"
+    ],
+    "is_restaurant": true
+  },
+  "rv:板前中山": {
+    "categories": [
+      "燒肉",
+      "日本料理"
+    ],
+    "is_restaurant": true
+  },
+  "rv:樂魚料亭": {
+    "categories": [
+      "壽司",
+      "日本料理",
+      "無菜單料理"
+    ],
+    "is_restaurant": true
+  },
+  "rv:清子香腸熟肉": {
+    "categories": [
+      "小吃",
+      "台菜"
+    ],
+    "is_restaurant": true
+  },
+  "rv:清子香腸熟肉⭐️": {
+    "categories": [
+      "小吃",
+      "台菜"
+    ],
+    "is_restaurant": true
+  },
+  "rv:炭物語": {
+    "categories": [
+      "燒烤",
+      "居酒屋",
+      "日本料理"
+    ],
+    "is_restaurant": true
+  },
+  "rv:無名羊肉湯大菜市": {
+    "categories": [
+      "小吃",
+      "台菜"
+    ],
+    "is_restaurant": true
+  },
+  "rv:無名羊肉湯大菜市⭐️⭐️": {
+    "categories": [
+      "小吃",
+      "台菜"
+    ],
+    "is_restaurant": true
+  },
+  "rv:燒肉燒": {
+    "categories": [
+      "燒肉",
+      "日本料理",
+      "燒烤"
+    ],
+    "is_restaurant": true
+  },
+  "rv:絢鳥炭火燒鳥": {
+    "categories": [
+      "日本料理",
+      "居酒屋",
+      "燒烤"
+    ],
+    "is_restaurant": true
+  },
+  "rv:至せい至誠居酒屋": {
+    "categories": [
+      "居酒屋",
+      "日本料理",
+      "燒烤"
+    ],
+    "is_restaurant": true
+  },
+  "rv:花滔廚房": {
+    "categories": [
+      "義式",
+      "餐酒館"
+    ],
+    "is_restaurant": true
+  },
+  "rv:薰心syunsin": {
+    "categories": [
+      "燒肉",
+      "日本料理",
+      "燒烤",
+      "無菜單料理"
+    ],
+    "is_restaurant": true
+  },
+  "rv:貴takai壽司割烹": {
+    "categories": [
+      "壽司",
+      "日本料理",
+      "無菜單料理"
+    ],
+    "is_restaurant": true
+  },
+  "rv:賴岡山羊肉": {
+    "categories": [
+      "小吃",
+      "台菜"
+    ],
+    "is_restaurant": true
+  },
+  "rv:都在": {
+    "categories": [
+      "早午餐",
+      "咖啡廳"
+    ],
+    "is_restaurant": true
+  },
+  "rv:阿裕牛肉涮涮鍋崑崙店": {
+    "categories": [
+      "火鍋",
+      "台菜"
+    ],
+    "is_restaurant": true
+  },
+  "rv:阿裕牛肉涮涮鍋崑崙店⭐️": {
+    "categories": [
+      "火鍋",
+      "台菜"
+    ],
+    "is_restaurant": true
+  },
+  "rv:隆次郎燒鳥串燒": {
+    "categories": [
+      "日本料理",
+      "居酒屋",
+      "燒烤"
+    ],
+    "is_restaurant": true
+  },
+  "rv:隱居いざかや": {
+    "categories": [
+      "居酒屋",
+      "日本料理",
+      "燒烤"
+    ],
+    "is_restaurant": true
+  },
+  "rv:順和牛炭火燒肉": {
+    "categories": [
+      "燒肉",
+      "燒烤"
+    ],
+    "is_restaurant": true
+  },
+  "rv:食堂おわん": {
+    "categories": [
+      "日本料理",
+      "丼飯定食",
+      "早午餐"
+    ],
+    "is_restaurant": true
+  },
+  "rv:首烏客家海鮮貓人私房菜": {
+    "categories": [
+      "中菜",
+      "海鮮",
+      "熱炒",
+      "無菜單料理"
+    ],
+    "is_restaurant": true
+  },
+  "rv:驢子餐廳春大直店": {
+    "categories": [
+      "義式",
+      "餐酒館"
+    ],
+    "is_restaurant": true
+  },
+  "rv:驢子餐廳賦樂旅居店": {
+    "categories": [
+      "義式",
+      "餐酒館"
+    ],
+    "is_restaurant": true
+  },
+  "rv:魚ト肴いとおかし": {
+    "categories": [
+      "居酒屋",
+      "日本料理",
+      "丼飯定食",
+      "海鮮",
+      "燒烤"
+    ],
+    "is_restaurant": true
+  },
+  "rv:鮨冶吉": {
+    "categories": [
+      "壽司",
+      "日本料理",
+      "無菜單料理"
+    ],
+    "is_restaurant": true
+  },
+  "rv:鮨岡心": {
+    "categories": [
+      "壽司",
+      "日本料理",
+      "無菜單料理"
+    ],
+    "is_restaurant": true
+  },
+  "rv:鮨志郎": {
+    "categories": [
+      "壽司",
+      "日本料理",
+      "無菜單料理"
+    ],
+    "is_restaurant": true
+  },
+  "rv:麗芳老樓": {
+    "categories": [
+      "餐酒館",
+      "酒吧"
+    ],
+    "is_restaurant": true
+  },
+  "rv:麺や兼虎天神本店": {
+    "categories": [
+      "拉麵",
+      "日本料理"
+    ],
+    "is_restaurant": true
+  },
+  "rv:黑馬小廚": {
+    "categories": [
+      "餐酒館",
+      "義式"
+    ],
+    "is_restaurant": true
+  }
+}

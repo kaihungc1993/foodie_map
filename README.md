@@ -7,14 +7,15 @@ Account setup and API keys: **[SETUP.md](SETUP.md)**.
 
 ## Pipeline
 
-    crawl.py  →  extract.py  →  geocode.py  →  build.py  →  docs/
-    (Apify)      (regex+Opus)   (Google)       (aggregate)   (Pages)
+    crawl.py → extract.py → geocode.py → hours.py → build.py → docs/
+    (Apify)    (regex+Opus)   (Places)      (Places)   (aggregate) (Pages)
 
 | Step | Input | Output | Notes |
 |---|---|---|---|
 | `crawl.py` | Instagram via Apify | `data/raw_posts.json` | Incremental; `--backfill` for full history |
 | `extract.py` | raw posts | `data/extracted.json` | Regex header + Claude classification, cached per post |
 | `geocode.py` | IG location tags | `data/geocode_cache.json` | One lookup per venue, cached forever |
+| `hours.py` | place ids | `data/hours_cache.json` | Lunch / dinner / closed days, Enterprise SKU |
 | `build.py` | all of the above | `docs/data/restaurants.json` | Groups posts into restaurants |
 
 Every intermediate file is committed, so a rerun costs nothing for work already done.
@@ -33,6 +34,19 @@ Claude (`claude-opus-5`) handles only what needs judgement: whether the post is 
 restaurant review at all, and which categories from `config/categories.json` apply.
 Runs of more than 20 new posts go through the Batch API at 50% cost.
 
+### Roundup posts
+
+About 2% of posts are roundups listing several restaurants (「五家台北滷肉飯私心推薦」).
+Each is split per venue rather than attributed to its first 📍. Venues are
+classified individually — inheriting the post's categories would tag every venue
+in a Fukuoka roundup as 壽司 + 拉麵 + 燒肉 at once.
+
+Two rating notations appear in them. Fukuoka posts score each venue
+「推薦指數：4.75⭐️」 in quarter-star steps on the usual 0-5 scale. The Tainan post
+grades Michelin-style with the rubric printed in the caption, so it is stored as
+`guide_stars` and mapped to 4.3 / 4.4 / 4.6 — ⭐⭐ there means「值得繞道前往」, not a
+2.0. A rating he stated himself always wins over that mapping.
+
 ### Grouping
 
 Restaurants are keyed on the **Instagram location id**, which is stable across
@@ -44,6 +58,15 @@ Rating and visit count come from the newest post in each group; categories are t
 union across all its posts. Venues closer than 50m are written to
 `data/merges.json` as suggestions for review — never merged automatically, since
 department store food halls legitimately share coordinates.
+
+Two entries sharing a Places id are merged automatically — one business, one id,
+however differently he spelled the name. Verified against the whole dataset before
+switching this on: all 54 shared ids were genuine duplicates, and distinct
+restaurants at one address hold different ids.
+
+An IG location tag is sometimes a landmark rather than the venue — 「信義安和站」
+is an MRT station two different restaurants were tagged with, and grouping on it
+merged them into one entry. Landmark tags no longer drive grouping or geocoding.
 
 To force a merge, add a cluster to `merges.json` (first id wins):
 

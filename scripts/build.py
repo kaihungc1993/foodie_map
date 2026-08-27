@@ -21,13 +21,26 @@ import common
 NEAR_METRES = 50
 
 
+# The Michelin-style roundup grades map onto his usual 0-5 scale so those venues
+# can be filtered alongside everything else. Only ever applied when he never gave
+# the place a real score — Kira bistro and AMA Labo are ★★★ and were later rated
+# 4.8 and 4.7 in their own posts, and those stated numbers win.
+GUIDE_STAR_RATING = {1: 4.3, 2: 4.4, 3: 4.6}
+
+
+def venue_key(name):
+    return "rv:" + re.sub(r"[\s·•・.,、，\-_()（）｜|/]+", "", (name or "").lower())
+
+
 def norm_name(s):
     return re.sub(r"[\s·•・.,、，\-_()（）]+", "", (s or "").lower())
 
 
 def group_key(post, ex):
     lid = post.get("locationId")
-    if lid:
+    # A landmark tag is shared by every restaurant near it, so grouping on it
+    # merges unrelated venues — fall back to the name written in the caption.
+    if lid and not common.is_landmark(post.get("locationName")):
         return f"loc:{lid}"
     n = norm_name(ex.get("name") or post.get("locationName"))
     return f"name:{n}" if n else None
@@ -64,8 +77,9 @@ def main():
         ex = extracted.get(pid)
         if not ex or not ex["llm"]["is_restaurant"]:
             continue
-        # Roundup posts name several restaurants; attributing the whole post to
-        # the first one would be wrong. Held out until they are split properly.
+        # A roundup names several restaurants, so attributing the whole post to
+        # the first 📍 would invent one restaurant and drop the rest. It is
+        # skipped here and expanded venue-by-venue further down instead.
         if (ex.get("pin_count") or 0) > 1:
             roundups.append({"id": pid, "url": post.get("url"),
                              "date": (post.get("timestamp") or "")[:10],
@@ -86,8 +100,7 @@ def main():
         entries.sort(key=lambda e: e[1].get("timestamp") or "", reverse=True)
         newest_post, newest_ex = entries[0][1], entries[0][2]
 
-        geo_key = str(newest_post.get("locationId") or newest_ex.get("name") or "")
-        g = geo.get(geo_key) or {}
+        g = geo.get(common.geo_key(newest_post, newest_ex)) or {}
         if g.get("status") != "OK":
             missing_geo.append(gk)
 
@@ -126,6 +139,8 @@ def main():
 
         restaurants.append({
             "id": gk,
+            "from_roundup": False,
+            "guide_stars": None,
             "name": display,
             "aka": aka,
             "location_tag": tag_name,
@@ -161,12 +176,20 @@ def main():
     # name at the same coordinates is the same restaurant — merge without asking.
     # Distinct venues that share coordinates (food halls) keep different names,
     # so they are untouched and stay in the suggestion list.
+    # Places assigns one id per business, so two entries sharing a place_id are
+    # the same restaurant however differently he spelled it (巴黎廳1930 /
+    # Paris 1930, 焼鳥まこ / Yakitori MAKO). Checked against the whole dataset:
+    # all 54 shared ids were genuine duplicates, and distinct restaurants at one
+    # address — 東京。烟火気 and 新美香咖哩 on 延吉街 — hold different ids.
     merged_dupes = []
     by_key = {}
     for r in restaurants:
-        if r["lat"] is None:
+        if r.get("place_id"):
+            k = ("pid", r["place_id"])
+        elif r["lat"] is not None:
+            k = ("geo", round(r["lat"], 5), round(r["lng"], 5), norm_name(r["name"]))
+        else:
             continue
-        k = (round(r["lat"], 5), round(r["lng"], 5), norm_name(r["name"]))
         by_key.setdefault(k, []).append(r)
 
     for group in by_key.values():
@@ -194,6 +217,108 @@ def main():
         keep["rating"] = rating
         keep["tagline"] = newest.get("tagline") or keep["tagline"]
 
+    # ---- roundup mentions -------------------------------------------------
+    # Roundup posts ("五家台北漢堡店") name several venues with no per-venue IG
+    # location tag, so they are matched to existing restaurants by Places id.
+    # 20 of the 75 mentions are places that already have their own review post;
+    # those become an extra post entry rather than a duplicate pin.
+    venue_cls = common.read_json(common.VENUES, {})
+    hours_cache = common.read_json(common.HOURS, {})
+    by_place = {r["place_id"]: r for r in restaurants if r.get("place_id")}
+    added, attached = 0, 0
+
+    for pid, post in posts.items():
+        ex = extracted.get(pid)
+        if not ex or (ex.get("pin_count") or 0) <= 1:
+            continue
+        for v in ex.get("venues") or []:
+            key = venue_key(v.get("name"))
+            cls = venue_cls.get(key)
+            if not cls or not cls.get("is_restaurant"):
+                continue
+            g = geo.get(key) or {}
+            if g.get("status") != "OK":
+                continue
+
+            mention = {
+                "id": f"{pid}:{key}",
+                "url": post.get("url"),
+                "shortcode": post.get("shortCode"),
+                "timestamp": post.get("timestamp"),
+                "caption": post.get("caption"),
+                "tagline": v.get("blurb") or None,
+                "rating": v.get("rating"),
+                "guide_stars": v.get("guide_stars"),
+                "visits": v.get("visits"),
+                "dishes": [],
+                "likes": post.get("likesCount"),
+                "source_account": post.get("ownerUsername"),
+                # Flags the entry as a roundup mention: no rating, no dish list,
+                # and the caption covers several restaurants, not just this one.
+                "roundup": True,
+                "roundup_title": (post.get("caption") or "").splitlines()[0][:60],
+            }
+
+            host = by_place.get(g.get("place_id"))
+            if host:
+                host["posts"].append(mention)
+                host["posts"].sort(key=lambda x: x.get("timestamp") or "", reverse=True)
+                host["post_count"] = len(host["posts"])
+                newest_rated = next((x["rating"] for x in host["posts"]
+                                     if x.get("rating") is not None), None)
+                host["rating"] = newest_rated
+                if mention.get("guide_stars") and not host.get("guide_stars"):
+                    host["guide_stars"] = mention["guide_stars"]
+                stated = [x["visits"] for x in host["posts"] if x.get("visits") is not None]
+                if stated:
+                    host["visits"] = max(stated)
+                attached += 1
+                continue
+
+            r = {
+                "id": key,
+                "name": v["name"],
+                "aka": [],
+                "location_tag": None,
+                "address": g.get("formatted_address"),
+                "lat": g.get("lat"),
+                "lng": g.get("lng"),
+                "place_id": g.get("place_id"),
+                "categories": cls.get("categories") or [],
+                # Whatever a roundup does not carry stays null rather than being
+                # guessed; the site renders those as 未評分 / —.
+                "rating": v.get("rating"),
+                "guide_stars": v.get("guide_stars"),
+                "guide_stars": v.get("guide_stars"),
+                "visits": v.get("visits"),
+                "price_min": None,
+                "price_max": None,
+                "tagline": v.get("blurb") or None,
+                "last_visit": post.get("timestamp"),
+                "post_count": 1,
+                "from_roundup": True,
+                "posts": [mention],
+            }
+            restaurants.append(r)
+            if r["place_id"]:
+                by_place[r["place_id"]] = r
+            added += 1
+
+    for r in restaurants:
+        if r["rating"] is None and r.get("guide_stars"):
+            r["rating"] = GUIDE_STAR_RATING.get(r["guide_stars"])
+            r["rating_derived"] = True
+        else:
+            r["rating_derived"] = False
+
+    # Opening hours reduced to the question actually asked of them: lunch, dinner,
+    # days shut — plus whether Google thinks the place has closed for good.
+    from hours import summarise
+    for r in restaurants:
+        h = hours_cache.get(r.get("place_id") or "") or {}
+        r.update(summarise(h))
+        r["business_status"] = h.get("business_status")
+
     restaurants.sort(key=lambda r: r["last_visit"] or "", reverse=True)
 
     # Proximity suggestions for human review — never applied automatically.
@@ -217,9 +342,11 @@ def main():
     common.write_json(common.MERGES, merges)
 
     all_cats = sorted({c for r in restaurants for c in r["categories"]})
+    closed = sum(1 for r in restaurants if r["business_status"] == "CLOSED_PERMANENTLY")
     common.write_json(common.RESTAURANTS, {
         "generated_from_posts": len(posts),
         "restaurant_count": len(restaurants),
+        "closed_count": closed,
         "categories": all_cats,
         "restaurants": restaurants,
     })
@@ -241,7 +368,7 @@ def main():
     })
 
     if roundups:
-        common.write_json(common.DATA / "roundups_held_out.json",
+        common.write_json(common.DATA / "roundup_posts.json",
                           sorted(roundups, key=lambda r: r["date"]))
 
     # Rename *candidates*: the venue Places matched bears little resemblance to
@@ -250,8 +377,7 @@ def main():
     candidates = []
     for gk, entries in groups.items():
         newest_post, newest_ex = entries[0][1], entries[0][2]
-        gkey = str(newest_post.get("locationId") or newest_ex.get("name") or "")
-        gg = geo.get(gkey) or {}
+        gg = geo.get(common.geo_key(newest_post, newest_ex)) or {}
         if gg.get("low_confidence") and gg.get("matched_name"):
             candidates.append({"id": gk, "posted_as": newest_ex.get("name"),
                                "places_says": gg["matched_name"],
@@ -262,6 +388,8 @@ def main():
     applied = sum(1 for r in restaurants
                   if overrides.get(r["id"]) or any(overrides.get(a) for a in r["aka"]))
     print(f"{len(restaurants)} restaurants from {len(groups)} groups")
+    print(f"  roundups: {added} venues added, {attached} mentions attached to "
+          f"restaurants that already had their own post")
     if merged_dupes:
         print(f"  {len(merged_dupes)} duplicate location ids merged: "
               + ", ".join(sorted({d['name'] for d in merged_dupes})))
@@ -269,11 +397,16 @@ def main():
           f"  ({applied} renames applied from config/name_overrides.json)")
     if roundups:
         total = sum(r["venues"] for r in roundups)
-        print(f"  {len(roundups)} roundup posts held out "
-              f"({total} venue mentions) -> data/roundups_held_out.json")
+        print(f"  {len(roundups)} roundup posts, {total} venue mentions "
+              f"-> data/roundup_posts.json")
     print(f"  {len(missing_geo)} without coordinates, "
           f"{skipped_no_location} posts skipped (no location tag or name)")
     print(f"  {len(merges['suggestions'])} proximity merge suggestions -> data/merges.json")
+    lunch = sum(1 for r in restaurants if r["serves_lunch"])
+    dinner = sum(1 for r in restaurants if r["serves_dinner"])
+    nohours = sum(1 for r in restaurants if r["serves_lunch"] is None)
+    print(f"  hours: {lunch} serve lunch, {dinner} serve dinner, {nohours} unknown")
+    print(f"  {closed} closed permanently")
     print(f"  categories in use: {len(all_cats)}")
     return 0
 

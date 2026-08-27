@@ -32,19 +32,48 @@ TAIPEI = {"latitude": 25.038, "longitude": 121.547}
 BIAS_RADIUS_M = 30000.0
 
 # A result carrying only these types is an area, not a venue.
+# Types that describe an area or a street rather than a venue. "route" is here
+# because 「信義路四段」 — a road with no house number — passed as a precise match.
 AREA_TYPES = {
     "locality", "sublocality", "political", "country", "postal_code",
     "administrative_area_level_1", "administrative_area_level_2",
-    "administrative_area_level_3", "neighborhood",
+    "administrative_area_level_3", "neighborhood", "route", "intersection",
 }
 
 
 RE_REGION = re.compile(r"^(.{1,4}?)美食$")
+NON_PLACE_WORDS = {
+    "人氣", "隱藏", "巷弄", "米其林", "平價", "排隊", "銅板", "深夜", "宵夜",
+    "約會", "網美", "特色", "創意", "異國", "高級", "必吃", "無雷", "口袋",
+}
+# Countries he actually travels to. If a post reads as Taiwanese and the result
+# lands in one of these, the match is wrong rather than adventurous.
+FOREIGN_MARKERS = ("日本", "泰國", "美國", "韓國", "香港", "中國", "新加坡", "越南",
+                   "Japan", "USA", "United States")
+TAIWAN_WORDS = ("台北", "臺北", "新北", "台中", "臺中", "台南", "臺南", "高雄",
+                "桃園", "新竹", "基隆", "宜蘭", "台灣", "臺灣", "嘉義", "彰化",
+                "苗栗", "南投", "雲林", "屏東", "花蓮", "台東")
+
+
+def expects_taiwan(post):
+    tags = " ".join(post.get("hashtags") or [])
+    if any(f in tags for f in FOREIGN_MARKERS):
+        return False
+    return any(t in tags for t in TAIWAN_WORDS)
+
+
+def in_taiwan(addr):
+    a = addr or ""
+    return not any(f in a for f in FOREIGN_MARKERS)
 TAIPEI_REGIONS = {"台北", "臺北", "新北", "北投", "士林", "內湖", "信義", "大安", "中山", "松山"}
 
 # An IG location tag is sometimes a landmark rather than the venue: MRT stations,
 # malls, districts. Those must not be used as the search text.
-RE_NON_VENUE = re.compile(r"(捷運|車站|[^\s]站$|夜市$|商圈$|[縣市區]$)")
+RE_NON_VENUE = common.RE_LANDMARK
+
+
+def norm_key(s):
+    return re.sub(r"[\s·•・.,、，\-_()（）｜|/]+", "", (s or "").lower())
 
 
 def region_hints(post):
@@ -54,7 +83,9 @@ def region_hints(post):
     hints = []
     for tag in post.get("hashtags") or []:
         m = RE_REGION.match(tag)
-        if m and m.group(1) not in ("人氣", "隱藏", "巷弄", "米其林"):
+        # "#平價美食" is a price bracket, not a place — and it outranked 台北,
+        # which is how BURGER OUT ended up geocoded to California.
+        if m and m.group(1) not in NON_PLACE_WORDS:
             hints.append(m.group(1))
     # Prefer the most specific hint: 安坑 localises better than 台北.
     hints.sort(key=lambda h: h in TAIPEI_REGIONS)
@@ -69,9 +100,8 @@ def candidates_for(post, header):
     hints = region_hints(post)
     region = hints[0] if hints else None
 
-    bases = []
-    if tag and RE_NON_VENUE.search(tag):
-        bases = [name, tag]          # station-like tag: trust the caption
+    if tag and common.is_landmark(tag):
+        bases = [name]               # landmark tag: it names a place, not the venue
     else:
         bases = [tag, name]
     bases = [b for b in dict.fromkeys(bases) if b]
@@ -196,13 +226,20 @@ REVIEW = 0.34   # below this, keep the pin but flag it for a human
 def resolve(key, post, header):
     cands, bias_region = candidates_for(post, header)
     tag, name = post.get("locationName"), header.get("name")
+    # Scoring against a landmark tag is self-fulfilling: 「信義安和」 matches
+    # 「信義安和站」 perfectly and beats the real restaurant name.
+    if common.is_landmark(tag):
+        tag = None
     bias = bias_region is not None
 
+    want_tw = expects_taiwan(post)
     best = None
     for q in cands:
         res = via_places(key, q, bias=bias)
         if res is None:
             continue
+        if want_tw and not in_taiwan(res.get("formatted_address")):
+            continue          # a Taipei post did not mean a burger joint in California
         res["score"] = score(res.get("matched_name"), tag, name)
         res["query"] = q
         if best is None or res["score"] > best["score"]:
@@ -243,9 +280,29 @@ def main():
     wanted = {}
     for pid, post in posts.items():
         ex = extracted.get(pid)
-        if not ex or not ex["llm"]["is_restaurant"]:
+        if not ex:
             continue
-        k = str(post.get("locationId") or ex.get("name") or "")
+
+        # Roundup posts name several venues and carry no per-venue location tag,
+        # so each is resolved from its name plus the post's region hashtags. They
+        # are handled regardless of is_restaurant: the classifier judges the post
+        # as a whole, and "five best burger joints" is not a single review.
+        if (ex.get("pin_count") or 0) > 1:
+            for v in ex.get("venues") or []:
+                if not v.get("name"):
+                    continue
+                # A region written on the venue line beats the post's hashtags.
+                tags = list(post.get("hashtags") or [])
+                if v.get("region"):
+                    tags.insert(0, f"{v['region']}美食")
+                wanted.setdefault("rv:" + norm_key(v["name"]),
+                                  ({"locationName": None, "hashtags": tags},
+                                   {"name": v["name"]}))
+            continue
+
+        if not ex["llm"]["is_restaurant"]:
+            continue
+        k = common.geo_key(post, ex)
         if k:
             wanted.setdefault(k, (post, ex))
 

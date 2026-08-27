@@ -11,7 +11,7 @@ const S = {
   map: null,
   selected: null,
   filters: { q: '', tiers: new Set(), cats: new Set(),
-             priceLo: 0, priceHi: Infinity },
+             priceLo: 0, priceHi: Infinity, meals: new Set(), showClosed: false },
 };
 
 /* Round numbers people actually think in, which also puts the fine-grained
@@ -55,6 +55,23 @@ const STAR_PATH =
   'M0.00,-10.00L2.59,-3.56L9.51,-3.09L4.18,1.36L5.88,8.09' +
   'L0.00,4.40L-5.88,8.09L-4.18,1.36L-9.51,-3.09L-2.59,-3.56Z';
 
+// The Tainan roundup grades Michelin-style, with the rubric printed in the post.
+// Kept separate from the 0-5 rating: two stars there is high praise, not a 2.0.
+const GUIDE_STAR_TEXT = { 1: '值得駐足', 2: '值得繞道前往', 3: '值得專程造訪' };
+
+function guideStarLabel(r) {
+  if (!r.guide_stars) return null;
+  return `${'★'.repeat(r.guide_stars)} ${GUIDE_STAR_TEXT[r.guide_stars] || ''}`.trim();
+}
+
+function mealLabel(r) {
+  if (r.serves_lunch == null) return '營業時間不明';
+  if (r.serves_lunch && r.serves_dinner) return '午餐・晚餐';
+  if (r.serves_dinner) return '只做晚餐';
+  if (r.serves_lunch) return '只做午餐';
+  return '午晚餐皆無';
+}
+
 function priceLabel(r) {
   if (r.price_min == null) return null;
   return r.price_min === r.price_max
@@ -87,6 +104,17 @@ function visible() {
     if (!tiers.has(ratingTier(r.rating))) return false;
 
     if (cats.size && !r.categories.some((c) => cats.has(c))) return false;
+
+    // Somewhere that has closed for good is not a place you can eat, so it is out
+    // of the way by default rather than deleted — the posts are still history.
+    if (!S.filters.showClosed && r.business_status === 'CLOSED_PERMANENTLY') return false;
+
+    // Meal filters are AND: picking both asks for somewhere open at both sittings.
+    // Places whose hours Google does not know cannot satisfy either.
+    for (const meal of S.filters.meals) {
+      const flag = meal === 'lunch' ? r.serves_lunch : r.serves_dinner;
+      if (flag !== true) return false;
+    }
 
     // Each restaurant is matched on the midpoint of its 人均 range — its
     // representative price. Overlap was the obvious choice but tested badly: a
@@ -128,10 +156,50 @@ function renderStat(shownCount) {
   box.textContent = '';
   if (shownCount === total) {
     box.append(document.createTextNode(`目前有 ${total} 間餐廳`));
-  } else {
-    box.append(document.createTextNode(`符合 ${shownCount} 間`));
-    box.append(el('span', 'dim', ` / 共 ${total} 間`));
+    return;
   }
+  if (shownCount === 0) {
+    // An empty map with no explanation reads as breakage. Name the cause and
+    // offer the way out.
+    box.append(el('span', 'empty', '沒有符合的餐廳'));
+    const why = activeFilterNames();
+    if (why.length) box.append(el('span', 'dim', `（${why.join('、')}）`));
+    const reset = el('button', 'linkish', '清除所有篩選');
+    reset.type = 'button';
+    reset.addEventListener('click', resetAllFilters);
+    box.append(reset);
+    return;
+  }
+  box.append(document.createTextNode(`符合 ${shownCount} 間`));
+  box.append(el('span', 'dim', ` / 共 ${total} 間`));
+}
+
+function activeFilterNames() {
+  const f = S.filters;
+  const names = [];
+  if (f.q.trim()) names.push('搜尋');
+  if (f.tiers.size < liveTiers().length) names.push('評分');
+  if (f.priceLo > 0 || f.priceHi < Infinity) names.push('價位');
+  if (f.meals.size) names.push('用餐時段');
+  if (f.cats.size) names.push('分類');
+  return names;
+}
+
+function resetAllFilters() {
+  const f = S.filters;
+  f.q = '';
+  $('search').value = '';
+  liveTiers().forEach((k) => f.tiers.add(k));
+  syncTierButtons();
+  f.cats.clear();
+  document.querySelectorAll('.cat').forEach((b) => b.setAttribute('aria-pressed', 'false'));
+  updateCatCount();
+  f.meals.clear();
+  document.querySelectorAll('.meal').forEach((b) => b.setAttribute('aria-pressed', 'false'));
+  $('meal-note').textContent = '';
+  $('budget-lo').value = '0';
+  $('budget-hi').value = String(BUDGET_MAX_I);
+  $('budget-lo').dispatchEvent(new Event('input'));
 }
 
 /* ---------- detail panel ---------- */
@@ -176,6 +244,13 @@ function renderDetail(r) {
   close.setAttribute('aria-label', '關閉');
   close.addEventListener('click', closeDetail);
   d.append(close, el('h2', null, r.name || '(無店名)'));
+  if (r.business_status === 'CLOSED_PERMANENTLY') {
+    d.append(el('p', 'closed-banner', 'Google 標示這家店已歇業。貼文保留下來作為紀錄。'));
+  }
+  if (r.from_roundup) {
+    d.append(el('p', 'badge',
+      '這家店來自合輯貼文，只有店名和一句推薦——評分、價位、菜色他沒有單獨寫。'));
+  }
   if (r.aka && r.aka.length) {
     d.append(el('p', 'aka', `原名 ${r.aka.join('、')}`));
   }
@@ -188,10 +263,15 @@ function renderDetail(r) {
     return s;
   };
   stats.append(
-    stat('最新評分', r.rating == null ? '未評分' : `${r.rating.toFixed(1)} / 5`),
-    stat('造訪次數', `${r.visits} 次`),
-    stat('價位', priceLabel(r) || '未提供'),
+    stat('最新評分', r.rating == null ? '未評分'
+         : `${r.rating.toFixed(1)} / 5${r.rating_derived ? '（由星級換算）' : ''}`),
+    stat('造訪次數', r.visits == null ? '—' : `${r.visits} 次`),
+    stat('價位', priceLabel(r) || '—'),
     stat('最近一次', fmtDate(r.last_visit) || '—'),
+    stat('用餐時段', mealLabel(r)),
+    ...(guideStarLabel(r) ? [stat('合輯評級', guideStarLabel(r))] : []),
+    stat('每週公休', r.closed_days == null ? '—'
+         : r.closed_days === 0 ? '無' : `${r.closed_days} 天`),
   );
   d.append(stats);
 
@@ -255,6 +335,10 @@ function renderDetail(r) {
     head.append(left, right);
     box.append(head);
 
+    if (p.roundup) {
+      box.append(el('div', 'post-roundup',
+        `合輯：${p.roundup_title || ''}${p.visits ? ` · ${p.visits}訪` : ''}`));
+    }
     if (p.tagline) box.append(el('p', 'post-tagline', p.tagline));
 
     if (p.dishes?.length) {
@@ -268,7 +352,8 @@ function renderDetail(r) {
 
     if (p.caption) {
       const det = el('details');
-      det.append(el('summary', null, '完整貼文內容'));
+      // A roundup caption covers several restaurants, so say so before opening it.
+      det.append(el('summary', null, p.roundup ? '完整合輯貼文（含其他餐廳）' : '完整貼文內容'));
       det.append(el('p', 'caption', p.caption));
       box.append(det);
     }
@@ -410,15 +495,24 @@ function showCard(r, ev) {
   top.append(el('h4', null, r.name || '(無店名)'));
   const score = el('span', `hc-score ${ratingClass(r.rating)}`);
   score.append(document.createTextNode(r.rating == null ? '未評分' : r.rating.toFixed(1)));
-  score.append(el('span', 'hc-visits', ` / ${r.visits}訪`));
+  if (r.visits != null) score.append(el('span', 'hc-visits', ` / ${r.visits}訪`));
   top.append(score);
   box.append(top);
+  if (r.business_status === 'CLOSED_PERMANENTLY') {
+    box.append(el('div', 'hc-closed', '已歇業'));
+  }
+  const gs = guideStarLabel(r);
+  if (gs) box.append(el('div', 'hc-guide', gs + (r.rating_derived ? '（換算評分）' : '')));
+  if (r.from_roundup && r.rating == null && !gs) {
+    box.append(el('div', 'hc-badge', '合輯提及 · 無評分'));
+  }
 
   if (r.tagline) box.append(el('p', 'hc-tagline', r.tagline));
 
   const meta = el('div', 'hc-meta');
   const bits = [priceLabel(r), fmtDate(r.last_visit)].filter(Boolean);
   bits.forEach((b) => meta.append(el('span', null, b)));
+  meta.append(el('span', 'hc-meals', mealLabel(r)));
   box.append(meta);
 
   if (r.categories.length) {
@@ -740,6 +834,30 @@ function wireFilters() {
     syncBudget();
   });
   syncBudget();
+
+  const mealNote = $('meal-note');
+  const syncMeals = () => {
+    for (const b of document.querySelectorAll('.meal')) {
+      b.setAttribute('aria-pressed', String(S.filters.meals.has(b.dataset.meal)));
+    }
+    const unknown = S.restaurants.filter((r) => r.serves_lunch == null).length;
+    mealNote.textContent =
+      S.filters.meals.size && unknown ? `${unknown} 家 Google 沒有營業時間，不列入` : '';
+    applyFilters();
+  };
+  for (const b of document.querySelectorAll('.meal')) {
+    b.addEventListener('click', () => {
+      const m = b.dataset.meal;
+      if (S.filters.meals.has(m)) S.filters.meals.delete(m);
+      else S.filters.meals.add(m);
+      syncMeals();
+    });
+  }
+  $('meal-reset').addEventListener('click', () => { S.filters.meals.clear(); syncMeals(); });
+  $('show-closed').addEventListener('change', (e) => {
+    S.filters.showClosed = e.target.checked;
+    applyFilters();
+  });
 
   $('cat-reset').addEventListener('click', () => {
     S.filters.cats.clear();

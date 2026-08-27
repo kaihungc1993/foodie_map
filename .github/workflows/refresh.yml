@@ -68,6 +68,13 @@ jobs:
           GOOGLE_GEOCODING_KEY: ${{ secrets.GOOGLE_GEOCODING_KEY }}
         run: python scripts/geocode.py
 
+      - name: Fetch opening hours
+        env:
+          GOOGLE_GEOCODING_KEY: ${{ secrets.GOOGLE_GEOCODING_KEY }}
+        # Places Enterprise SKU: 1,000 free calls a month, a tenth of the other
+        # tiers. Cached by place_id, so a monthly run only touches new venues.
+        run: python scripts/hours.py
+
       - name: Build site data
         env:
           GOOGLE_MAPS_BROWSER_KEY: ${{ secrets.GOOGLE_MAPS_BROWSER_KEY }}

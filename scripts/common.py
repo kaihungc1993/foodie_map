@@ -2,6 +2,7 @@
 import json
 import os
 import pathlib
+import re
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
@@ -11,6 +12,8 @@ CONFIG = ROOT / "config"
 RAW_POSTS = DATA / "raw_posts.json"
 EXTRACTED = DATA / "extracted.json"
 GEOCACHE = DATA / "geocode_cache.json"
+VENUES = DATA / "roundup_venues.json"
+HOURS = DATA / "hours_cache.json"
 MERGES = DATA / "merges.json"
 RESTAURANTS = DOCS_DATA / "restaurants.json"
 NOTES = DOCS_DATA / "notes.json"
@@ -61,6 +64,34 @@ def write_json(path, obj):
         json.dumps(obj, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
         encoding="utf-8",
     )
+
+
+# An IG location tag is sometimes a landmark rather than the venue — an MRT
+# station, a road, a monument. Two different restaurants tagged 信義安和站 were
+# merged into one entry, and 國父紀念館 pinned a monument instead of the
+# restaurant beside it. Such tags must not drive grouping or geocoding.
+RE_LANDMARK = re.compile(
+    r"(捷運|車站|夜市$|商圈$|[^\s]站$|大道$|紀念館$|美術館$|博物館$|公園$|廣場$"
+    r"|機場$|體育館$|大學$|醫院$|[縣市區]$"
+    # Street names get used as tags too — 永康街 stood in for niche taipei and
+    # 敦化北路 for 三點三 DIM SUM TIME.
+    r"|[^\s]{2,}[街路巷弄]$)"
+)
+
+
+def is_landmark(tag):
+    return bool(tag) and bool(RE_LANDMARK.search(tag.strip()))
+
+
+def geo_key(post, extracted):
+    """Cache key for a venue's location. Must be identical in geocode.py and
+    build.py — when they disagreed, a landmark-tagged post was stored under its
+    caption name but looked up by its location id, and picked up the monument's
+    coordinates."""
+    lid = post.get("locationId")
+    if lid and is_landmark(post.get("locationName")):
+        lid = None
+    return str(lid or (extracted or {}).get("name") or "")
 
 
 def categories():

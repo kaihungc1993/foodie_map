@@ -38,6 +38,85 @@ RE_RATING = re.compile(r"([0-9](?:\.[0-9])?)\s*⭐")
 RE_SCALE = re.compile(r"滿分\s*([0-9]+)\s*⭐")
 RE_DISH = re.compile(r"^\s*✨\s*(.+?)\s*$", re.M)
 
+# Roundup posts ("五家台北滷肉飯私心推薦") list several venues, each as a 📍 line
+# followed by a one-line verdict. Some carry a visit count on the name line
+# ("📍Birdy Yakitori 燒鳥狂想曲 / 5訪").
+RE_VENUE_VISITS = re.compile(r"\s*/\s*(?:超過)?\s*(\d+)\s*訪\s*$")
+# Newer roundups write "📍店名｜地區 @ig_handle". The handle wrecks a venue search
+# (「暖燈｜台北 @dantou_tph」 matched an unrelated shop), and the region is a
+# useful geocoding hint, so both are split off the name.
+RE_VENUE_HANDLE = re.compile(r"\s*@[\w.]+\s*$")
+# Some roundups score each venue: "推薦指數：4.75⭐️". The values observed are
+# 3.25 / 3.75 / 4 / 4.25 / 4.5 / 4.75 / 5 — quarter-star steps on the same 0-5
+# scale as his single-restaurant ratings, so they are directly comparable.
+RE_VENUE_RATING = re.compile(
+    r"(?:推薦指數[：:]\s*)?([0-5](?:\.\d{1,2})?)\s*⭐\ufe0f?")
+RE_VENUE_REGION = re.compile(r"^(?P<name>.+?)\s*[｜|]\s*(?P<region>[^｜|]+?)\s*$")
+# A blurb ends at the hashtags, the shop-info block (📞 phone, 🏠 address), a
+# ranking list, or the bracketed legend some roundups close with (「［ 關於⭐️ ］」).
+RE_STOP = re.compile(r"^\s*[#🍚🍽️✨👉💰⭐📞🏠🕐［【\[]")
+# Only a trailing handle is noise — one mid-sentence carries meaning
+# ("@looking4goodfood 推薦的套裝行程") and must survive.
+RE_BLURB_HANDLE = re.compile(r"\s*@[\w.]+\s*$")
+# The Tainan roundup scores venues Michelin-style, with the rubric spelled out in
+# the post: ⭐ 值得駐足 / ⭐⭐ 值得繞道前往 / ⭐⭐⭐ 值得專程造訪. That is a
+# different scale from his usual 0-5 rating — 2 stars is high praise, not a 2.0 —
+# so it is kept as its own field and never folded into `rating`.
+RE_NAME_STARS = re.compile(r"[\s　]*((?:⭐\ufe0f?)+)[\s　]*$")
+
+
+def parse_venues(caption):
+    """Split a roundup caption into one entry per 📍 heading."""
+    venues, cur = [], None
+    for line in (caption or "").splitlines():
+        m = RE_NAME.match(line)
+        if m:
+            if cur:
+                venues.append(cur)
+            raw = m.group(1)
+            vm = RE_VENUE_VISITS.search(raw)
+            raw = RE_VENUE_VISITS.sub("", raw)
+            handle = RE_VENUE_HANDLE.search(raw)
+            raw = RE_VENUE_HANDLE.sub("", raw).strip()
+            sm = RE_NAME_STARS.search(raw)
+            guide_stars = sm.group(1).replace("\ufe0f", "").count("⭐") if sm else None
+            raw = RE_NAME_STARS.sub("", raw).strip()
+            region = None
+            rm = RE_VENUE_REGION.match(raw)
+            if rm:
+                raw, region = rm.group("name").strip(), rm.group("region").strip()
+            cur = {
+                "name": raw,
+                "guide_stars": guide_stars,
+                "region": region,
+                "ig": handle.group(0).strip() if handle else None,
+                "visits": int(vm.group(1)) if vm else None,
+                "blurb": [],
+            }
+            continue
+        if cur is None:
+            continue
+        text = line.strip()
+        if not text:
+            continue
+        if RE_STOP.match(text):        # hashtags / ranking block ends the list
+            venues.append(cur)
+            cur = None
+            continue
+        cur["blurb"].append(text)
+    if cur:
+        venues.append(cur)
+    for v in venues:
+        text = " ".join(v["blurb"])
+        m = RE_VENUE_RATING.search(text)
+        v["rating"] = round(float(m.group(1)), 2) if m else None
+        # Keep the score out of the blurb; it is surfaced as a rating instead.
+        text = RE_VENUE_RATING.sub("", text).replace("推薦指數：", "")
+        while RE_BLURB_HANDLE.search(text):
+            text = RE_BLURB_HANDLE.sub("", text)
+        v["blurb"] = text.strip(" \ufe0f\u200b·、，,。.-—　")[:220]
+    return venues
+
 
 def parse_header(caption):
     """Extract the deterministic fields. Returns dict; values are None if absent."""
@@ -52,10 +131,17 @@ def parse_header(caption):
         "pin_count": 0,
     }
     out["pin_count"] = len(RE_NAME.findall(caption))
+    if out["pin_count"] > 1:
+        out["venues"] = parse_venues(caption)
 
     m = RE_NAME.search(caption)
     if m:
-        out["name"] = m.group(1)
+        # He sometimes appends the venue's IG handle to the 📍 line. It is not
+        # part of the name and wrecks a venue search, so it comes off here as
+        # well as in the roundup parser. A trailing ｜ is just sloppy typing;
+        # a ｜ mid-name usually carries a branch or a description, so it stays.
+        name = RE_VENUE_HANDLE.sub("", m.group(1))
+        out["name"] = name.strip(" 　｜|·、,-—") or None
 
     m = RE_PRICE.search(caption)
     if m:
@@ -215,6 +301,84 @@ def classify_batch(client, todo, schema):
     return out
 
 
+VENUE_SYSTEM = """You classify a single restaurant mentioned inside a Taiwanese
+food blogger's roundup post ("five best burger joints in Taipei").
+
+Decide two things:
+1. is_restaurant — true if this is a restaurant, cafe, bar or food shop. False for
+   sights, hotels, shops that sell no food.
+2. categories — pick every category that applies from the allowed list, judging
+   this venue specifically. The roundup's own theme is a strong hint but not a
+   rule: a Fukuoka food roundup names ramen shops AND sushi counters, and each
+   venue takes only what fits it. Never invent a category outside the list."""
+
+
+def classify_venues(client, posts, extracted, cats, cache, force):
+    """Roundup venues get their own classification. Inheriting the post's
+    categories would tag every venue in a Fukuoka roundup as 壽司 + 拉麵 +
+    燒肉 at once."""
+    schema = build_schema(cats)
+    todo = {}
+    for pid, post in posts.items():
+        ex = extracted.get(pid)
+        if not ex or (ex.get("pin_count") or 0) <= 1:
+            continue
+        theme = (post.get("caption") or "").splitlines()[0][:60]
+        for v in ex.get("venues") or []:
+            key = venue_key(v["name"])
+            if not key or (key in cache and not force):
+                continue
+            todo[key] = {
+                "venue_name": v["name"],
+                "region": v.get("region"),
+                "the_blogger_says": v.get("blurb") or None,
+                "roundup_theme": theme,
+                "roundup_hashtags": (post.get("hashtags") or [])[:8],
+            }
+    if not todo:
+        return cache
+
+    print(f"  classifying {len(todo)} roundup venues")
+    items = list(todo.items())
+    if len(items) > BATCH_THRESHOLD:
+        from anthropic.types.message_create_params import MessageCreateParamsNonStreaming
+        from anthropic.types.messages.batch_create_params import Request
+        # custom_id only accepts [a-zA-Z0-9_-], and venue keys are Chinese, so
+        # the batch is indexed and mapped back afterwards.
+        ids = {f"v{i}": k for i, (k, _) in enumerate(items)}
+        reqs = [Request(custom_id=f"v{i}", params=MessageCreateParamsNonStreaming(
+                    model=MODEL, max_tokens=2000, system=VENUE_SYSTEM,
+                    messages=[{"role": "user", "content": json.dumps(v, ensure_ascii=False)}],
+                    output_config={"effort": "low",
+                                   "format": {"type": "json_schema", "schema": schema}}))
+                for i, (_, v) in enumerate(items)]
+        batch = client.messages.batches.create(requests=reqs)
+        print(f"  venue batch {batch.id} submitted; polling")
+        while True:
+            b = client.messages.batches.retrieve(batch.id)
+            if b.processing_status == "ended":
+                break
+            time.sleep(30)
+        for res in client.messages.batches.results(batch.id):
+            if res.result.type == "succeeded":
+                cache[ids[res.custom_id]] = read_json_result(res.result.message)
+            else:
+                print(f"  {ids.get(res.custom_id)}: {res.result.type}", file=sys.stderr)
+    else:
+        for k, v in items:
+            msg = client.messages.create(
+                model=MODEL, max_tokens=2000, system=VENUE_SYSTEM,
+                messages=[{"role": "user", "content": json.dumps(v, ensure_ascii=False)}],
+                output_config={"effort": "low",
+                               "format": {"type": "json_schema", "schema": schema}})
+            cache[k] = read_json_result(msg)
+    return cache
+
+
+def venue_key(name):
+    return "rv:" + re.sub(r"[\s·•・.,、，\-_()（）｜|/]+", "", (name or "").lower())
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--force", action="store_true", help="re-extract already-cached posts")
@@ -257,6 +421,12 @@ def main():
         merged[pid] = {"llm": verdict, **headers[pid]}
 
     common.write_json(common.EXTRACTED, merged)
+
+    vcache = {} if args.force else common.read_json(common.VENUES, {})
+    if any((v.get("pin_count") or 0) > 1 for v in merged.values()):
+        client = client if "client" in dir() else anthropic.Anthropic()
+        vcache = classify_venues(client, posts, merged, cats, vcache, args.force)
+        common.write_json(common.VENUES, vcache)
     restaurants = sum(1 for v in merged.values() if v["llm"]["is_restaurant"])
     print(f"extracted {len(merged)} posts, {restaurants} are restaurant posts")
     return 0
