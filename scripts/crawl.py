@@ -17,10 +17,14 @@ ENDPOINT = f"https://api.apify.com/v2/acts/{ACTOR}/run-sync-get-dataset-items"
 
 # Fields we keep. The actor returns a lot more (image CDN urls that expire,
 # comment threads); storing only these keeps raw_posts.json reviewable in a diff.
+# `displayUrl` is deliberately absent: Instagram hands back a signed CDN URL whose
+# host and tokens rotate on every fetch, so keeping it rewrote 40 lines of
+# raw_posts.json on every run and produced a "refresh" commit with no real change.
+# It also expires, so it was never usable on the site.
 KEEP = [
     "id", "shortCode", "url", "caption", "timestamp", "type",
     "locationName", "locationId", "hashtags", "likesCount", "commentsCount",
-    "ownerUsername", "displayUrl",
+    "ownerUsername",
 ]
 
 

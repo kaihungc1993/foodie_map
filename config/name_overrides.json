@@ -1,0 +1,4 @@
+{
+  "_comment": "Verified venue renames. Key is the group id (loc:<instagram location id>) or the name as written in the post; value is the current name. Only add entries you have actually confirmed — Places' registered name is often just the same venue with SEO padding, which is not a rename. Candidates to review land in data/rename_candidates.json.",
+  "小隱茶庵 信義店": "木下庵 Kino"
+}

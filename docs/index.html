@@ -12,7 +12,7 @@
   <aside id="sidebar">
     <header id="brand">
       <h1>Foodie Map</h1>
-      <p id="subtitle">from <a href="https://www.instagram.com/born2eat_taiwan/" target="_blank" rel="noopener">@born2eat_taiwan</a></p>
+      <p id="subtitle">from <a href="https://www.instagram.com/born2eat_taiwan/" target="_blank" rel="noopener">@born2eat_taiwan</a><span id="stat"></span></p>
     </header>
 
     <section id="filters">
@@ -23,31 +23,45 @@
 
       <div class="filter">
         <div class="filter-head">
-          <label for="rating">最低評分 <output id="rating-out">全部</output></label>
+          <label>評分 <span id="rating-count"></span></label>
           <button id="rating-reset" class="linkish" type="button">重設</button>
         </div>
-        <input id="rating" type="range" min="0" max="5" step="0.1" value="0">
-        <div class="scale-hints"><span>4.3 願意再訪</span><span>4.6 愛店</span></div>
         <div id="rating-legend"></div>
-        <label class="check"><input id="include-unrated" type="checkbox" checked> 包含未評分</label>
+        <div class="scale-hints"><span>4.3 願意再訪</span><span>4.6 愛店</span></div>
       </div>
 
       <div class="filter">
         <div class="filter-head">
-          <label>分類</label>
+          <label for="budget-hi">價位 <output id="budget-out">不限</output></label>
+          <button id="budget-reset" class="linkish" type="button">重設</button>
+        </div>
+        <div class="dual">
+          <div class="dual-track"></div>
+          <div class="dual-fill" id="budget-fill"></div>
+          <input id="budget-lo" type="range" min="0" max="12" step="1" value="0" aria-label="價位下限">
+          <input id="budget-hi" type="range" min="0" max="12" step="1" value="12" aria-label="價位上限">
+        </div>
+        <div class="scale-hints"><span>不限</span><span>1000</span><span>3000+</span></div>
+        <div id="budget-note"></div>
+      </div>
+
+      <div class="filter">
+        <div class="filter-head">
+          <label>分類 <span id="cat-count"></span></label>
           <button id="cat-reset" class="linkish" type="button">清除</button>
         </div>
-        <div id="categories"></div>
+        <div id="categories" class="collapsed"></div>
+        <button id="cat-toggle" class="linkish" type="button" aria-expanded="false">
+          展開全部分類
+        </button>
       </div>
     </section>
-
-    <div id="count"></div>
-    <ul id="list"></ul>
   </aside>
 
   <main id="map-wrap">
     <div id="map"></div>
     <div id="map-error" hidden></div>
+    <div id="hovercard" hidden aria-hidden="true"></div>
   </main>
 
   <section id="detail" hidden aria-live="polite"></section>

@@ -53,6 +53,10 @@ def main():
         for k in cluster[1:]:
             alias[k] = cluster[0]
 
+    # {group id or old name: current name} — hand-maintained, verified renames only.
+    overrides = common.read_json(common.CONFIG / "name_overrides.json", {})
+    overrides = {k: v for k, v in overrides.items() if not k.startswith("_")}
+
     groups = {}
     skipped_no_location = 0
     roundups = []
@@ -103,10 +107,28 @@ def main():
                 if c not in cats:
                     cats.append(c)
 
+        # Venues get renamed — 小隱茶庵 信義店 now trades as 木下庵 Kino at the same
+        # address — but Places' registered name is usually just the caption name
+        # plus SEO padding ("米釉麻辣鍋物｜大巨蛋美食｜大安區美食"). Adopting it
+        # wholesale made 306 of 478 names worse, so renames are applied only from
+        # config/name_overrides.json, and everything else keeps the name he wrote.
+        caption_name = newest_ex.get("name")
+        tag_name = newest_post.get("locationName")
+        display = caption_name or tag_name
+        override = overrides.get(gk) or overrides.get(display)
+        if override:
+            display, caption_name = override, display
+
+        aka = []
+        for alt in (caption_name, tag_name):
+            if alt and norm_name(alt) != norm_name(display) and alt not in aka:
+                aka.append(alt)
+
         restaurants.append({
             "id": gk,
-            "name": newest_ex.get("name") or newest_post.get("locationName"),
-            "location_tag": newest_post.get("locationName"),
+            "name": display,
+            "aka": aka,
+            "location_tag": tag_name,
             "address": g.get("formatted_address"),
             "lat": g.get("lat"),
             "lng": g.get("lng"),
@@ -133,6 +155,44 @@ def main():
                 "source_account": p.get("ownerUsername"),
             } for pid, p, x in entries],
         })
+
+    # Instagram sometimes carries two location ids for one venue (users can each
+    # create a place entry), which split 4 restaurants into duplicate pins. Same
+    # name at the same coordinates is the same restaurant — merge without asking.
+    # Distinct venues that share coordinates (food halls) keep different names,
+    # so they are untouched and stay in the suggestion list.
+    merged_dupes = []
+    by_key = {}
+    for r in restaurants:
+        if r["lat"] is None:
+            continue
+        k = (round(r["lat"], 5), round(r["lng"], 5), norm_name(r["name"]))
+        by_key.setdefault(k, []).append(r)
+
+    for group in by_key.values():
+        if len(group) < 2:
+            continue
+        group.sort(key=lambda r: r["last_visit"] or "", reverse=True)
+        keep, drop = group[0], group[1:]
+        for d in drop:
+            keep["posts"].extend(d["posts"])
+            for c in d["categories"]:
+                if c not in keep["categories"]:
+                    keep["categories"].append(c)
+            for a in d.get("aka", []):
+                if a not in keep["aka"]:
+                    keep["aka"].append(a)
+            merged_dupes.append({"kept": keep["id"], "merged": d["id"], "name": keep["name"]})
+            restaurants.remove(d)
+        keep["posts"].sort(key=lambda p: p.get("timestamp") or "", reverse=True)
+        keep["post_count"] = len(keep["posts"])
+        stated = [p["visits"] for p in keep["posts"] if p.get("visits") is not None]
+        keep["visits"] = max(stated) if stated else keep["post_count"]
+        newest = keep["posts"][0]
+        keep["last_visit"] = newest.get("timestamp")
+        rating = next((p["rating"] for p in keep["posts"] if p.get("rating") is not None), None)
+        keep["rating"] = rating
+        keep["tagline"] = newest.get("tagline") or keep["tagline"]
 
     restaurants.sort(key=lambda r: r["last_visit"] or "", reverse=True)
 
@@ -184,7 +244,29 @@ def main():
         common.write_json(common.DATA / "roundups_held_out.json",
                           sorted(roundups, key=lambda r: r["date"]))
 
+    # Rename *candidates*: the venue Places matched bears little resemblance to
+    # what he called it. Usually a verbose listing, occasionally a real rename —
+    # a human decides, and records it in config/name_overrides.json.
+    candidates = []
+    for gk, entries in groups.items():
+        newest_post, newest_ex = entries[0][1], entries[0][2]
+        gkey = str(newest_post.get("locationId") or newest_ex.get("name") or "")
+        gg = geo.get(gkey) or {}
+        if gg.get("low_confidence") and gg.get("matched_name"):
+            candidates.append({"id": gk, "posted_as": newest_ex.get("name"),
+                               "places_says": gg["matched_name"],
+                               "address": gg.get("formatted_address")})
+    common.write_json(common.DATA / "rename_candidates.json",
+                      sorted(candidates, key=lambda c: c["posted_as"] or ""))
+
+    applied = sum(1 for r in restaurants
+                  if overrides.get(r["id"]) or any(overrides.get(a) for a in r["aka"]))
     print(f"{len(restaurants)} restaurants from {len(groups)} groups")
+    if merged_dupes:
+        print(f"  {len(merged_dupes)} duplicate location ids merged: "
+              + ", ".join(sorted({d['name'] for d in merged_dupes})))
+    print(f"  {len(candidates)} rename candidates -> data/rename_candidates.json"
+          f"  ({applied} renames applied from config/name_overrides.json)")
     if roundups:
         total = sum(r["venues"] for r in roundups)
         print(f"  {len(roundups)} roundup posts held out "

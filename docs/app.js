@@ -10,8 +10,15 @@ const S = {
   markers: new Map(),
   map: null,
   selected: null,
-  filters: { q: '', minRating: 0, includeUnrated: true, cats: new Set() },
+  filters: { q: '', tiers: new Set(), cats: new Set(),
+             priceLo: 0, priceHi: Infinity },
 };
+
+/* Round numbers people actually think in, which also puts the fine-grained
+   positions where the data is dense — 90% of restaurants sit under 3000, so one
+   "3000+" position covers the tail. Index 0 is "no floor", the last is "no cap". */
+const BUDGET_STOPS = [0, 200, 300, 400, 500, 600, 800, 1000, 1200, 1500, 2000, 2500, Infinity];
+const BUDGET_MAX_I = BUDGET_STOPS.length - 1;
 
 const DRAFT_KEY = 'foodiemap.drafts';
 const TOKEN_KEY = 'foodiemap.ghtoken';
@@ -74,17 +81,28 @@ const hasNote = (id) => noteText(id).trim().length > 0;
 /* ---------- filtering ---------- */
 
 function visible() {
-  const { q, minRating, includeUnrated, cats } = S.filters;
+  const { q, tiers, cats } = S.filters;
   const needle = q.trim().toLowerCase();
   return S.restaurants.filter((r) => {
-    if (r.rating == null) {
-      if (!includeUnrated) return false;
-    } else if (r.rating < minRating) return false;
+    if (!tiers.has(ratingTier(r.rating))) return false;
 
     if (cats.size && !r.categories.some((c) => cats.has(c))) return false;
 
+    // Each restaurant is matched on the midpoint of its 人均 range — its
+    // representative price. Overlap was the obvious choice but tested badly: a
+    // 1000–1500 place "overlaps" a 500–1000 filter because the endpoints touch,
+    // so 42% of everything survived the filter. The midpoint has no such edge
+    // artefact, and the full range is still shown on the card.
+    const { priceLo, priceHi } = S.filters;
+    if (priceLo > 0 || priceHi < Infinity) {
+      if (r.price_min == null) return false;   // no price to check against
+      const mid = (r.price_min + r.price_max) / 2;
+      if (mid < priceLo || mid > priceHi) return false;
+    }
+
     if (needle) {
-      const hay = `${r.name || ''} ${r.location_tag || ''} ${r.address || ''}`.toLowerCase();
+      const hay = `${r.name || ''} ${(r.aka || []).join(' ')} ${r.location_tag || ''} ${r.address || ''}`
+        .toLowerCase();
       if (!hay.includes(needle)) return false;
     }
     return true;
@@ -94,61 +112,32 @@ function visible() {
 function applyFilters() {
   const rows = visible();
   const shown = new Set(rows.map((r) => r.id));
-  renderList(rows);
 
-  let pinned = 0;
   for (const [id, marker] of S.markers) {
-    const on = shown.has(id);
-    marker.setMap(on ? S.map : null);
-    if (on) pinned++;
+    marker.setMap(shown.has(id) ? S.map : null);
   }
-
-  const unlocated = rows.length - pinned;
-  $('count').textContent =
-    `${rows.length} 間餐廳` +
-    (unlocated > 0 ? `（${unlocated} 間無座標，僅列表顯示）` : '');
+  hideCard();
+  renderStat(rows.length);
 }
 
-/* ---------- list ---------- */
+/* ---------- header stat ---------- */
 
-function renderList(rows) {
-  const ul = $('list');
-  ul.textContent = '';
-  for (const r of rows) {
-    const li = document.createElement('li');
-    li.className = 'card' + (S.selected === r.id ? ' active' : '');
-    li.dataset.id = r.id;
-
-    const top = document.createElement('div');
-    top.className = 'card-top';
-    const h = document.createElement('h3');
-    h.textContent = r.name || '(無店名)';
-    const score = document.createElement('span');
-    score.className = `score ${ratingClass(r.rating)}`;
-    score.textContent = r.rating == null ? '—' : r.rating.toFixed(1);
-    top.append(h, score);
-
-    const meta = document.createElement('div');
-    meta.className = 'card-meta';
-    const bits = [r.categories.slice(0, 3).join('・'), priceLabel(r), `${r.visits}訪`]
-      .filter(Boolean);
-    meta.textContent = bits.join(' · ');
-    if (hasNote(r.id)) {
-      const dot = document.createElement('span');
-      dot.className = 'has-note';
-      dot.textContent = ' ✎';
-      meta.append(dot);
-    }
-
-    li.append(top, meta);
-    li.addEventListener('click', () => select(r.id, true));
-    ul.append(li);
+function renderStat(shownCount) {
+  const total = S.restaurants.length;
+  const box = $('stat');
+  box.textContent = '';
+  if (shownCount === total) {
+    box.append(document.createTextNode(`目前有 ${total} 間餐廳`));
+  } else {
+    box.append(document.createTextNode(`符合 ${shownCount} 間`));
+    box.append(el('span', 'dim', ` / 共 ${total} 間`));
   }
 }
 
 /* ---------- detail panel ---------- */
 
 function select(id, pan) {
+  hideCard();
   S.selected = id;
   const r = S.restaurants.find((x) => x.id === id);
   if (!r) return;
@@ -156,7 +145,6 @@ function select(id, pan) {
   u.searchParams.set('r', id);
   history.replaceState(null, '', u);
   renderDetail(r);
-  renderList(visible());
   if (pan && S.map && r.lat != null) {
     S.map.panTo({ lat: r.lat, lng: r.lng });
     if (S.map.getZoom() < 15) S.map.setZoom(16);
@@ -169,7 +157,6 @@ function closeDetail() {
   u.searchParams.delete('r');
   history.replaceState(null, '', u);
   $('detail').hidden = true;
-  renderList(visible());
 }
 
 function el(tag, cls, text) {
@@ -189,6 +176,9 @@ function renderDetail(r) {
   close.setAttribute('aria-label', '關閉');
   close.addEventListener('click', closeDetail);
   d.append(close, el('h2', null, r.name || '(無店名)'));
+  if (r.aka && r.aka.length) {
+    d.append(el('p', 'aka', `原名 ${r.aka.join('、')}`));
+  }
   if (r.tagline) d.append(el('p', 'tagline', r.tagline));
 
   const stats = el('div', 'stats');
@@ -400,13 +390,69 @@ async function saveNote(id, text, btn, status) {
     delete S.drafts[id];
     localStorage.setItem(DRAFT_KEY, JSON.stringify(S.drafts));
     status.textContent = '已儲存到 GitHub';
-    renderList(visible());
   } catch (err) {
     status.className = 'err';
     status.textContent = err.message;
   } finally {
     btn.disabled = false;
   }
+}
+
+/* ---------- hover card ---------- */
+
+const CARD_W = 268, CARD_GAP = 16;
+
+function showCard(r, ev) {
+  const box = $('hovercard');
+  box.textContent = '';
+
+  const top = el('div', 'hc-top');
+  top.append(el('h4', null, r.name || '(無店名)'));
+  const score = el('span', `hc-score ${ratingClass(r.rating)}`);
+  score.append(document.createTextNode(r.rating == null ? '未評分' : r.rating.toFixed(1)));
+  score.append(el('span', 'hc-visits', ` / ${r.visits}訪`));
+  top.append(score);
+  box.append(top);
+
+  if (r.tagline) box.append(el('p', 'hc-tagline', r.tagline));
+
+  const meta = el('div', 'hc-meta');
+  const bits = [priceLabel(r), fmtDate(r.last_visit)].filter(Boolean);
+  bits.forEach((b) => meta.append(el('span', null, b)));
+  box.append(meta);
+
+  if (r.categories.length) {
+    const chips = el('div', 'hc-chips');
+    r.categories.slice(0, 4).forEach((c) => chips.append(el('span', 'hc-chip', c)));
+    box.append(chips);
+  }
+
+  if (hasNote(r.id)) box.append(el('div', 'hc-note', '✎ 有筆記'));
+
+  box.hidden = false;
+  moveCard(ev);
+}
+
+function moveCard(ev) {
+  const box = $('hovercard');
+  if (box.hidden || !ev) return;
+  const h = box.offsetHeight || 130;
+  // Flip to the other side of the cursor near the right edge. When the detail
+  // panel is open its left edge is the real boundary, not the window's.
+  const panel = $('detail');
+  const limit = panel.hidden
+    ? window.innerWidth - 8
+    : panel.getBoundingClientRect().left - 8;
+  let x = ev.clientX + CARD_GAP;
+  if (x + CARD_W > limit) x = ev.clientX - CARD_W - CARD_GAP;
+  let y = ev.clientY + CARD_GAP;
+  if (y + h > window.innerHeight - 8) y = ev.clientY - h - CARD_GAP;
+  box.style.left = `${Math.max(8, x)}px`;
+  box.style.top = `${Math.max(8, y)}px`;
+}
+
+function hideCard() {
+  $('hovercard').hidden = true;
 }
 
 /* ---------- map ---------- */
@@ -417,7 +463,10 @@ function markerIcon(r) {
   if (tier === 't-star') {
     return {
       path: STAR_PATH,
-      scale: 0.85,
+      // A 5-point star covers only 41% of its circumscribed circle, so matching
+      // the circles on radius makes it read much smaller. 10.7 against a circle
+      // radius of 6.5 matches them by area, plus a little so 愛店 stands out.
+      scale: 1.07,
       fillColor: ratingColor(r.rating),
       fillOpacity: 1,
       strokeColor: stroke,
@@ -427,7 +476,7 @@ function markerIcon(r) {
   return {
     path: google.maps.SymbolPath.CIRCLE,
     // Low-rated pins are smaller as well as greyer — two ways of receding.
-    scale: tier === 't-low' || tier === 't-none' ? 5 : 7,
+    scale: tier === 't-low' || tier === 't-none' ? 4.8 : 6.5,
     fillColor: ratingColor(r.rating),
     fillOpacity: tier === 't-low' || tier === 't-none' ? 0.8 : 0.95,
     strokeColor: stroke,
@@ -469,16 +518,22 @@ function mapStyles(dark) {
   ]);
 }
 
-const LABEL_ZOOM = 15;  // below this, name labels on 600+ pins are unreadable
+const LABEL_ZOOM = 14;  // ratings are short, so they can appear earlier than names did
 
 function markerLabel(r, zoom) {
-  if (zoom < LABEL_ZOOM) return null;
+  // The rating, not the name — the name is already in the list and the tooltip,
+  // whereas the exact score is the one thing the colour cannot fully carry.
+  if (zoom < LABEL_ZOOM || r.rating == null) return null;
+  // <= 4.2 stays unlabelled: those pins are meant to recede, and dropping their
+  // labels thins out collisions in the dense blocks where it matters most.
+  if (r.rating <= 4.2) return null;
+  const star = r.rating >= 4.6;
   return {
-    text: r.name || '',
-    fontSize: '12px',
+    text: r.rating.toFixed(1),
+    fontSize: '11.5px',
     fontWeight: '600',
     color: getComputedStyle(document.body).getPropertyValue('--text').trim() || '#1c1b19',
-    className: 'pin-label',
+    className: star ? 'pin-label star' : 'pin-label',
   };
 }
 
@@ -521,6 +576,15 @@ function initMap() {
       label: markerLabel(r, 13),
     });
     m.addListener('click', () => select(r.id, true));
+    m.addListener('mouseover', (e) => {
+      m.setZIndex(1000);          // lift the hovered pin above its neighbours
+      showCard(r, e.domEvent);
+    });
+    m.addListener('mousemove', (e) => moveCard(e.domEvent));
+    m.addListener('mouseout', () => {
+      m.setZIndex(null);
+      hideCard();
+    });
     S.markers.set(r.id, m);
   }
   applyFilters();
@@ -556,27 +620,72 @@ function renderCategories(cats) {
       if (S.filters.cats.has(c)) S.filters.cats.delete(c);
       else S.filters.cats.add(c);
       b.setAttribute('aria-pressed', String(S.filters.cats.has(c)));
+      updateCatCount();
       applyFilters();
     });
     box.append(b);
   }
+  $('cat-toggle').textContent = `展開全部分類（${cats.length}）`;
 }
+
+function updateCatCount() {
+  const n = S.filters.cats.size;
+  $('cat-count').textContent = n ? `已選 ${n}` : '';
+}
+
+const TIER_CELLS = [
+  ['t-low', '\u2264 4.2'], ['t43', '4.3'], ['t44', '4.4'],
+  ['t45', '4.5'], ['t-star', '\u2265 4.6'], ['t-none', '未評分'],
+];
+
+const liveTiers = () => TIER_CELLS.map(([k]) => k)
+  .filter((k) => S.restaurants.some((r) => ratingTier(r.rating) === k));
 
 function renderRatingLegend() {
   const box = $('rating-legend');
   if (!box) return;
-  const cells = [
-    ['t-low', '\u2264 4.2'], ['t43', '4.3'], ['t44', '4.4'],
-    ['t45', '4.5'], ['t-star', '\u2265 4.6'],
-  ];
-  for (const [cls, label] of cells) {
-    const lg = el('div', 'lg');
-    const sw = el('div', 'sw' + (cls === 't-star' ? ' star' : ''));
-    if (cls === 't-star') sw.textContent = '\u2605';
-    else sw.style.background = `var(${TIER_VAR[cls]})`;
-    lg.append(sw, el('div', 'lb', label));
+  box.textContent = '';
+  const counts = {};
+  for (const r of S.restaurants) {
+    const t = ratingTier(r.rating);
+    counts[t] = (counts[t] || 0) + 1;
+  }
+
+  for (const [key, label] of TIER_CELLS) {
+    // An empty tier would be a control that does nothing — leave it out.
+    if (!counts[key]) continue;
+    S.filters.tiers.add(key);
+
+    const lg = el('button', 'lg');
+    lg.type = 'button';
+    lg.dataset.tier = key;
+    lg.title = `${label}：${counts[key]} 家`;
+
+    const sw = el('div', 'sw' + (key === 't-star' ? ' star' : ''));
+    if (key === 't-star') sw.textContent = '\u2605';
+    else sw.style.background = `var(${TIER_VAR[key]})`;
+
+    lg.append(sw, el('span', 'lb', label), el('span', 'ct', String(counts[key])));
+    lg.addEventListener('click', () => {
+      if (S.filters.tiers.has(key)) S.filters.tiers.delete(key);
+      else S.filters.tiers.add(key);
+      // Turning the last tier off would empty the map with no way back but reset,
+      // so the final selected tier stays on.
+      if (S.filters.tiers.size === 0) S.filters.tiers.add(key);
+      syncTierButtons();
+      applyFilters();
+    });
     box.append(lg);
   }
+  syncTierButtons();
+}
+
+function syncTierButtons() {
+  for (const b of $('rating-legend').querySelectorAll('.lg')) {
+    b.setAttribute('aria-pressed', String(S.filters.tiers.has(b.dataset.tier)));
+  }
+  const off = liveTiers().length - S.filters.tiers.size;
+  $('rating-count').textContent = off ? `已篩掉 ${off} 級` : '';
 }
 
 function wireFilters() {
@@ -585,26 +694,67 @@ function wireFilters() {
     applyFilters();
   });
 
-  const slider = $('rating');
-  const out = $('rating-out');
-  const sync = () => {
-    const v = Number(slider.value);
-    S.filters.minRating = v;
-    out.textContent = v === 0 ? '全部' : `${v.toFixed(1)}+`;
-    applyFilters();
-  };
-  slider.addEventListener('input', sync);
-  $('rating-reset').addEventListener('click', () => { slider.value = '0'; sync(); });
-
-  $('include-unrated').addEventListener('change', (e) => {
-    S.filters.includeUnrated = e.target.checked;
+  $('rating-reset').addEventListener('click', () => {
+    liveTiers().forEach((k) => S.filters.tiers.add(k));
+    syncTierButtons();
     applyFilters();
   });
+
+  const loEl = $('budget-lo');
+  const hiEl = $('budget-hi');
+  const budgetOut = $('budget-out');
+  const budgetNote = $('budget-note');
+  const budgetFill = $('budget-fill');
+
+  const syncBudget = () => {
+    let lo = Number(loEl.value);
+    let hi = Number(hiEl.value);
+    if (lo > hi) { [lo, hi] = [hi, lo]; loEl.value = String(lo); hiEl.value = String(hi); }
+
+    S.filters.priceLo = BUDGET_STOPS[lo];
+    S.filters.priceHi = BUDGET_STOPS[hi];
+
+    const loOn = lo > 0;
+    const hiOn = hi < BUDGET_MAX_I;
+    budgetOut.textContent =
+      !loOn && !hiOn ? '不限'
+      : loOn && hiOn ? `${BUDGET_STOPS[lo]} – ${BUDGET_STOPS[hi]} 元`
+      : loOn ? `${BUDGET_STOPS[lo]} 元以上`
+      : `${BUDGET_STOPS[hi]} 元以內`;
+
+    budgetFill.style.left = `${(lo / BUDGET_MAX_I) * 100}%`;
+    budgetFill.style.right = `${100 - (hi / BUDGET_MAX_I) * 100}%`;
+
+    // 6 restaurants carry no price. Say so rather than dropping them silently.
+    const unpriced = S.restaurants.filter((r) => r.price_min == null).length;
+    budgetNote.textContent =
+      (loOn || hiOn) && unpriced ? `${unpriced} 家未標價位，設定價位後不列入` : '';
+    applyFilters();
+  };
+
+  loEl.addEventListener('input', syncBudget);
+  hiEl.addEventListener('input', syncBudget);
+  $('budget-reset').addEventListener('click', () => {
+    loEl.value = '0';
+    hiEl.value = String(BUDGET_MAX_I);
+    syncBudget();
+  });
+  syncBudget();
 
   $('cat-reset').addEventListener('click', () => {
     S.filters.cats.clear();
     document.querySelectorAll('.cat').forEach((b) => b.setAttribute('aria-pressed', 'false'));
+    updateCatCount();
     applyFilters();
+  });
+
+  const catBox = $('categories');
+  const catToggle = $('cat-toggle');
+  const total = () => document.querySelectorAll('.cat').length;
+  catToggle.addEventListener('click', () => {
+    const collapsed = catBox.classList.toggle('collapsed');
+    catToggle.setAttribute('aria-expanded', String(!collapsed));
+    catToggle.textContent = collapsed ? `展開全部分類（${total()}）` : '收合分類';
   });
 
   $('token-forget').addEventListener('click', () => {
@@ -635,8 +785,8 @@ async function main() {
     S.drafts = JSON.parse(localStorage.getItem(DRAFT_KEY) || '{}');
   } catch { S.drafts = {}; }
 
+  renderRatingLegend();     // seeds S.filters.tiers, so it must run before filtering
   renderCategories(data.categories);
-  renderRatingLegend();
   wireFilters();
   applyFilters();
 
