@@ -1,24 +1,59 @@
 # Foodie Map
 
-A map of Taipei restaurants reviewed by [@born2eat_taiwan](https://www.instagram.com/born2eat_taiwan/),
-built as a static GitHub Pages site and refreshed monthly by GitHub Actions.
+A map of Taipei restaurants reviewed by [@born2eat_taiwan](https://www.instagram.com/born2eat_taiwan/)
+and [@jc_foodidi](https://www.instagram.com/jc_foodidi/), built as a static GitHub
+Pages site and refreshed monthly by GitHub Actions.
+
+The site shows **one reviewer at a time**. Their ratings are not interchangeable:
+on the 99 venues both have written about, jc scored lower on 94, mean −0.53. Merging
+or averaging the two would silently demote restaurants the other one loves, so each
+keeps his own scale and his own tier thresholds, and switching reviewer rebuilds the
+map.
 
 Account setup and API keys: **[SETUP.md](SETUP.md)**.
 
 ## Pipeline
 
     crawl.py → extract.py → geocode.py → hours.py → build.py → docs/
-    (Apify)    (regex+Opus)   (Places)      (Places)   (aggregate) (Pages)
+    (Apify)    (parsers +     (Places)      (Places)   (aggregate) (Pages)
+                Opus)
 
 | Step | Input | Output | Notes |
 |---|---|---|---|
 | `crawl.py` | Instagram via Apify | `data/raw_posts.json` | Incremental; `--backfill` for full history |
-| `extract.py` | raw posts | `data/extracted.json` | Regex header + Claude classification, cached per post |
+| `extract.py` | raw posts | `data/extracted.json` | Per-account parser + Claude classification, cached per post |
 | `geocode.py` | IG location tags | `data/geocode_cache.json` | One lookup per venue, cached forever |
 | `hours.py` | place ids | `data/hours_cache.json` | Lunch / dinner / closed days, Enterprise SKU |
 | `build.py` | all of the above | `docs/data/restaurants.json` | Groups posts into restaurants |
 
 Every intermediate file is committed, so a rerun costs nothing for work already done.
+
+### Accounts and parsers
+
+`config/accounts.json` lists the crawled accounts and marks one `primary`. Each
+needs its own module under `scripts/parsers/`, because no two of them write
+captions the same way — the existing parser matched **0 of 25** of the second
+account's posts on every field. An unregistered account is skipped loudly rather
+than run through someone else's parser, which would produce a record that looks
+well-formed and is entirely empty.
+
+The primary account is load-bearing beyond display order: the shown venue name and
+the surviving id in a merge are both anchored to it, so a second reviewer's newer
+post cannot rename or re-key a restaurant that already exists.
+
+### Rating scales
+
+Ratings are per-reviewer and never combined. Tier cut points are frozen by hand in
+`config/rating_calibration.json`; `scripts/calibrate.py --report` produces the
+evidence but never applies it, because recomputing cuts from a live distribution
+would repaint the map every month.
+
+born2eat's hand-set thresholds (4.3 願意再訪, 4.6 愛店) turn out to sit almost exactly
+on quintiles of his own ratings — top 77.7 / 58.3 / 38.0 / 22.3% — which is why the
+same percentile framing carries to another reviewer without changing his map at all.
+
+jc gets **four** tiers rather than five: 45.9% of his restaurants sit on the single
+value 3.75, and no cut point can split one value.
 
 ### Why the split in `extract.py`
 
@@ -67,6 +102,18 @@ restaurants at one address hold different ids.
 An IG location tag is sometimes a landmark rather than the venue — 「信義安和站」
 is an MRT station two different restaurants were tagged with, and grouping on it
 merged them into one entry. Landmark tags no longer drive grouping or geocoding.
+
+Restaurant ids are permanent — `docs/data/notes.json` and `?r=` deep links are keyed
+on them. Every id ever published is kept in `data/id_ledger.json`, and one that
+retires (a roundup-only venue gaining its own review post) is redirected through
+`id_aliases` in `restaurants.json`. `scripts/migrate_notes.py` applies those moves to
+existing notes.
+
+One account writes the street address into its captions. That address leads the
+geocoding search — the author was physically there — and afterwards the two sources
+are compared: house-number disagreements land in `data/source_conflicts.json` for
+review. That check is how a 蜷尾家 collab in 松山 was caught resolving to the original
+shop in Tainan.
 
 To force a merge, add a cluster to `merges.json` (first id wins):
 

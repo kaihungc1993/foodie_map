@@ -1,0 +1,760 @@
+{
+  "accounts": {
+    "born2eat_taiwan": {
+      "distinct_values": 17,
+      "frozen_cuts": [
+        4.3,
+        4.4,
+        4.5,
+        4.6
+      ],
+      "max": 5.0,
+      "median": 4.4,
+      "min": 3.5,
+      "proposed_cuts": [
+        4.3,
+        4.4,
+        4.5,
+        4.6
+      ],
+      "rated": 484,
+      "tier_counts": [
+        107,
+        94,
+        98,
+        77,
+        108
+      ],
+      "tier_share": [
+        0.221,
+        0.194,
+        0.202,
+        0.159,
+        0.223
+      ],
+      "warnings": []
+    },
+    "jc_foodidi": {
+      "distinct_values": 10,
+      "frozen_cuts": null,
+      "max": 5.0,
+      "median": 3.75,
+      "min": 2.0,
+      "proposed_cuts": [
+        3.75,
+        4.0
+      ],
+      "rated": 294,
+      "tier_counts": [
+        39,
+        135,
+        120
+      ],
+      "tier_share": [
+        0.133,
+        0.459,
+        0.408
+      ],
+      "warnings": [
+        "a tier holds over 45% — the rating lattice cannot split it"
+      ]
+    }
+  },
+  "overlaps": {
+    "born2eat_taiwan vs jc_foodidi": [
+      {
+        "born2eat_taiwan": 3.5,
+        "delta": -1.5,
+        "id": "name:忻鮨壽司",
+        "jc_foodidi": 2.0,
+        "name": "忻鮨壽司"
+      },
+      {
+        "born2eat_taiwan": 4.4,
+        "delta": -1.15,
+        "id": "loc:108984025070139",
+        "jc_foodidi": 3.25,
+        "name": "立志壽司"
+      },
+      {
+        "born2eat_taiwan": 5.0,
+        "delta": -1.0,
+        "id": "loc:107694871458810",
+        "jc_foodidi": 4.0,
+        "name": "樂魚料亭"
+      },
+      {
+        "born2eat_taiwan": 4.7,
+        "delta": -0.95,
+        "id": "loc:976484792",
+        "jc_foodidi": 3.75,
+        "name": "肝苦嘆呷郎 X 一隅居酒屋"
+      },
+      {
+        "born2eat_taiwan": 4.2,
+        "delta": -0.95,
+        "id": "loc:855332124812120",
+        "jc_foodidi": 3.25,
+        "name": "山男 Yamasan"
+      },
+      {
+        "born2eat_taiwan": 4.4,
+        "delta": -0.9,
+        "id": "loc:104236621846387",
+        "jc_foodidi": 3.5,
+        "name": "CANVAS"
+      },
+      {
+        "born2eat_taiwan": 4.6,
+        "delta": -0.85,
+        "id": "loc:103896158273580",
+        "jc_foodidi": 3.75,
+        "name": "貴Takai壽司.割烹"
+      },
+      {
+        "born2eat_taiwan": 4.6,
+        "delta": -0.85,
+        "id": "loc:176091599771811",
+        "jc_foodidi": 3.75,
+        "name": "TABE YAKINIKU 吃燒肉"
+      },
+      {
+        "born2eat_taiwan": 4.6,
+        "delta": -0.85,
+        "id": "loc:155253194331551",
+        "jc_foodidi": 3.75,
+        "name": "鮨荻 sushi ogi"
+      },
+      {
+        "born2eat_taiwan": 4.6,
+        "delta": -0.85,
+        "id": "loc:1650870218314108",
+        "jc_foodidi": 3.75,
+        "name": "麗芳老樓"
+      },
+      {
+        "born2eat_taiwan": 4.8,
+        "delta": -0.8,
+        "id": "loc:378706412004012",
+        "jc_foodidi": 4.0,
+        "name": "SEN"
+      },
+      {
+        "born2eat_taiwan": 4.3,
+        "delta": -0.8,
+        "id": "loc:218430153",
+        "jc_foodidi": 3.5,
+        "name": "PICO PICO"
+      },
+      {
+        "born2eat_taiwan": 4.5,
+        "delta": -0.75,
+        "id": "loc:446099271914493",
+        "jc_foodidi": 3.75,
+        "name": "弎弎川酒"
+      },
+      {
+        "born2eat_taiwan": 4.5,
+        "delta": -0.75,
+        "id": "loc:108504784970239",
+        "jc_foodidi": 3.75,
+        "name": "雞窩"
+      },
+      {
+        "born2eat_taiwan": 4.5,
+        "delta": -0.75,
+        "id": "loc:139107062612230",
+        "jc_foodidi": 3.75,
+        "name": "東方樓"
+      },
+      {
+        "born2eat_taiwan": 4.5,
+        "delta": -0.75,
+        "id": "loc:374139392450052",
+        "jc_foodidi": 3.75,
+        "name": "迷途島"
+      },
+      {
+        "born2eat_taiwan": 4.5,
+        "delta": -0.75,
+        "id": "loc:113421650029517",
+        "jc_foodidi": 3.75,
+        "name": "安東牛麵吧 ANTONIO NOODLE BAR"
+      },
+      {
+        "born2eat_taiwan": 4.5,
+        "delta": -0.75,
+        "id": "loc:244183799685198",
+        "jc_foodidi": 3.75,
+        "name": "波波海鮮市集"
+      },
+      {
+        "born2eat_taiwan": 4.75,
+        "delta": -0.75,
+        "id": "loc:186416871227678",
+        "jc_foodidi": 4.0,
+        "name": "食堂 おわん"
+      },
+      {
+        "born2eat_taiwan": 4.5,
+        "delta": -0.75,
+        "id": "loc:249065419",
+        "jc_foodidi": 3.75,
+        "name": "Botega del vin"
+      },
+      {
+        "born2eat_taiwan": 4.5,
+        "delta": -0.75,
+        "id": "loc:686489528394594",
+        "jc_foodidi": 3.75,
+        "name": "T+T"
+      },
+      {
+        "born2eat_taiwan": 4.7,
+        "delta": -0.7,
+        "id": "loc:425905697457199",
+        "jc_foodidi": 4.0,
+        "name": "渡時機海產店"
+      },
+      {
+        "born2eat_taiwan": 4.7,
+        "delta": -0.7,
+        "id": "loc:264068940",
+        "jc_foodidi": 4.0,
+        "name": "A.B HOUSE 義式私房料理"
+      },
+      {
+        "born2eat_taiwan": 4.7,
+        "delta": -0.7,
+        "id": "loc:252716451808314",
+        "jc_foodidi": 4.0,
+        "name": "鮨岡心"
+      },
+      {
+        "born2eat_taiwan": 4.7,
+        "delta": -0.7,
+        "id": "loc:720428364480657",
+        "jc_foodidi": 4.0,
+        "name": "RORA. Bistro"
+      },
+      {
+        "born2eat_taiwan": 4.7,
+        "delta": -0.7,
+        "id": "loc:106981264869616",
+        "jc_foodidi": 4.0,
+        "name": "一冠割烹 Yikuan Kappo"
+      },
+      {
+        "born2eat_taiwan": 4.4,
+        "delta": -0.65,
+        "id": "loc:311376863048660",
+        "jc_foodidi": 3.75,
+        "name": "Polux by Paul Pairet Taipei"
+      },
+      {
+        "born2eat_taiwan": 4.4,
+        "delta": -0.65,
+        "id": "name:私心xinpremium",
+        "jc_foodidi": 3.75,
+        "name": "私心 Xin Premium"
+      },
+      {
+        "born2eat_taiwan": 4.4,
+        "delta": -0.65,
+        "id": "name:monte",
+        "jc_foodidi": 3.75,
+        "name": "Monte"
+      },
+      {
+        "born2eat_taiwan": 4.4,
+        "delta": -0.65,
+        "id": "loc:710708625469693",
+        "jc_foodidi": 3.75,
+        "name": "牛寓"
+      },
+      {
+        "born2eat_taiwan": 4.4,
+        "delta": -0.65,
+        "id": "loc:138517569350483",
+        "jc_foodidi": 3.75,
+        "name": "樂割烹"
+      },
+      {
+        "born2eat_taiwan": 4.4,
+        "delta": -0.65,
+        "id": "loc:637650252754848",
+        "jc_foodidi": 3.75,
+        "name": "CWTCH YUE 擁躍"
+      },
+      {
+        "born2eat_taiwan": 4.4,
+        "delta": -0.65,
+        "id": "loc:104531872712181",
+        "jc_foodidi": 3.75,
+        "name": "嵩sung 台北大安"
+      },
+      {
+        "born2eat_taiwan": 4.4,
+        "delta": -0.65,
+        "id": "loc:643895392151155",
+        "jc_foodidi": 3.75,
+        "name": "AROSA Dining"
+      },
+      {
+        "born2eat_taiwan": 4.4,
+        "delta": -0.65,
+        "id": "loc:240539729",
+        "jc_foodidi": 3.75,
+        "name": "陸 和洋私廚料理 KappouRoku"
+      },
+      {
+        "born2eat_taiwan": 4.4,
+        "delta": -0.65,
+        "id": "loc:108792198632141",
+        "jc_foodidi": 3.75,
+        "name": "壽司秀吉X炭物語"
+      },
+      {
+        "born2eat_taiwan": 4.4,
+        "delta": -0.65,
+        "id": "loc:1848410355476042",
+        "jc_foodidi": 3.75,
+        "name": "Moon Baking studio 松山店"
+      },
+      {
+        "born2eat_taiwan": 4.6,
+        "delta": -0.6,
+        "id": "loc:104701688883560",
+        "jc_foodidi": 4.0,
+        "name": "破壞者珈琲食堂"
+      },
+      {
+        "born2eat_taiwan": 4.6,
+        "delta": -0.6,
+        "id": "loc:476954538843154",
+        "jc_foodidi": 4.0,
+        "name": "鮨 冶吉"
+      },
+      {
+        "born2eat_taiwan": 4.6,
+        "delta": -0.6,
+        "id": "loc:1023511520844467",
+        "jc_foodidi": 4.0,
+        "name": "燒鳥すみか（Yakitori Sumika）"
+      },
+      {
+        "born2eat_taiwan": 4.6,
+        "delta": -0.6,
+        "id": "loc:176803128855036",
+        "jc_foodidi": 4.0,
+        "name": "鮨一田"
+      },
+      {
+        "born2eat_taiwan": 4.6,
+        "delta": -0.6,
+        "id": "loc:109137712029911",
+        "jc_foodidi": 4.0,
+        "name": "Ad Astra"
+      },
+      {
+        "born2eat_taiwan": 4.6,
+        "delta": -0.6,
+        "id": "loc:230981826759263",
+        "jc_foodidi": 4.0,
+        "name": "鮨志郎"
+      },
+      {
+        "born2eat_taiwan": 4.6,
+        "delta": -0.6,
+        "id": "loc:366958673172107",
+        "jc_foodidi": 4.0,
+        "name": "Aroma Trattoria Toscana"
+      },
+      {
+        "born2eat_taiwan": 4.6,
+        "delta": -0.6,
+        "id": "loc:114380901961856",
+        "jc_foodidi": 4.0,
+        "name": "A cut"
+      },
+      {
+        "born2eat_taiwan": 4.3,
+        "delta": -0.55,
+        "id": "name:大盛大叔新台式蒙古烤肉",
+        "jc_foodidi": 3.75,
+        "name": "大盛大叔 新台式蒙古烤肉"
+      },
+      {
+        "born2eat_taiwan": 4.3,
+        "delta": -0.55,
+        "id": "loc:504646646058362",
+        "jc_foodidi": 3.75,
+        "name": "招財溫體羊"
+      },
+      {
+        "born2eat_taiwan": 4.3,
+        "delta": -0.55,
+        "id": "name:三點三dimsumtime",
+        "jc_foodidi": 3.75,
+        "name": "三點三 DIM SUM TIME"
+      },
+      {
+        "born2eat_taiwan": 4.3,
+        "delta": -0.55,
+        "id": "loc:746344038558768",
+        "jc_foodidi": 3.75,
+        "name": "朧板前燒肉"
+      },
+      {
+        "born2eat_taiwan": 4.3,
+        "delta": -0.55,
+        "id": "loc:656084887597239",
+        "jc_foodidi": 3.75,
+        "name": "rooTi"
+      },
+      {
+        "born2eat_taiwan": 4.3,
+        "delta": -0.55,
+        "id": "name:煉丹爐｜潮汕火鍋",
+        "jc_foodidi": 3.75,
+        "name": "煉丹爐 ｜潮汕火鍋"
+      },
+      {
+        "born2eat_taiwan": 4.3,
+        "delta": -0.55,
+        "id": "loc:197033250150564",
+        "jc_foodidi": 3.75,
+        "name": "Poetry 如詩"
+      },
+      {
+        "born2eat_taiwan": 4.3,
+        "delta": -0.55,
+        "id": "loc:101947165979932",
+        "jc_foodidi": 3.75,
+        "name": "樂樽爐端燒"
+      },
+      {
+        "born2eat_taiwan": 4.3,
+        "delta": -0.55,
+        "id": "loc:622867511458223",
+        "jc_foodidi": 3.75,
+        "name": "禾鮨"
+      },
+      {
+        "born2eat_taiwan": 4.3,
+        "delta": -0.55,
+        "id": "loc:2169598369995780",
+        "jc_foodidi": 3.75,
+        "name": "安東廳 Antoine Room"
+      },
+      {
+        "born2eat_taiwan": 4.3,
+        "delta": -0.55,
+        "id": "loc:231291283395923",
+        "jc_foodidi": 3.75,
+        "name": "食堂 平浪PEACEWAVE"
+      },
+      {
+        "born2eat_taiwan": 4.3,
+        "delta": -0.55,
+        "id": "loc:108273104875927",
+        "jc_foodidi": 3.75,
+        "name": "艋舺咖喱 MONGACURRY"
+      },
+      {
+        "born2eat_taiwan": 4.3,
+        "delta": -0.55,
+        "id": "loc:236898841589859",
+        "jc_foodidi": 3.75,
+        "name": "KATSU鑫｜熟成豬排蓋飯"
+      },
+      {
+        "born2eat_taiwan": 4.5,
+        "delta": -0.5,
+        "id": "loc:101367265878664",
+        "jc_foodidi": 4.0,
+        "name": "好食曆食堂"
+      },
+      {
+        "born2eat_taiwan": 4.5,
+        "delta": -0.5,
+        "id": "loc:1172945395898870",
+        "jc_foodidi": 4.0,
+        "name": "pecora"
+      },
+      {
+        "born2eat_taiwan": 4.5,
+        "delta": -0.5,
+        "id": "loc:685280282",
+        "jc_foodidi": 4.0,
+        "name": "香色 XIANG SE"
+      },
+      {
+        "born2eat_taiwan": 4.5,
+        "delta": -0.5,
+        "id": "loc:108572312261818",
+        "jc_foodidi": 4.0,
+        "name": "麟聚"
+      },
+      {
+        "born2eat_taiwan": 4.5,
+        "delta": -0.5,
+        "id": "loc:507471009121992",
+        "jc_foodidi": 4.0,
+        "name": "kaï bistro à vin"
+      },
+      {
+        "born2eat_taiwan": 4.5,
+        "delta": -0.5,
+        "id": "loc:259661",
+        "jc_foodidi": 4.0,
+        "name": "車庫羊肉爐"
+      },
+      {
+        "born2eat_taiwan": 4.5,
+        "delta": -0.5,
+        "id": "loc:277695632909676",
+        "jc_foodidi": 4.0,
+        "name": "鄒記食舖"
+      },
+      {
+        "born2eat_taiwan": 4.5,
+        "delta": -0.5,
+        "id": "loc:237721616",
+        "jc_foodidi": 4.0,
+        "name": "雨人麵包餐館"
+      },
+      {
+        "born2eat_taiwan": 4.2,
+        "delta": -0.45,
+        "id": "loc:1648946058688290",
+        "jc_foodidi": 3.75,
+        "name": "觀醬手"
+      },
+      {
+        "born2eat_taiwan": 4.2,
+        "delta": -0.45,
+        "id": "loc:179342648600838",
+        "jc_foodidi": 3.75,
+        "name": "NOBUO"
+      },
+      {
+        "born2eat_taiwan": 4.2,
+        "delta": -0.45,
+        "id": "loc:1816896488608155",
+        "jc_foodidi": 3.75,
+        "name": "午冬甜點"
+      },
+      {
+        "born2eat_taiwan": 4.4,
+        "delta": -0.4,
+        "id": "loc:100333856310934",
+        "jc_foodidi": 4.0,
+        "name": "黑馬小廚"
+      },
+      {
+        "born2eat_taiwan": 4.4,
+        "delta": -0.4,
+        "id": "name:小事廚房",
+        "jc_foodidi": 4.0,
+        "name": "小事廚房"
+      },
+      {
+        "born2eat_taiwan": 4.4,
+        "delta": -0.4,
+        "id": "loc:326471953879978",
+        "jc_foodidi": 4.0,
+        "name": "WAGYU CLUB 和牛俱樂部"
+      },
+      {
+        "born2eat_taiwan": 4.4,
+        "delta": -0.4,
+        "id": "loc:264948266",
+        "jc_foodidi": 4.0,
+        "name": "龍少爺港式海鮮"
+      },
+      {
+        "born2eat_taiwan": 4.4,
+        "delta": -0.4,
+        "id": "loc:106478871134647",
+        "jc_foodidi": 4.0,
+        "name": "老楊在二樓"
+      },
+      {
+        "born2eat_taiwan": 4.1,
+        "delta": -0.35,
+        "id": "loc:136429532888136",
+        "jc_foodidi": 3.75,
+        "name": "續 無菜單精緻料理"
+      },
+      {
+        "born2eat_taiwan": 4.8,
+        "delta": -0.3,
+        "id": "loc:210788783046968",
+        "jc_foodidi": 4.5,
+        "name": "花滔廚房"
+      },
+      {
+        "born2eat_taiwan": 4.8,
+        "delta": -0.3,
+        "id": "loc:105562088839665",
+        "jc_foodidi": 4.5,
+        "name": "Birdy Yakitori 燒鳥狂想曲"
+      },
+      {
+        "born2eat_taiwan": 4.3,
+        "delta": -0.3,
+        "id": "loc:111367795179421",
+        "jc_foodidi": 4.0,
+        "name": "龍割烹Ryu kappou"
+      },
+      {
+        "born2eat_taiwan": 4.3,
+        "delta": -0.3,
+        "id": "loc:145760685289787",
+        "jc_foodidi": 4.0,
+        "name": "HERE by Astra 慢食餐酒"
+      },
+      {
+        "born2eat_taiwan": 4.3,
+        "delta": -0.3,
+        "id": "loc:100114978051500",
+        "jc_foodidi": 4.0,
+        "name": "玖尹"
+      },
+      {
+        "born2eat_taiwan": 4.3,
+        "delta": -0.3,
+        "id": "loc:111188245268913",
+        "jc_foodidi": 4.0,
+        "name": "Flag只見 西門。生Pasta"
+      },
+      {
+        "born2eat_taiwan": 4.3,
+        "delta": -0.3,
+        "id": "loc:115299911669616",
+        "jc_foodidi": 4.0,
+        "name": "批薩謎勒 Happy Buddha Pizza"
+      },
+      {
+        "born2eat_taiwan": 4.5,
+        "delta": -0.25,
+        "id": "loc:189371610924654",
+        "jc_foodidi": 4.25,
+        "name": "Herring Studio 鯡魚工作室"
+      },
+      {
+        "born2eat_taiwan": 4.5,
+        "delta": -0.25,
+        "id": "loc:1595483237197856",
+        "jc_foodidi": 4.25,
+        "name": "喜相逢麵館"
+      },
+      {
+        "born2eat_taiwan": 4.0,
+        "delta": -0.25,
+        "id": "loc:1322123057902862",
+        "jc_foodidi": 3.75,
+        "name": "Longtail"
+      },
+      {
+        "born2eat_taiwan": 4.7,
+        "delta": -0.2,
+        "id": "name:鈉餐廳",
+        "jc_foodidi": 4.5,
+        "name": "鈉 餐廳"
+      },
+      {
+        "born2eat_taiwan": 4.2,
+        "delta": -0.2,
+        "id": "name:吾居炭火私廚",
+        "jc_foodidi": 4.0,
+        "name": "吾居炭火私廚"
+      },
+      {
+        "born2eat_taiwan": 4.7,
+        "delta": -0.2,
+        "id": "loc:102491634978039",
+        "jc_foodidi": 4.5,
+        "name": "Will's Teppanyaki"
+      },
+      {
+        "born2eat_taiwan": 4.2,
+        "delta": -0.2,
+        "id": "loc:139305539265912",
+        "jc_foodidi": 4.0,
+        "name": "fumée"
+      },
+      {
+        "born2eat_taiwan": 4.2,
+        "delta": -0.2,
+        "id": "loc:1756261604641806",
+        "jc_foodidi": 4.0,
+        "name": "La Grotta"
+      },
+      {
+        "born2eat_taiwan": 4.7,
+        "delta": -0.2,
+        "id": "loc:1460455560750588",
+        "jc_foodidi": 4.5,
+        "name": "牛肆"
+      },
+      {
+        "born2eat_taiwan": 4.2,
+        "delta": -0.2,
+        "id": "loc:1025878225",
+        "jc_foodidi": 4.0,
+        "name": "鮨天本 登龍門"
+      },
+      {
+        "born2eat_taiwan": 4.1,
+        "delta": -0.1,
+        "id": "loc:105619412237526",
+        "jc_foodidi": 4.0,
+        "name": "哞屋"
+      },
+      {
+        "born2eat_taiwan": 3.8,
+        "delta": -0.05,
+        "id": "loc:107808851102740",
+        "jc_foodidi": 3.75,
+        "name": "PEPPINO 培皮諾小館"
+      },
+      {
+        "born2eat_taiwan": 4.5,
+        "delta": 0.0,
+        "id": "loc:258413653",
+        "jc_foodidi": 4.5,
+        "name": "晶華軒"
+      },
+      {
+        "born2eat_taiwan": 4.5,
+        "delta": 0.0,
+        "id": "loc:818527767",
+        "jc_foodidi": 4.5,
+        "name": "元味料理"
+      },
+      {
+        "born2eat_taiwan": 4.5,
+        "delta": 0.0,
+        "id": "loc:116444571328109",
+        "jc_foodidi": 4.5,
+        "name": "Food Coma 福客滿 / 月里つきさと"
+      },
+      {
+        "born2eat_taiwan": 3.9,
+        "delta": 0.1,
+        "id": "loc:1560834030904776",
+        "jc_foodidi": 4.0,
+        "name": "NKU"
+      },
+      {
+        "born2eat_taiwan": 3.75,
+        "delta": 0.25,
+        "id": "loc:881028002",
+        "jc_foodidi": 4.0,
+        "name": "Nikuichi  肉いち博多總店"
+      }
+    ]
+  }
+}

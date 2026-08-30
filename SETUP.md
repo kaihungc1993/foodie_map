@@ -7,7 +7,7 @@ public. Values are in gitignored `.env.local` (local runs) and GitHub Actions se
 
 | Service | Account | Purpose |
 |---|---|---|
-| Apify | palatial account | Instagram Scraper actor — crawls `born2eat_taiwan` |
+| Apify | palatial account | Instagram Scraper actor — one run per account in `config/accounts.json` |
 | Anthropic | personal (key reused from `blender_articulated_asset_generation/.env.local`) | Caption -> structured JSON extraction (Opus) |
 | Google Cloud | datesmart account | Maps JavaScript API (browser) + Geocoding API (build) |
 | GitHub | kaihungc1993 | Repo, Pages, Actions, notes-write PAT |

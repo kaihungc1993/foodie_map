@@ -1,0 +1,45 @@
+{
+  "_comment": "Rating tier cut points per account, FROZEN by hand. Not recomputed at build time on purpose: deriving them from the live distribution would make pin colours shift every month as new posts land. `cuts` are the lower bounds of tiers 2..N on that account's own 0-5 scale, ascending; N-1 cuts give N tiers. Regenerate the evidence with `python scripts/calibrate.py --report`, read data/calibration_report.json, then edit this file.",
+  "accounts": {
+    "born2eat_taiwan": {
+      "cuts": [
+        4.3,
+        4.4,
+        4.5,
+        4.6
+      ],
+      "labels": [
+        "≤ 4.2",
+        "4.3",
+        "4.4",
+        "4.5",
+        "≥ 4.6"
+      ],
+      "top_label": "愛店",
+      "note": "His own vocabulary, not a statistic — 4.3 願意再訪, 4.6 愛店. They happen to fall almost exactly on quintiles of his distribution (top 77.7 / 58.3 / 38.0 / 22.3%), which is why the same percentile framing carries over to another reviewer.",
+      "hints": [
+        "4.3 願意再訪",
+        "4.6 愛店"
+      ]
+    },
+    "jc_foodidi": {
+      "cuts": [
+        3.75,
+        4.0,
+        4.25
+      ],
+      "labels": [
+        "≤ 3.5",
+        "3.75",
+        "4.0",
+        "≥ 4.25"
+      ],
+      "top_label": "愛店",
+      "note": "Four tiers, not five: 45.9% of his restaurants sit on the single value 3.75, and no cut can split one value. Each tier is therefore one score he actually uses. His top tier is 8.8% against born2eat's 22% because he rarely goes above 4.0 — on the 99 venues both reviewed he scored lower on 94, mean -0.53. That is why the scales are kept separate: applying born2eat's 4.6 cut here would leave jc with no favourites at all.",
+      "hints": [
+        "3.75 是他的常態分",
+        "≥ 4.25 愛店"
+      ]
+    }
+  }
+}

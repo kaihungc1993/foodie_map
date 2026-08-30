@@ -4,6 +4,7 @@ Incremental by default: pulls the newest `--limit` posts and merges them into
 data/raw_posts.json, keyed by post id. Use --backfill for the full history.
 """
 import argparse
+import collections
 import sys
 import time
 
@@ -28,9 +29,15 @@ KEEP = [
 ]
 
 
-def fetch(token, limit):
+def fetch(token, account, limit):
+    """One actor run per account.
+
+    Deliberately not one run with several directUrls: `resultsLimit` is a total
+    for the run, so a combined call would spend the whole budget on whichever
+    account the actor walked first and starve the rest.
+    """
     payload = {
-        "directUrls": [f"https://www.instagram.com/{common.IG_ACCOUNT}/"],
+        "directUrls": [f"https://www.instagram.com/{account}/"],
         "resultsType": "posts",
         "resultsLimit": limit,
         "addParentData": False,
@@ -56,28 +63,49 @@ def main():
                     help="how many recent posts to pull (default 40)")
     ap.add_argument("--backfill", action="store_true",
                     help="pull the full history instead of the recent window")
+    ap.add_argument("--account", action="append",
+                    help="crawl only this account (repeatable; default: all)")
     args = ap.parse_args()
 
     token = common.require_env("APIFY_TOKEN")
     limit = 1000 if args.backfill else args.limit
 
-    print(f"fetching up to {limit} posts from @{common.IG_ACCOUNT} ...")
-    items = fetch(token, limit)
-    print(f"apify returned {len(items)} posts")
+    known = common.account_names()
+    targets = args.account or known
+    unknown = [a for a in targets if a not in known]
+    if unknown:
+        raise SystemExit(f"unknown account(s) {unknown}; known: {known}")
 
     existing = common.read_json(common.RAW_POSTS, {})
-    new_ids = []
-    for it in items:
-        pid = it.get("id")
-        if not pid:
-            continue
-        slim = {k: it.get(k) for k in KEEP}
-        if pid not in existing:
-            new_ids.append(pid)
-        existing[pid] = slim
+    total_new = 0
+    for account in targets:
+        print(f"fetching up to {limit} posts from @{account} ...")
+        items = fetch(token, account, limit)
+        print(f"  apify returned {len(items)} posts")
+
+        new_ids = []
+        for it in items:
+            pid = it.get("id")
+            if not pid:
+                continue
+            # Posts are keyed on the IG post id, which is globally unique, so
+            # accounts share one file without namespacing. ownerUsername is the
+            # only provenance and every downstream stage keys off it.
+            if not it.get("ownerUsername"):
+                print(f"  skipping {pid}: no ownerUsername", file=sys.stderr)
+                continue
+            slim = {k: it.get(k) for k in KEEP}
+            if pid not in existing:
+                new_ids.append(pid)
+            existing[pid] = slim
+        print(f"  {len(new_ids)} new from @{account}")
+        total_new += len(new_ids)
 
     common.write_json(common.RAW_POSTS, existing)
-    print(f"stored {len(existing)} posts total, {len(new_ids)} new")
+    by_account = collections.Counter(p.get("ownerUsername") for p in existing.values())
+    print(f"stored {len(existing)} posts total, {total_new} new")
+    for account, n in sorted(by_account.items()):
+        print(f"  @{account}: {n}")
     return 0
 
 

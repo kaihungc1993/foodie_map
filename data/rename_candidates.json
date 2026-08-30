@@ -1,9 +1,21 @@
 [
   {
-    "address": "105臺北市松山區民福里民權東路三段103巷3號",
-    "id": "loc:101086816070604",
-    "places_says": "起司日和by慢慢弄",
-    "posted_as": "Cucina Man Mano/慢慢弄門市"
+    "address": "700臺南市中西區淺草里正興街92號",
+    "id": "name:astandx蜷尾家",
+    "places_says": "蜷尾家 甘味処",
+    "posted_as": "A STAND x 蜷尾家"
+  },
+  {
+    "address": "111台北市士林区福佳里士商路125號1樓",
+    "id": "name:hoco馬卡龍",
+    "places_says": "MHO甜點工作室",
+    "posted_as": "HOCO 馬卡龍"
+  },
+  {
+    "address": "10491臺北市中山區金泰里樂群三路200號",
+    "id": "name:❌極不推薦",
+    "places_says": "NOKE 忠泰樂生活",
+    "posted_as": "❌極不推薦"
   },
   {
     "address": "106臺北市大安區義村里忠孝東路三段282號3樓(二館",
@@ -18,28 +30,40 @@
     "posted_as": "午冬甜點"
   },
   {
+    "address": "110061台北市信义区西村里松寿路2號2F",
+    "id": "loc:258754984",
+    "places_says": "【台北君悅酒店】寶艾西餐廳",
+    "posted_as": "寶艾西餐廳 Bel Air（君悅酒店）"
+  },
+  {
     "address": "110臺北市信義區三犁里信義路五段150巷14弄8號1樓",
     "id": "name:小隱茶庵信義店",
     "places_says": "木下庵 Kino",
     "posted_as": "小隱茶庵 信義店"
   },
   {
-    "address": "106臺北市大安區義安里敦化南路二段63巷53弄3號一樓",
-    "id": "loc:855332124812120",
-    "places_says": "山男 現代居酒屋",
-    "posted_as": "山男 Yamasan"
+    "address": "700臺南市中西區淺草里河中街42號",
+    "id": "loc:1012191529",
+    "places_says": "河床甜點 （自2025.3.2結束營業）",
+    "posted_as": "河床甜點 pâtisserie rivière"
   },
   {
-    "address": "106台北市大安区民辉里濟南路三段13-2號1樓",
-    "id": "name:座位有限limitedseats",
-    "places_says": "雞泰炒mini",
-    "posted_as": "座位有限 Limited Seats"
+    "address": "10462臺北市中山區成功里樂群二路55號1樓",
+    "id": "name:潮粵坊台北美福大飯店",
+    "places_says": "潮粵坊港潮餐廳",
+    "posted_as": "潮粵坊-台北美福大飯店"
   },
   {
     "address": "106臺北市大安區車層里延吉街66-1號",
     "id": "loc:103503694624598",
     "places_says": "米釉麻辣鍋物｜大巨蛋美食｜大安區美食｜麻辣鴛鴦鍋",
     "posted_as": "米釉鍋物 Meal Room"
+  },
+  {
+    "address": "108臺北市萬華區福音里和平西路三段61號",
+    "id": "loc:111028767790811",
+    "places_says": "自自（全預約制）",
+    "posted_as": "自自 zizi"
   },
   {
     "address": "260宜蘭縣宜蘭市復興路二段168號",

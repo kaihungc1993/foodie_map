@@ -15,10 +15,36 @@ GEOCACHE = DATA / "geocode_cache.json"
 VENUES = DATA / "roundup_venues.json"
 HOURS = DATA / "hours_cache.json"
 MERGES = DATA / "merges.json"
+ID_LEDGER = DATA / "id_ledger.json"
 RESTAURANTS = DOCS_DATA / "restaurants.json"
 NOTES = DOCS_DATA / "notes.json"
 
-IG_ACCOUNT = "born2eat_taiwan"
+ACCOUNTS_CONFIG = CONFIG / "accounts.json"
+
+
+def accounts():
+    """The crawled Instagram accounts, in config order."""
+    return [a for a in read_json(ACCOUNTS_CONFIG, {}).get("accounts", [])
+            if not a.get("username", "").startswith("_")]
+
+
+def account_names():
+    return [a["username"] for a in accounts()]
+
+
+def primary_account():
+    """Whose spelling of a venue name wins, and which account the site opens on.
+
+    Load-bearing for id stability: the display name and the dedupe keeper are
+    both anchored to the primary account so a second reviewer's newer post
+    cannot silently rename or re-key an existing restaurant.
+    """
+    accs = accounts()
+    primary = [a["username"] for a in accs if a.get("primary")]
+    if len(primary) != 1:
+        raise SystemExit(
+            f"config/accounts.json must mark exactly one account primary, found {primary}")
+    return primary[0]
 
 
 def load_env():

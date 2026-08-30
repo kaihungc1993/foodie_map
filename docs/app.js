@@ -8,10 +8,17 @@ const S = {
   notes: {},          // committed notes, as loaded from notes.json
   drafts: {},         // unsaved edits, mirrored to localStorage
   markers: new Map(),
+  byId: new Map(),       // id -> restaurant, so hot loops never scan the array
+  onMap: new Map(),      // id -> currently attached, to avoid redundant setMap
+  dirtyIcons: new Set(), // markers needing a repaint once they are on screen
+  labelZoomOn: null,     // last known "are labels showing" state
   map: null,
   selected: null,
+  accounts: [],       // per-reviewer scale, from restaurants.json
+  source: null,       // the reviewer currently driving the map
   filters: { q: '', tiers: new Set(), cats: new Set(),
-             priceLo: 0, priceHi: Infinity, meals: new Set(), showClosed: false },
+             priceLo: 0, priceHi: Infinity, meals: new Set(), showClosed: false,
+             bothOnly: false },
 };
 
 /* Round numbers people actually think in, which also puts the fine-grained
@@ -22,6 +29,7 @@ const BUDGET_MAX_I = BUDGET_STOPS.length - 1;
 
 const DRAFT_KEY = 'foodiemap.drafts';
 const TOKEN_KEY = 'foodiemap.ghtoken';
+const SOURCE_KEY = 'foodiemap.source';
 const $ = (id) => document.getElementById(id);
 
 /* ---------- helpers ---------- */
@@ -34,21 +42,108 @@ const $ = (id) => document.getElementById(id);
      recede — <= 4.2 goes flat grey and stops competing for attention
    Steps validated for monotone lightness, adjacent gap, surface contrast and
    CVD separation in both themes. */
-function ratingTier(r) {
-  if (r == null) return 't-none';
-  if (r >= 4.6) return 't-star';
-  if (r >= 4.5) return 't45';
-  if (r >= 4.4) return 't44';
-  if (r >= 4.3) return 't43';
-  return 't-low';
+/* Tiers are per-reviewer. The two accounts do not share a scale — on every venue
+   both have reviewed, jc_foodidi scored lower — so a single set of thresholds
+   would park one reviewer's whole map in the bottom bands and put the top tier
+   out of his reach. Cut points are frozen in config/rating_calibration.json and
+   published per account; the ramp below just maps a tier index to a colour. */
+const TIER_RAMP = ['--r-low', '--r43', '--r44', '--r45'];
+
+function accountMeta(username) {
+  const who = username || S.source;
+  if (who === ALL) return S.combinedMeta;
+  return S.accounts.find((a) => a.username === who) || null;
 }
-const TIER_VAR = {
-  't-star': '--r-star', 't45': '--r45', 't44': '--r44',
-  't43': '--r43', 't-low': '--r-low', 't-none': '--r-none',
+
+const ALL = '__all__';   // the combined view: every reviewer's restaurants at once
+
+/* A restaurant's entry for one reviewer, or null if he never wrote about it.
+   In the combined view there is no single reviewer, so the entry shown is the
+   one that rates the place highest *on its own author's scale* — a place either
+   of them counts among his favourites should read as a favourite. */
+function reviewOf(r, username) {
+  const who = username || S.source;
+  if (who !== ALL) return (r.reviews || {})[who] || null;
+  let best = null;
+  for (const [acc, rev] of Object.entries(r.reviews || {})) {
+    if (!best || normTier(rev, acc) > normTier(best.rev, best.acc)) best = { acc, rev };
+  }
+  return best ? best.rev : null;
+}
+
+// Which account supplies the entry currently on screen.
+function reviewAccount(r) {
+  if (S.source !== ALL) return (r.reviews || {})[S.source] ? S.source : null;
+  let best = null;
+  for (const [acc, rev] of Object.entries(r.reviews || {})) {
+    if (!best || normTier(rev, acc) > normTier(best.rev, best.acc)) best = { acc, rev };
+  }
+  return best ? best.acc : null;
+}
+
+/* Reviewers may not have the same number of tiers — one has five, the other four,
+   because a coarse rating lattice cannot always be split five ways. Comparing
+   them means comparing position within each reviewer's own scale, rescaled to a
+   common 0-4. The raw scores are never compared; only the ranks are. */
+function normTier(rev, account) {
+  if (!rev || rev.tier == null) return -1;
+  const n = tierCount(account);
+  if (n <= 1) return 0;
+  return Math.round((rev.tier / (n - 1)) * (COMBINED_TIERS - 1));
+}
+const COMBINED_TIERS = 5;
+
+function tierCount(username) {
+  const who = username || S.source;
+  if (who === ALL) return COMBINED_TIERS;
+  const meta = S.accounts.find((a) => a.username === who);
+  return meta ? (meta.cuts || []).length + 1 : 1;
+}
+
+/* Colour for tier `i` of `n`: the bottom always recedes to grey, the top is
+   always the star, and any middle tiers walk up the blue ramp. */
+function tierVar(i, n) {
+  if (i == null) return '--r-none';
+  if (i >= n - 1) return '--r-star';
+  if (i === 0) return '--r-low';
+  const mid = TIER_RAMP.slice(1);
+  return mid[Math.min(mid.length - 1, i - 1)] || '--r44';
+}
+
+const cssVar = (name) =>
+  getComputedStyle(document.body).getPropertyValue(name).trim() || '#9a958c';
+
+// Tier of a restaurant under the reviewer currently selected. In the combined
+// view it is the rescaled rank, so five levels of colour still mean one thing.
+function tierOf(r, username) {
+  const who = username || S.source;
+  const rev = reviewOf(r, who);
+  if (!rev || rev.tier == null) return null;
+  if (who !== ALL) return rev.tier;
+  const t = normTier(rev, reviewAccount(r));
+  return t < 0 ? null : t;
+}
+
+const ratingClass = (r, username) => {
+  const t = tierOf(r, username);
+  const n = tierCount(username);
+  if (t == null) return 't-none';
+  return t >= n - 1 ? 't-star' : t === 0 ? 't-low' : `t-mid${t}`;
 };
-const ratingClass = (r) => ratingTier(r);
-const ratingColor = (r) =>
-  getComputedStyle(document.body).getPropertyValue(TIER_VAR[ratingTier(r)]).trim() || '#9a958c';
+const ratingColor = (r, username) => cssVar(tierVar(tierOf(r, username), tierCount(username)));
+
+// For a bare number — a post row, or the other reviewer's score in the panel.
+function tierForRating(rating, username) {
+  const meta = accountMeta(username);
+  if (rating == null || !meta) return null;
+  return (meta.cuts || []).reduce((t, c) => t + (rating >= c ? 1 : 0), 0);
+}
+function ratingClassFor(rating, username) {
+  const t = tierForRating(rating, username);
+  const n = tierCount(username);
+  if (t == null) return 't-none';
+  return t >= n - 1 ? 't-star' : t === 0 ? 't-low' : `t-mid${t}`;
+}
 
 // Five-point star, outer radius 10, centred on the anchor point.
 const STAR_PATH =
@@ -72,14 +167,20 @@ function mealLabel(r) {
   return '午晚餐皆無';
 }
 
-function priceLabel(r) {
-  if (r.price_min == null) return null;
-  return r.price_min === r.price_max
-    ? `人均 ${r.price_min} 元`
-    : `人均 ${r.price_min}–${r.price_max} 元`;
+function priceLabel(rev) {
+  if (!rev || rev.price_min == null) return null;
+  return rev.price_min === rev.price_max
+    ? `人均 ${rev.price_min} 元`
+    : `人均 ${rev.price_min}–${rev.price_max} 元`;
 }
 
 const fmtDate = (iso) => (iso ? iso.slice(0, 10) : '');
+
+/* One reviewer scores in tenths, the other in quarter steps. Rounding to one
+   decimal turns his 3.75 into 3.8 and collapses two of his tiers into one, so
+   the second decimal is kept whenever it carries information. */
+const fmtRating = (v) =>
+  v == null ? '' : (Math.round(v * 100) % 10 === 0 ? v.toFixed(1) : v.toFixed(2));
 
 function mapsUrl(r) {
   // place_id gives an exact match; the address is the fallback when geocoding
@@ -101,7 +202,14 @@ function visible() {
   const { q, tiers, cats } = S.filters;
   const needle = q.trim().toLowerCase();
   return S.restaurants.filter((r) => {
-    if (!tiers.has(ratingTier(r.rating))) return false;
+    // Switching reviewer switches the map to his recommendations. A restaurant
+    // he never wrote about is not shown with someone else's score attached.
+    const rev = reviewOf(r);
+    if (!rev) return false;
+    if (S.filters.bothOnly && Object.keys(r.reviews || {}).length < 2) return false;
+
+    const tier = rev.tier == null ? 'none' : String(rev.tier);
+    if (!tiers.has(tier)) return false;
 
     if (cats.size && !r.categories.some((c) => cats.has(c))) return false;
 
@@ -123,8 +231,14 @@ function visible() {
     // artefact, and the full range is still shown on the card.
     const { priceLo, priceHi } = S.filters;
     if (priceLo > 0 || priceHi < Infinity) {
-      if (r.price_min == null) return false;   // no price to check against
-      const mid = (r.price_min + r.price_max) / 2;
+      // The price comes from the reviewer being shown; only one of them
+      // publishes a 人均 range at all, so the combined view takes it wherever
+      // it exists rather than dropping every restaurant the other one found.
+      const priced = S.source === ALL
+        ? Object.values(r.reviews || {}).find((v) => v.price_min != null)
+        : (rev.price_min != null ? rev : null);
+      if (!priced) return false;
+      const mid = (priced.price_min + priced.price_max) / 2;
       if (mid < priceLo || mid > priceHi) return false;
     }
 
@@ -141,17 +255,41 @@ function applyFilters() {
   const rows = visible();
   const shown = new Set(rows.map((r) => r.id));
 
+  /* Only the markers that actually changed state are touched. setMap on all 705
+     costs ~270ms on a mid-range phone, and it was running on every keystroke in
+     the search box; most filter changes flip a handful of pins. */
   for (const [id, marker] of S.markers) {
-    marker.setMap(shown.has(id) ? S.map : null);
+    const on = shown.has(id);
+    if (on === S.onMap.get(id)) continue;
+    if (on && S.dirtyIcons.has(id)) refreshMarker(id);
+    marker.setMap(on ? S.map : null);
+    S.onMap.set(id, on);
+  }
+  // A marker that stayed visible across a source switch still needs repainting.
+  if (S.dirtyIcons.size) {
+    for (const id of [...S.dirtyIcons]) if (S.onMap.get(id)) refreshMarker(id);
   }
   hideCard();
   renderStat(rows.length);
 }
 
+/* Repaint one marker for the current reviewer. Deferred until the marker is on
+   screen: switching source used to setIcon on all 705 at once, which is 100ms of
+   blocked main thread for pins the viewer cannot see. */
+function refreshMarker(id) {
+  const m = S.markers.get(id);
+  const r = S.byId.get(id);
+  if (!m || !r) return;
+  m.setIcon(markerIcon(r));
+  m.setLabel(markerLabel(r, S.map ? S.map.getZoom() : 13));
+  S.dirtyIcons.delete(id);
+}
+
 /* ---------- header stat ---------- */
 
 function renderStat(shownCount) {
-  const total = S.restaurants.length;
+  const meta = accountMeta();
+  const total = meta ? meta.restaurant_count : S.restaurants.length;
   const box = $('stat');
   box.textContent = '';
   if (shownCount === total) {
@@ -202,12 +340,35 @@ function resetAllFilters() {
   $('budget-lo').dispatchEvent(new Event('input'));
 }
 
+/* ---------- lazily-loaded post detail ---------- */
+
+/* Full captions and dish lists are ~63% of the data and are only read when a
+   detail panel opens, so they live in their own file and are fetched the first
+   time one is needed rather than on first paint. */
+let postsPromise = null;
+function loadPosts() {
+  if (!postsPromise) {
+    postsPromise = fetch('data/posts.json')
+      .then((r) => (r.ok ? r.json() : {}))
+      .catch(() => ({}));
+  }
+  return postsPromise;
+}
+
+async function hydratePosts(r) {
+  if (r._hydrated) return true;
+  const heavy = await loadPosts();
+  for (const p of r.posts) Object.assign(p, heavy[p.id] || {});
+  r._hydrated = true;
+  return true;
+}
+
 /* ---------- detail panel ---------- */
 
 function select(id, pan) {
   hideCard();
   S.selected = id;
-  const r = S.restaurants.find((x) => x.id === id);
+  const r = S.byId.get(id) || S.restaurants.find((x) => x.id === id);
   if (!r) return;
   const u = new URL(location.href);
   u.searchParams.set('r', id);
@@ -235,6 +396,13 @@ function el(tag, cls, text) {
 }
 
 function renderDetail(r) {
+  // Draw with what is already loaded, then redraw once the captions and dish
+  // lists arrive — the panel should never wait on a fetch to appear.
+  if (!r._hydrated) {
+    hydratePosts(r).then(() => {
+      if (S.selected === r.id) renderDetail(r);
+    });
+  }
   const d = $('detail');
   d.hidden = false;
   d.scrollTop = 0;
@@ -254,7 +422,8 @@ function renderDetail(r) {
   if (r.aka && r.aka.length) {
     d.append(el('p', 'aka', `原名 ${r.aka.join('、')}`));
   }
-  if (r.tagline) d.append(el('p', 'tagline', r.tagline));
+  const rev = reviewOf(r) || {};
+  if (rev.tagline) d.append(el('p', 'tagline', rev.tagline));
 
   const stats = el('div', 'stats');
   const stat = (label, value) => {
@@ -263,11 +432,14 @@ function renderDetail(r) {
     return s;
   };
   stats.append(
-    stat('最新評分', r.rating == null ? '未評分'
-         : `${r.rating.toFixed(1)} / 5${r.rating_derived ? '（由星級換算）' : ''}`),
-    stat('造訪次數', r.visits == null ? '—' : `${r.visits} 次`),
-    stat('價位', priceLabel(r) || '—'),
-    stat('最近一次', fmtDate(r.last_visit) || '—'),
+    stat(reviewAccount(r) && Object.keys(r.reviews || {}).length > 1
+         ? `評分 · @${(accountMeta(reviewAccount(r)) || {}).label || reviewAccount(r)}`
+         : '最新評分',
+         rev.rating == null ? '未評分'
+         : `${fmtRating(rev.rating)} / 5${r.rating_derived ? '（由星級換算）' : ''}`),
+    stat('造訪次數', rev.visits == null ? '—' : `${rev.visits} 次`),
+    stat('價位', priceLabel(rev) || '—'),
+    stat('最近一次', fmtDate(rev.last_visit) || '—'),
     stat('用餐時段', mealLabel(r)),
     ...(guideStarLabel(r) ? [stat('合輯評級', guideStarLabel(r))] : []),
     stat('每週公休', r.closed_days == null ? '—'
@@ -282,6 +454,17 @@ function renderDetail(r) {
   }
 
   d.append(el('div', 'addr', r.address || '（尚未取得地址）'));
+  // One reviewer writes the phone number into his captions; Google's phone field
+  // is an Enterprise-tier lookup we do not make, so this is the only source.
+  const phone = r.posts.map((p) => (p.extras || {}).phone).find(Boolean)
+    || Object.values(r.reviews || {}).map((v) => (v.extras || {}).phone).find(Boolean);
+  if (phone) {
+    const row = el('div', 'addr');
+    const link = el('a', null, phone);
+    link.href = `tel:${phone.replace(/[^\d+]/g, '')}`;
+    row.append(link);
+    d.append(row);
+  }
   const row = el('div', 'btn-row');
   const gm = el('a', 'primary', '在 Google 地圖開啟');
   gm.href = mapsUrl(r);
@@ -296,6 +479,26 @@ function renderDetail(r) {
     row.append(ig);
   }
   d.append(row);
+
+  /* --- what the other reviewer thought --- */
+  // Shown, never merged. Two reviewers disagreeing is information; averaging
+  // their scores would destroy it, and their scales are not comparable anyway.
+  const lead = reviewAccount(r);
+  for (const acc of Object.keys(r.reviews || {})) {
+    if (acc === lead) continue;
+    const other = r.reviews[acc];
+    const meta = accountMeta(acc);
+    const box = el('div', 'other');
+    const head = el('div', 'oh');
+    head.append(el('span', 'who', `@${meta ? meta.label : acc} 的評分`));
+    const sc = el('span', `score ${ratingClassFor(other.rating, acc)}`);
+    sc.textContent = other.rating == null ? '未評分'
+      : `${fmtRating(other.rating)}${other.visits != null ? ` · ${other.visits}訪` : ''}`;
+    head.append(sc);
+    box.append(head);
+    if (other.tagline) box.append(el('p', null, other.tagline));
+    d.append(box);
+  }
 
   /* --- personal note --- */
   d.append(el('div', 'section-title', '我的筆記'));
@@ -330,8 +533,12 @@ function renderDetail(r) {
     const box = el('div', 'post');
     const head = el('div', 'post-head');
     const left = el('span', 'post-date', fmtDate(p.timestamp));
-    const right = el('span', `score ${ratingClass(p.rating)}`,
-      p.rating == null ? '' : `${p.rating.toFixed(1)}${p.visits ? ` · ${p.visits}訪` : ''}`);
+    if ((r.accounts || []).length > 1 && p.source_account) {
+      const meta = accountMeta(p.source_account);
+      left.append(el('span', 'post-who', `　@${meta ? meta.label : p.source_account}`));
+    }
+    const right = el('span', `score ${ratingClassFor(p.rating, p.source_account)}`,
+      p.rating == null ? '' : `${fmtRating(p.rating)}${p.visits ? ` · ${p.visits}訪` : ''}`);
     head.append(left, right);
     box.append(head);
 
@@ -493,24 +700,41 @@ function showCard(r, ev) {
 
   const top = el('div', 'hc-top');
   top.append(el('h4', null, r.name || '(無店名)'));
-  const score = el('span', `hc-score ${ratingClass(r.rating)}`);
-  score.append(document.createTextNode(r.rating == null ? '未評分' : r.rating.toFixed(1)));
-  if (r.visits != null) score.append(el('span', 'hc-visits', ` / ${r.visits}訪`));
+  const rev = reviewOf(r) || {};
+  const score = el('span', `hc-score ${ratingClass(r)}`);
+  score.append(document.createTextNode(rev.rating == null ? '未評分' : fmtRating(rev.rating)));
+  if (rev.visits != null) score.append(el('span', 'hc-visits', ` / ${rev.visits}訪`));
   top.append(score);
   box.append(top);
+
+  // Whose score that is has to be said out loud once more than one reviewer is
+  // on the map, otherwise the number reads as a property of the restaurant.
+  const accounts = Object.keys(r.reviews || {});
+  if (S.source === ALL || accounts.length > 1) {
+    const line = el('div', 'hc-who');
+    accounts.forEach((acc, i) => {
+      if (i) line.append(document.createTextNode('　'));
+      const meta = S.accounts.find((a) => a.username === acc);
+      const v = r.reviews[acc];
+      const chip = el('span', acc === reviewAccount(r) ? 'lead' : null,
+        `@${meta ? meta.label : acc} ${v.rating == null ? '未評分' : fmtRating(v.rating)}`);
+      line.append(chip);
+    });
+    box.append(line);
+  }
   if (r.business_status === 'CLOSED_PERMANENTLY') {
     box.append(el('div', 'hc-closed', '已歇業'));
   }
   const gs = guideStarLabel(r);
   if (gs) box.append(el('div', 'hc-guide', gs + (r.rating_derived ? '（換算評分）' : '')));
-  if (r.from_roundup && r.rating == null && !gs) {
+  if (r.from_roundup && rev.rating == null && !gs) {
     box.append(el('div', 'hc-badge', '合輯提及 · 無評分'));
   }
 
-  if (r.tagline) box.append(el('p', 'hc-tagline', r.tagline));
+  if (rev.tagline) box.append(el('p', 'hc-tagline', rev.tagline));
 
   const meta = el('div', 'hc-meta');
-  const bits = [priceLabel(r), fmtDate(r.last_visit)].filter(Boolean);
+  const bits = [priceLabel(rev), fmtDate(rev.last_visit)].filter(Boolean);
   bits.forEach((b) => meta.append(el('span', null, b)));
   meta.append(el('span', 'hc-meals', mealLabel(r)));
   box.append(meta);
@@ -552,7 +776,9 @@ function hideCard() {
 /* ---------- map ---------- */
 
 function markerIcon(r) {
-  const tier = ratingTier(r.rating);
+  const t = tierOf(r);
+  const n = tierCount();
+  const tier = t == null ? 't-none' : (t >= n - 1 ? 't-star' : t === 0 ? 't-low' : 'mid');
   const stroke = getComputedStyle(document.body).getPropertyValue('--bg').trim() || '#ffffff';
   if (tier === 't-star') {
     return {
@@ -561,7 +787,7 @@ function markerIcon(r) {
       // the circles on radius makes it read much smaller. 10.7 against a circle
       // radius of 6.5 matches them by area, plus a little so 愛店 stands out.
       scale: 1.07,
-      fillColor: ratingColor(r.rating),
+      fillColor: ratingColor(r),
       fillOpacity: 1,
       strokeColor: stroke,
       strokeWeight: 1.6,
@@ -571,7 +797,7 @@ function markerIcon(r) {
     path: google.maps.SymbolPath.CIRCLE,
     // Low-rated pins are smaller as well as greyer — two ways of receding.
     scale: tier === 't-low' || tier === 't-none' ? 4.8 : 6.5,
-    fillColor: ratingColor(r.rating),
+    fillColor: ratingColor(r),
     fillOpacity: tier === 't-low' || tier === 't-none' ? 0.8 : 0.95,
     strokeColor: stroke,
     strokeWeight: 1.8,
@@ -617,13 +843,20 @@ const LABEL_ZOOM = 14;  // ratings are short, so they can appear earlier than na
 function markerLabel(r, zoom) {
   // The rating, not the name — the name is already in the list and the tooltip,
   // whereas the exact score is the one thing the colour cannot fully carry.
-  if (zoom < LABEL_ZOOM || r.rating == null) return null;
-  // <= 4.2 stays unlabelled: those pins are meant to recede, and dropping their
-  // labels thins out collisions in the dense blocks where it matters most.
-  if (r.rating <= 4.2) return null;
-  const star = r.rating >= 4.6;
+  const rev = reviewOf(r);
+  // No numeric labels in the combined view. 4.4 and 3.75 side by side reads as
+  // "one is better", when they are scores on two scales that do not compare —
+  // which is the whole reason the tiers exist. Colour carries the rank instead.
+  if (S.source === ALL) return null;
+  if (zoom < LABEL_ZOOM || !rev || rev.rating == null) return null;
+  // The bottom tier stays unlabelled: those pins are meant to recede, and
+  // dropping their labels thins out collisions in the dense blocks. Judged by
+  // tier rather than by an absolute number, because the reviewers' scales differ.
+  const n = tierCount();
+  if (rev.tier === 0) return null;
+  const star = rev.tier != null && rev.tier >= n - 1;
   return {
-    text: r.rating.toFixed(1),
+    text: fmtRating(rev.rating),
     fontSize: '11.5px',
     fontWeight: '600',
     color: getComputedStyle(document.body).getPropertyValue('--text').trim() || '#1c1b19',
@@ -651,12 +884,18 @@ function initMap() {
     }
   });
 
-  // Names appear only once you're zoomed in enough for them not to overlap.
+  /* Labels appear only once you're zoomed in enough for them not to overlap.
+     Relabelling only happens when that threshold is actually crossed — it used
+     to run on every zoom step, and with a linear id lookup inside the loop. */
   S.map.addListener('zoom_changed', () => {
     const z = S.map.getZoom();
+    const on = z >= LABEL_ZOOM && S.source !== ALL;
+    if (on === S.labelZoomOn) return;
+    S.labelZoomOn = on;
     for (const [id, m] of S.markers) {
-      const r = S.restaurants.find((x) => x.id === id);
-      m.setLabel(markerLabel(r, z));
+      if (!S.onMap.get(id)) { S.dirtyIcons.add(id); continue; }
+      const r = S.byId.get(id);
+      if (r) m.setLabel(markerLabel(r, z));
     }
   });
 
@@ -664,11 +903,17 @@ function initMap() {
     if (r.lat == null) continue;
     const m = new google.maps.Marker({
       position: { lat: r.lat, lng: r.lng },
-      map: S.map,
-      title: `${r.name}${r.rating != null ? ` · ${r.rating}` : ''}`,
+      map: null,     // attached by applyFilters; see below
+      title: `${r.name}${reviewOf(r)?.rating != null ? ` · ${reviewOf(r).rating}` : ''}`,
       icon: markerIcon(r),
       label: markerLabel(r, 13),
+      /* Renders the pins into one shared canvas instead of an element each.
+         Google turns this off by itself for any marker carrying a label, so it
+         applies in the combined view (no labels) and to the unlabelled bottom
+         tier — which is most of them on a city-wide view. */
+      optimized: true,
     });
+    S.onMap.set(r.id, false);
     m.addListener('click', () => select(r.id, true));
     m.addListener('mouseover', (e) => {
       m.setZIndex(1000);          // lift the hovered pin above its neighbours
@@ -727,25 +972,158 @@ function updateCatCount() {
   $('cat-count').textContent = n ? `已選 ${n}` : '';
 }
 
-const TIER_CELLS = [
-  ['t-low', '\u2264 4.2'], ['t43', '4.3'], ['t44', '4.4'],
-  ['t45', '4.5'], ['t-star', '\u2265 4.6'], ['t-none', '未評分'],
-];
+/* The legend IS the rating filter, and it is rebuilt whenever the reviewer
+   changes: the two accounts have different cut points and may not even have the
+   same number of tiers, because a coarse rating lattice cannot always be split
+   five ways. Labels come from the published per-account scale. */
+const liveTiers = () => {
+  const meta = accountMeta();
+  const keys = meta ? meta.cuts.map((_, i) => String(i + 1)) : [];
+  const all = ['0', ...keys];
+  return all.filter((k) => S.restaurants.some(
+    (r) => reviewOf(r) && String(reviewOf(r).tier) === k))
+    .concat(S.restaurants.some((r) => reviewOf(r) && reviewOf(r).tier == null)
+      ? ['none'] : []);
+};
 
-const liveTiers = () => TIER_CELLS.map(([k]) => k)
-  .filter((k) => S.restaurants.some((r) => ratingTier(r.rating) === k));
+/* The combined view is presented as one more source. Its tier labels are ranks,
+   not numbers: "4.4" is born2eat's fourth tier and jc's does not exist, so a
+   shared axis can only honestly be labelled by position. */
+function buildCombinedMeta() {
+  const counts = [0, 0, 0, 0, 0];
+  let rated = 0;
+  for (const r of S.restaurants) {
+    const acc = reviewAccountIn(r);
+    if (!acc) continue;
+    const t = normTier(r.reviews[acc], acc);
+    if (t >= 0) { counts[t] += 1; rated += 1; }
+  }
+  return {
+    username: ALL, label: '全部', url: null, primary: false,
+    restaurant_count: S.restaurants.length, rated_count: rated,
+    cuts: [1, 2, 3, 4],
+    labels: ['較低', '普通', '不錯', '很好', '愛店'],
+    top_label: '兩人任一的愛店',
+    hints: ['層級是各自尺度上的名次，不是分數'],
+    tier_counts: counts,
+  };
+}
+
+// The same choice as reviewAccount, usable before S.source is set.
+function reviewAccountIn(r) {
+  let best = null;
+  for (const [acc, rev] of Object.entries(r.reviews || {})) {
+    if (!best || normTier(rev, acc) > normTier(best.rev, best.acc)) best = { acc, rev };
+  }
+  return best ? best.acc : null;
+}
+
+function renderSources() {
+  const box = $('sources');
+  if (!box) return;
+  box.textContent = '';
+  for (const a of [S.combinedMeta, ...S.accounts]) {
+    const b = el('button', 'source');
+    b.type = 'button';
+    b.dataset.account = a.username;
+    b.setAttribute('aria-pressed', String(a.username === S.source));
+    b.append(document.createTextNode(a.label));
+    b.append(el('span', 'n', `${a.restaurant_count} 家`));
+    b.title = a.username === ALL
+      ? `全部 ${a.restaurant_count} 家；每家以評價它的人自己的尺度上色`
+      : `${a.label}：${a.restaurant_count} 家餐廳，${a.rated_count} 家有評分`;
+    b.addEventListener('click', () => setSource(a.username));
+    box.append(b);
+  }
+  renderByline();
+}
+
+function renderByline() {
+  const box = $('byline');
+  if (!box) return;
+  box.textContent = 'from ';
+  S.accounts.forEach((a, i) => {
+    if (i) box.append(document.createTextNode('、'));
+    const link = el('a', a.username === S.source ? 'active' : null, `@${a.label}`);
+    link.href = a.url;
+    link.target = '_blank';
+    link.rel = 'noopener';
+    box.append(link);
+  });
+}
+
+/* Switching reviewer rebuilds everything the scale touches: his cut points, his
+   tier labels and counts, and the pin colours. The two accounts do not share a
+   scale, so nothing about the previous reviewer's view may survive the switch. */
+function setSource(username) {
+  if (username === S.source) return;
+  S.source = username;
+  try { localStorage.setItem(SOURCE_KEY, username); } catch { /* private mode */ }
+  for (const b of document.querySelectorAll('.source')) {
+    b.setAttribute('aria-pressed', String(b.dataset.account === username));
+  }
+  renderByline();
+  renderRatingLegend();
+  syncPriceAvailability();
+  if (S.selected && !reviewOf(S.restaurants.find((x) => x.id === S.selected) || {})) {
+    closeDetail();
+  } else if (S.selected) {
+    select(S.selected, false);
+  }
+  // Mark every pin as needing a repaint; applyFilters does the visible ones and
+  // the rest are done lazily as they come into view.
+  for (const id of S.markers.keys()) S.dirtyIcons.add(id);
+  S.labelZoomOn = null;
+  applyFilters();
+}
+
+/* One reviewer publishes a 人均 range and the other does not, so the price
+   filter is switched off rather than silently matching nothing. */
+function syncPriceAvailability() {
+  const block = $('budget-lo') && $('budget-lo').closest('.filter');
+  if (!block) return;
+  const priced = S.restaurants.filter((r) => S.source === ALL
+    ? Object.values(r.reviews || {}).some((v) => v.price_min != null)
+    : (reviewOf(r) || {}).price_min != null).length;
+  const off = priced === 0;
+  block.classList.toggle('disabled', off);
+  if (off) {
+    $('budget-lo').value = '0';
+    $('budget-hi').value = String(BUDGET_MAX_I);
+    S.filters.priceLo = 0;
+    S.filters.priceHi = Infinity;
+    $('budget-out').textContent = '不適用';
+    $('budget-note').textContent = `@${S.source} 不寫人均價位`;
+  } else {
+    $('budget-note').textContent = '';
+  }
+}
 
 function renderRatingLegend() {
   const box = $('rating-legend');
   if (!box) return;
   box.textContent = '';
+  const meta = accountMeta();
+  const n = tierCount();
+
   const counts = {};
   for (const r of S.restaurants) {
-    const t = ratingTier(r.rating);
-    counts[t] = (counts[t] || 0) + 1;
+    const rev = reviewOf(r);
+    if (!rev) continue;
+    const k = rev.tier == null ? 'none' : String(rev.tier);
+    counts[k] = (counts[k] || 0) + 1;
   }
 
-  for (const [key, label] of TIER_CELLS) {
+  const cells = [];
+  for (let i = 0; i < n; i++) {
+    const label = (meta && meta.labels && meta.labels[i]) ||
+      (i === 0 ? '最低' : i === n - 1 ? '最高' : String(i));
+    cells.push([String(i), label, i >= n - 1]);
+  }
+  cells.push(['none', '未評分', false]);
+
+  S.filters.tiers = new Set();
+  for (const [key, label, isTop] of cells) {
     // An empty tier would be a control that does nothing — leave it out.
     if (!counts[key]) continue;
     S.filters.tiers.add(key);
@@ -753,11 +1131,13 @@ function renderRatingLegend() {
     const lg = el('button', 'lg');
     lg.type = 'button';
     lg.dataset.tier = key;
-    lg.title = `${label}：${counts[key]} 家`;
+    const topNote = isTop && meta && meta.top_label ? ` ${meta.top_label}` : '';
+    lg.title = `${label}${topNote}：${counts[key]} 家`;
 
-    const sw = el('div', 'sw' + (key === 't-star' ? ' star' : ''));
-    if (key === 't-star') sw.textContent = '\u2605';
-    else sw.style.background = `var(${TIER_VAR[key]})`;
+    const sw = el('div', 'sw' + (isTop ? ' star' : ''));
+    if (isTop) sw.textContent = '\u2605';
+    else sw.style.background = `var(${key === 'none' ? '--r-none'
+      : tierVar(Number(key), n)})`;
 
     lg.append(sw, el('span', 'lb', label), el('span', 'ct', String(counts[key])));
     lg.addEventListener('click', () => {
@@ -771,6 +1151,13 @@ function renderRatingLegend() {
     });
     box.append(lg);
   }
+  // The scale's own vocabulary belongs to whoever wrote it — 4.3 願意再訪 is
+  // born2eat's phrase and means nothing on the other reviewer's scale.
+  const hints = $('rating-hints');
+  if (hints) {
+    hints.textContent = '';
+    for (const h of (meta && meta.hints) || []) hints.append(el('span', null, h));
+  }
   syncTierButtons();
 }
 
@@ -779,13 +1166,16 @@ function syncTierButtons() {
     b.setAttribute('aria-pressed', String(S.filters.tiers.has(b.dataset.tier)));
   }
   const off = liveTiers().length - S.filters.tiers.size;
-  $('rating-count').textContent = off ? `已篩掉 ${off} 級` : '';
+  $('rating-count').textContent = off > 0 ? `已篩掉 ${off} 級` : '';
 }
 
 function wireFilters() {
+  // Typing is the one filter that fires continuously, so it settles first.
+  let searchTimer = null;
   $('search').addEventListener('input', (e) => {
     S.filters.q = e.target.value;
-    applyFilters();
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(applyFilters, 140);
   });
 
   $('rating-reset').addEventListener('click', () => {
@@ -819,8 +1209,11 @@ function wireFilters() {
     budgetFill.style.left = `${(lo / BUDGET_MAX_I) * 100}%`;
     budgetFill.style.right = `${100 - (hi / BUDGET_MAX_I) * 100}%`;
 
-    // 6 restaurants carry no price. Say so rather than dropping them silently.
-    const unpriced = S.restaurants.filter((r) => r.price_min == null).length;
+    // Some restaurants carry no price at all. Say so rather than dropping them
+    // silently — the count is read from the data, not hardcoded, because it
+    // grows sharply once an account that publishes no 人均 range is added.
+    const unpriced = S.restaurants.filter(
+      (r) => reviewOf(r) && reviewOf(r).price_min == null).length;
     budgetNote.textContent =
       (loOn || hiOn) && unpriced ? `${unpriced} 家未標價位，設定價位後不列入` : '';
     applyFilters();
@@ -854,6 +1247,14 @@ function wireFilters() {
     });
   }
   $('meal-reset').addEventListener('click', () => { S.filters.meals.clear(); syncMeals(); });
+  const bothOnly = $('both-only');
+  if (bothOnly) {
+    bothOnly.addEventListener('change', (e) => {
+      S.filters.bothOnly = e.target.checked;
+      applyFilters();
+    });
+  }
+
   $('show-closed').addEventListener('change', (e) => {
     S.filters.showClosed = e.target.checked;
     applyFilters();
@@ -898,18 +1299,47 @@ async function main() {
 
   S.config = config;
   S.restaurants = data.restaurants;
+  S.accounts = data.accounts || [];
+  S.aliases = data.id_aliases || {};
   S.notes = notes || {};
+
+  // Retired ids still resolve. A restaurant known only from a roundup gains a
+  // real post and moves to a better id; the note filed under the old one has to
+  // follow it rather than disappear.
+  for (const [oldId, newId] of Object.entries(S.aliases)) {
+    if (S.notes[oldId] && !S.notes[newId]) S.notes[newId] = S.notes[oldId];
+  }
+
+  for (const r of S.restaurants) S.byId.set(r.id, r);
+  S.combinedMeta = buildCombinedMeta();
+
+  const stored = (() => { try { return localStorage.getItem(SOURCE_KEY); } catch { return null; } })();
+  const valid = [ALL, ...S.accounts.map((a) => a.username)];
+  // Opens on the combined view: the map's job is to show everywhere worth eating,
+  // and restricting it to one reviewer is a deliberate narrowing, not the default.
+  S.source = valid.includes(stored) ? stored : ALL;
+
   try {
     S.drafts = JSON.parse(localStorage.getItem(DRAFT_KEY) || '{}');
   } catch { S.drafts = {}; }
 
+  renderSources();
   renderRatingLegend();     // seeds S.filters.tiers, so it must run before filtering
   renderCategories(data.categories);
   wireFilters();
+  syncPriceAvailability();
   applyFilters();
 
-  const deepLink = new URLSearchParams(location.search).get('r');
-  if (deepLink && S.restaurants.some((r) => r.id === deepLink)) select(deepLink, false);
+  const asked = new URLSearchParams(location.search).get('r');
+  const deepLink = asked && !S.restaurants.some((r) => r.id === asked)
+    ? S.aliases[asked] : asked;
+  if (deepLink && S.restaurants.some((r) => r.id === deepLink)) {
+    // A deep link may point at a restaurant the current reviewer never wrote
+    // about; switch to one who did rather than opening an empty panel.
+    const r = S.restaurants.find((x) => x.id === deepLink);
+    if (!reviewOf(r)) setSource(ALL);
+    select(deepLink, false);
+  }
 
   try {
     await loadMaps(config.mapsBrowserKey);

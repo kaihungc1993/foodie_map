@@ -97,6 +97,14 @@ def candidates_for(post, header):
     is a landmark rather than a venue."""
     tag = (post.get("locationName") or "").strip()
     name = (header.get("name") or "").strip()
+    # One account writes the street address into the caption. That is the
+    # author's own ground truth for which branch he ate at, so it leads the
+    # search — it is far more specific than a name plus a district guess.
+    address_text = ((header.get("extras") or {}).get("address_text") or "").strip()
+    if address_text and name and not address_text.startswith("預約"):
+        lead = [f"{name} {address_text}"]
+    else:
+        lead = []
     hints = region_hints(post)
     region = hints[0] if hints else None
 
@@ -108,7 +116,7 @@ def candidates_for(post, header):
     if not bases:
         return [], None
 
-    out = []
+    out = list(lead)
     for b in bases:
         if region and region not in b:
             out.append(f"{b} {region}")
@@ -233,6 +241,22 @@ def resolve(key, post, header):
     bias = bias_region is not None
 
     want_tw = expects_taiwan(post)
+
+    # The author's own street address outranks name similarity. Scoring by name
+    # was letting a same-name venue in the wrong city beat the right one: the
+    # 蜷尾家 collab in 松山 resolved to the original shop in Tainan, because the
+    # address result's official name did not look like what he called it.
+    address_text = ((header.get("extras") or {}).get("address_text") or "").strip()
+    if address_text and not address_text.startswith("預約"):
+        res = via_places(key, f"{header.get('name') or ''} {address_text}".strip(),
+                         bias=bias)
+        if res and (not want_tw or in_taiwan(res.get("formatted_address"))):
+            res["score"] = 1.0
+            res["source"] = "places-address"
+            res["query"] = address_text
+            res["low_confidence"] = False
+            return res
+
     best = None
     for q in cands:
         res = via_places(key, q, bias=bias)
@@ -303,8 +327,15 @@ def main():
         if not ex["llm"]["is_restaurant"]:
             continue
         k = common.geo_key(post, ex)
-        if k:
-            wanted.setdefault(k, (post, ex))
+        if not k:
+            continue
+        # Two reviewers can share a venue key. Prefer the post that carries a
+        # street address: setdefault kept whichever was iterated first, so the
+        # one author who writes addresses was being ignored half the time.
+        has_addr = bool((ex.get("extras") or {}).get("address_text"))
+        cur = wanted.get(k)
+        if cur is None or (has_addr and not (cur[1].get("extras") or {}).get("address_text")):
+            wanted[k] = (post, ex)
 
     def stale(k):
         if k not in cache:

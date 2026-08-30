@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Foodie Map — born2eat_taiwan</title>
+<title>Foodie Map</title>
 <link rel="stylesheet" href="styles.css">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><text y='52' font-size='52'>🍜</text></svg>">
 </head>
@@ -12,10 +12,18 @@
   <aside id="sidebar">
     <header id="brand">
       <h1>Foodie Map</h1>
-      <p id="subtitle">from <a href="https://www.instagram.com/born2eat_taiwan/" target="_blank" rel="noopener">@born2eat_taiwan</a><span id="stat"></span></p>
+      <p id="subtitle"><span id="byline"></span><span id="stat"></span></p>
     </header>
 
     <section id="filters">
+      <div class="filter">
+        <div class="filter-head">
+          <label>評分來源</label>
+        </div>
+        <div id="sources"></div>
+        <label class="check"><input id="both-only" type="checkbox"> 只看兩人都評過的</label>
+      </div>
+
       <div class="filter">
         <label for="search">搜尋</label>
         <input id="search" type="search" placeholder="店名或地址" autocomplete="off">
@@ -27,7 +35,7 @@
           <button id="rating-reset" class="linkish" type="button">重設</button>
         </div>
         <div id="rating-legend"></div>
-        <div class="scale-hints"><span>4.3 願意再訪</span><span>4.6 愛店</span></div>
+        <div class="scale-hints" id="rating-hints"></div>
       </div>
 
       <div class="filter">

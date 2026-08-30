@@ -20,6 +20,10 @@ on:
         type: boolean
         required: false
         default: false
+      account:
+        description: "Crawl only this account (blank = all)"
+        required: false
+        default: ""
 
 # Never let two refreshes race: both would commit to main.
 concurrency:
@@ -46,11 +50,16 @@ jobs:
       - name: Crawl Instagram
         env:
           APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
+        # One actor run per account; the account list lives in config/accounts.json.
         run: |
+          ACCOUNT_ARG=""
+          if [ -n "${{ inputs.account }}" ]; then
+            ACCOUNT_ARG="--account ${{ inputs.account }}"
+          fi
           if [ "${{ inputs.backfill }}" = "true" ]; then
-            python scripts/crawl.py --backfill
+            python scripts/crawl.py --backfill $ACCOUNT_ARG
           else
-            python scripts/crawl.py --limit "${{ inputs.limit || 40 }}"
+            python scripts/crawl.py --limit "${{ inputs.limit || 40 }}" $ACCOUNT_ARG
           fi
 
       - name: Extract structured fields
@@ -79,6 +88,11 @@ jobs:
         env:
           GOOGLE_MAPS_BROWSER_KEY: ${{ secrets.GOOGLE_MAPS_BROWSER_KEY }}
         run: python scripts/build.py
+
+      - name: Calibration report
+        # Reported, never applied: rating tier cut points are frozen by hand in
+        # config/rating_calibration.json so pin colours cannot drift month to month.
+        run: python scripts/calibrate.py --report || true
 
       - name: Commit
         run: |

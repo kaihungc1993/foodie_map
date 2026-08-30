@@ -1,0 +1,19 @@
+{
+  "_comment": "Instagram accounts crawled for this map. `primary` decides whose spelling of a venue name is displayed and which account the site opens on; exactly one account must be primary. `parser` names the module under scripts/parsers/. Adding a reviewer is a config change, not a code change — but each one needs its own parser module, because no two of them write captions the same way.",
+  "accounts": [
+    {
+      "username": "born2eat_taiwan",
+      "label": "born2eat_taiwan",
+      "url": "https://www.instagram.com/born2eat_taiwan/",
+      "parser": "born2eat_taiwan",
+      "primary": true
+    },
+    {
+      "username": "jc_foodidi",
+      "label": "jc_foodidi",
+      "url": "https://www.instagram.com/jc_foodidi/",
+      "parser": "jc_foodidi",
+      "primary": false
+    }
+  ]
+}
