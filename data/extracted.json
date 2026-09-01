@@ -57994,5 +57994,106 @@
     },
     "tagline": "期待已久的桃子蛋包飯😀",
     "visits": 4
+  },
+  "3973629606032799999": {
+    "dishes": [
+      {
+        "favourite": false,
+        "name": "一個人也想要吃飽一點(480）"
+      },
+      {
+        "favourite": false,
+        "name": "三杯雞（210）"
+      },
+      {
+        "favourite": false,
+        "name": "雙倍鹹豬肉與龍鬚菜與溫泉蛋（210）"
+      },
+      {
+        "favourite": true,
+        "name": "紫米芋泥糕（80）"
+      }
+    ],
+    "extras": {},
+    "llm": {
+      "categories": [
+        "台菜",
+        "丼飯定食",
+        "小吃",
+        "熱炒"
+      ],
+      "is_restaurant": true
+    },
+    "name": "金晶雞 | GINGIN CHICKEN",
+    "parser": "born2eat_taiwan",
+    "parser_version": 1,
+    "pin_count": 1,
+    "price_max": 400,
+    "price_min": 200,
+    "rating": 4.3,
+    "tagline": "獨食友善的人氣雞肉料理，推薦麻辣香鍋雞和豆腐乳炸雞",
+    "visits": 1
+  },
+  "3975011872523852281": {
+    "dishes": [
+      {
+        "favourite": true,
+        "name": "今日特色前菜三種（330）"
+      },
+      {
+        "favourite": false,
+        "name": "茄子田樂（160）"
+      },
+      {
+        "favourite": true,
+        "name": "日式煎蛋捲（230）"
+      },
+      {
+        "favourite": true,
+        "name": "炸白馬頭魚松笠（580）"
+      },
+      {
+        "favourite": true,
+        "name": "無花果天婦羅（200）"
+      },
+      {
+        "favourite": true,
+        "name": "A5日本和牛炸漢堡排（360）"
+      },
+      {
+        "favourite": false,
+        "name": "烏魚子素麵（290）"
+      },
+      {
+        "favourite": false,
+        "name": "煙仔虎炙燒（450）"
+      },
+      {
+        "favourite": false,
+        "name": "十六茶（100）"
+      },
+      {
+        "favourite": false,
+        "name": "可樂（100）"
+      }
+    ],
+    "extras": {},
+    "llm": {
+      "categories": [
+        "居酒屋",
+        "日本料理",
+        "天婦羅"
+      ],
+      "is_restaurant": true
+    },
+    "name": "居酒屋 風小路",
+    "parser": "born2eat_taiwan",
+    "parser_version": 1,
+    "pin_count": 1,
+    "price_max": 1500,
+    "price_min": 1000,
+    "rating": 4.5,
+    "tagline": "近期挖掘到的居酒屋寶藏店，已列入居酒屋回訪名單中",
+    "visits": 1
   }
 }

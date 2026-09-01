@@ -17,26 +17,30 @@
         4.5,
         4.6
       ],
-      "rated": 484,
+      "rated": 486,
       "tier_counts": [
         107,
-        94,
+        95,
         98,
-        77,
+        78,
         108
       ],
       "tier_share": [
-        0.221,
-        0.194,
+        0.22,
+        0.195,
         0.202,
-        0.159,
-        0.223
+        0.16,
+        0.222
       ],
       "warnings": []
     },
     "jc_foodidi": {
       "distinct_values": 10,
-      "frozen_cuts": null,
+      "frozen_cuts": [
+        3.75,
+        4.0,
+        4.25
+      ],
       "max": 5.0,
       "median": 3.75,
       "min": 2.0,
@@ -44,19 +48,21 @@
         3.75,
         4.0
       ],
-      "rated": 294,
+      "rated": 295,
       "tier_counts": [
         39,
         135,
-        120
+        94,
+        27
       ],
       "tier_share": [
-        0.133,
-        0.459,
-        0.408
+        0.132,
+        0.458,
+        0.319,
+        0.092
       ],
       "warnings": [
-        "a tier holds over 45% — the rating lattice cannot split it"
+        "a tier holds over 45% — the single value 3.75 covers 45.8% of his ratings, so this is his rating habit, not a bad cut"
       ]
     }
   },
@@ -656,6 +662,13 @@
         "id": "loc:1322123057902862",
         "jc_foodidi": 3.75,
         "name": "Longtail"
+      },
+      {
+        "born2eat_taiwan": 4.2,
+        "delta": -0.2,
+        "id": "name:徐家私廚",
+        "jc_foodidi": 4.0,
+        "name": "徐家私廚"
       },
       {
         "born2eat_taiwan": 4.7,

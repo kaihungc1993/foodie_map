@@ -1104,6 +1104,19 @@
     "status": "OK",
     "version": 3
   },
+  "103024738699119": {
+    "formatted_address": "100臺北市中正區幸福里忠孝東路一段166號1樓",
+    "lat": 25.043902,
+    "lng": 121.5261477,
+    "low_confidence": false,
+    "matched_name": "金晶雞 | GINGIN CHICKEN | 最後加點時間為營業時間結束的半小時以前",
+    "place_id": "ChIJ6Vjdw2CpQjQRCOOBkhTygFw",
+    "query": "金晶雞 GinGin Chicken 中正區",
+    "score": 1.0,
+    "source": "places",
+    "status": "OK",
+    "version": 3
+  },
   "1031021652": {
     "formatted_address": "105臺北市松山區復盛里八德路四段72巷10弄16號1樓",
     "lat": 25.047236899999998,
@@ -5558,6 +5571,19 @@
     "matched_name": "Reale Cucina Italiana",
     "place_id": "ChIJdxDdY6qrQjQRxW6IJhUxUD8",
     "query": "Reale Cucina Italiana 東區",
+    "score": 1.0,
+    "source": "places",
+    "status": "OK",
+    "version": 3
+  },
+  "269846010": {
+    "formatted_address": "106臺北市大安區正聲里光復南路308巷32號",
+    "lat": 25.0389391,
+    "lng": 121.5560973,
+    "low_confidence": false,
+    "matched_name": "居酒屋 風小路",
+    "place_id": "ChIJRcH1ncirQjQRoJzaR3soYPE",
+    "query": "居酒屋 風小路 - 居酒屋 風こみち/Kazekomichi 台北",
     "score": 1.0,
     "source": "places",
     "status": "OK",

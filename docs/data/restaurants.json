@@ -20,13 +20,13 @@
         "≥ 4.6"
       ],
       "primary": true,
-      "rated_count": 484,
-      "restaurant_count": 496,
+      "rated_count": 486,
+      "restaurant_count": 498,
       "tier_counts": [
         107,
-        94,
+        95,
         98,
-        77,
+        78,
         108
       ],
       "top_label": "愛店",
@@ -109,7 +109,7 @@
     "麵包烘焙"
   ],
   "closed_count": 61,
-  "generated_from_posts": 1124,
+  "generated_from_posts": 1126,
   "id_aliases": {
     "loc:104110488821535": "loc:1568998819869250",
     "loc:104534365022686": "loc:258413653",
@@ -133,8 +133,151 @@
     "rv:食堂おわん": "loc:186416871227678"
   },
   "primary_account": "born2eat_taiwan",
-  "restaurant_count": 706,
+  "restaurant_count": 708,
   "restaurants": [
+    {
+      "accounts": [
+        "born2eat_taiwan"
+      ],
+      "address": "106臺北市大安區正聲里光復南路308巷32號",
+      "aka": [
+        "居酒屋 風小路 - 居酒屋 風こみち/Kazekomichi"
+      ],
+      "business_status": "OPERATIONAL",
+      "categories": [
+        "居酒屋",
+        "日本料理",
+        "天婦羅"
+      ],
+      "closed_days": 2,
+      "dinner_days": 5,
+      "from_roundup": false,
+      "guide_stars": null,
+      "id": "loc:269846010",
+      "last_visit": "2026-08-30T08:27:29.000Z",
+      "lat": 25.0389391,
+      "lng": 121.5560973,
+      "location_tag": "居酒屋 風小路 - 居酒屋 風こみち/Kazekomichi",
+      "lunch_days": 1,
+      "name": "居酒屋 風小路",
+      "place_id": "ChIJRcH1ncirQjQRoJzaR3soYPE",
+      "post_count": 1,
+      "posts": [
+        {
+          "id": "3975011872523852281",
+          "likes": -1,
+          "price_max": 1500,
+          "price_min": 1000,
+          "rating": 4.5,
+          "rating_axes": {},
+          "shortcode": "DcqFDzPvpn5",
+          "source_account": "born2eat_taiwan",
+          "tagline": "近期挖掘到的居酒屋寶藏店，已列入居酒屋回訪名單中",
+          "timestamp": "2026-08-30T08:27:29.000Z",
+          "url": "https://www.instagram.com/p/DcqFDzPvpn5/",
+          "visits": 1
+        }
+      ],
+      "price_max": 1500,
+      "price_min": 1000,
+      "rating": 4.5,
+      "rating_derived": false,
+      "rating_source": "born2eat_taiwan",
+      "reviews": {
+        "born2eat_taiwan": {
+          "extras": {},
+          "guide_stars": null,
+          "last_visit": "2026-08-30T08:27:29.000Z",
+          "post_count": 1,
+          "price_max": 1500,
+          "price_min": 1000,
+          "rating": 4.5,
+          "rating_axes": {},
+          "rating_derived": false,
+          "tagline": "近期挖掘到的居酒屋寶藏店，已列入居酒屋回訪名單中",
+          "tier": 3,
+          "visited_on": null,
+          "visits": 1
+        }
+      },
+      "serves_dinner": true,
+      "serves_lunch": true,
+      "tagline": "近期挖掘到的居酒屋寶藏店，已列入居酒屋回訪名單中",
+      "tier": 3,
+      "visits": 1
+    },
+    {
+      "accounts": [
+        "born2eat_taiwan"
+      ],
+      "address": "100臺北市中正區幸福里忠孝東路一段166號1樓",
+      "aka": [
+        "金晶雞 GinGin Chicken"
+      ],
+      "business_status": "OPERATIONAL",
+      "categories": [
+        "台菜",
+        "丼飯定食",
+        "小吃",
+        "熱炒"
+      ],
+      "closed_days": 0,
+      "dinner_days": 7,
+      "from_roundup": false,
+      "guide_stars": null,
+      "id": "loc:103024738699119",
+      "last_visit": "2026-08-28T10:39:43.000Z",
+      "lat": 25.043902,
+      "lng": 121.5261477,
+      "location_tag": "金晶雞 GinGin Chicken",
+      "lunch_days": 7,
+      "name": "金晶雞 | GINGIN CHICKEN",
+      "place_id": "ChIJ6Vjdw2CpQjQRCOOBkhTygFw",
+      "post_count": 1,
+      "posts": [
+        {
+          "id": "3973629606032799999",
+          "likes": 342,
+          "price_max": 400,
+          "price_min": 200,
+          "rating": 4.3,
+          "rating_axes": {},
+          "shortcode": "DclKxLQj3j_",
+          "source_account": "born2eat_taiwan",
+          "tagline": "獨食友善的人氣雞肉料理，推薦麻辣香鍋雞和豆腐乳炸雞",
+          "timestamp": "2026-08-28T10:39:43.000Z",
+          "url": "https://www.instagram.com/p/DclKxLQj3j_/",
+          "visits": 1
+        }
+      ],
+      "price_max": 400,
+      "price_min": 200,
+      "rating": 4.3,
+      "rating_derived": false,
+      "rating_source": "born2eat_taiwan",
+      "reviews": {
+        "born2eat_taiwan": {
+          "extras": {},
+          "guide_stars": null,
+          "last_visit": "2026-08-28T10:39:43.000Z",
+          "post_count": 1,
+          "price_max": 400,
+          "price_min": 200,
+          "rating": 4.3,
+          "rating_axes": {},
+          "rating_derived": false,
+          "tagline": "獨食友善的人氣雞肉料理，推薦麻辣香鍋雞和豆腐乳炸雞",
+          "tier": 1,
+          "visited_on": null,
+          "visits": 1
+        }
+      },
+      "serves_dinner": true,
+      "serves_lunch": true,
+      "tagline": "獨食友善的人氣雞肉料理，推薦麻辣香鍋雞和豆腐乳炸雞",
+      "tier": 1,
+      "visits": 1
+    },
     {
       "accounts": [
         "jc_foodidi"
@@ -454,7 +597,7 @@
       "posts": [
         {
           "id": "3969219525487781146",
-          "likes": 219,
+          "likes": 242,
           "price_max": 600,
           "price_min": 400,
           "rating": 4.6,
@@ -607,7 +750,7 @@
       "posts": [
         {
           "id": "3965718546487423850",
-          "likes": 229,
+          "likes": 262,
           "price_max": 400,
           "price_min": 200,
           "rating": 4.6,
@@ -682,7 +825,7 @@
       "posts": [
         {
           "id": "3962716889754292021",
-          "likes": 223,
+          "likes": 227,
           "price_max": 2000,
           "price_min": 2000,
           "rating": 4.5,
@@ -925,7 +1068,7 @@
       "posts": [
         {
           "id": "3960554644988452468",
-          "likes": 205,
+          "likes": 210,
           "price_max": 3800,
           "price_min": 3800,
           "rating": 4.5,
@@ -1064,7 +1207,7 @@
       "posts": [
         {
           "id": "3957500712087032197",
-          "likes": 234,
+          "likes": 235,
           "price_max": null,
           "price_min": null,
           "rating": 4.0,
@@ -1146,7 +1289,7 @@
       "posts": [
         {
           "id": "3956923224137939628",
-          "likes": 279,
+          "likes": 285,
           "price_max": 2000,
           "price_min": 1500,
           "rating": 4.5,
@@ -1275,7 +1418,7 @@
         },
         {
           "id": "3954730559947665712",
-          "likes": 837,
+          "likes": 839,
           "price_max": 1200,
           "price_min": 800,
           "rating": 4.6,
@@ -1748,7 +1891,7 @@
       "posts": [
         {
           "id": "3950452262719976528",
-          "likes": 208,
+          "likes": 209,
           "price_max": 1500,
           "price_min": 1000,
           "rating": 4.2,
@@ -1819,7 +1962,7 @@
       "posts": [
         {
           "id": "3948907865712876475",
-          "likes": 1573,
+          "likes": 1574,
           "price_max": 250,
           "price_min": 150,
           "rating": 4.7,
@@ -2166,7 +2309,7 @@
       "posts": [
         {
           "id": "3943900596294063739",
-          "likes": 257,
+          "likes": 258,
           "price_max": 2800,
           "price_min": 2800,
           "rating": 4.6,
@@ -2497,7 +2640,7 @@
         },
         {
           "id": "3522119392039529005",
-          "likes": 356,
+          "likes": 350,
           "price_max": null,
           "price_min": null,
           "rating": 4.0,
@@ -2595,7 +2738,7 @@
       "posts": [
         {
           "id": "3938820527682999322",
-          "likes": 316,
+          "likes": 317,
           "price_max": 2000,
           "price_min": 1500,
           "rating": 4.8,
@@ -3131,7 +3274,7 @@
       "posts": [
         {
           "id": "3934525198108180362",
-          "likes": 331,
+          "likes": 332,
           "price_max": 1200,
           "price_min": 800,
           "rating": 4.5,
@@ -4000,7 +4143,7 @@
       "posts": [
         {
           "id": "3928768604242408942",
-          "likes": 460,
+          "likes": 461,
           "price_max": 400,
           "price_min": 250,
           "rating": 4.7,
@@ -5603,7 +5746,7 @@
       "posts": [
         {
           "id": "3911990718549008086",
-          "likes": 177,
+          "likes": 179,
           "price_max": 200,
           "price_min": 100,
           "rating": 4.6,
@@ -5688,7 +5831,7 @@
       "posts": [
         {
           "id": "3911840381692322833",
-          "likes": 240,
+          "likes": 241,
           "price_max": null,
           "price_min": null,
           "rating": 3.75,
@@ -6009,7 +6152,7 @@
       "posts": [
         {
           "id": "3907665930557020144",
-          "likes": 234,
+          "likes": 233,
           "price_max": 1500,
           "price_min": 1000,
           "rating": 4.6,
@@ -17936,7 +18079,7 @@
         },
         {
           "id": "3630838534547703690",
-          "likes": 314,
+          "likes": 307,
           "price_max": null,
           "price_min": null,
           "rating": 4.25,
