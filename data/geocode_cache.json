@@ -7136,6 +7136,19 @@
     "status": "OK",
     "version": 3
   },
+  "590890334767490": {
+    "formatted_address": "105臺北市松山區敦化北路165巷20號1樓",
+    "lat": 25.0546048,
+    "lng": 121.5509577,
+    "low_confidence": false,
+    "matched_name": "万端 By 肝苦嘆呷郎",
+    "place_id": "ChIJ9yhRSHyrQjQRYp-lXGOKUYg",
+    "query": "臺北市松山區(裝潢中）",
+    "score": 1.0,
+    "source": "places-address",
+    "status": "OK",
+    "version": 3
+  },
   "594384827094983": {
     "formatted_address": "106臺北市大安區光武里大安路一段52巷25號",
     "lat": 25.0432955,

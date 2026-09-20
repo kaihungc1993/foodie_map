@@ -11564,6 +11564,12 @@
       "星期日: 11:30 – 14:30, 17:30 – 21:30"
     ]
   },
+  "ChIJ9yhRSHyrQjQRYp-lXGOKUYg": {
+    "business_status": "OPERATIONAL",
+    "periods": null,
+    "status": "OK",
+    "weekday_text": null
+  },
   "ChIJA-xRvCSpQjQR1ceJ7BpCuFA": {
     "business_status": "OPERATIONAL",
     "periods": [

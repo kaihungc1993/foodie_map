@@ -108,8 +108,8 @@
     "鰻魚",
     "麵包烘焙"
   ],
-  "closed_count": 61,
-  "generated_from_posts": 1126,
+  "closed_count": 60,
+  "generated_from_posts": 1137,
   "id_aliases": {
     "loc:104110488821535": "loc:1568998819869250",
     "loc:104534365022686": "loc:258413653",
@@ -237,7 +237,7 @@
       "posts": [
         {
           "id": "3973629606032799999",
-          "likes": 342,
+          "likes": 536,
           "price_max": 400,
           "price_min": 200,
           "rating": 4.3,
@@ -392,7 +392,7 @@
       "posts": [
         {
           "id": "3971428393921017022",
-          "likes": -1,
+          "likes": 204,
           "price_max": 2000,
           "price_min": 1500,
           "rating": 4.4,
@@ -406,7 +406,7 @@
         },
         {
           "id": "3964967800309522615",
-          "likes": 204,
+          "likes": 209,
           "price_max": null,
           "price_min": null,
           "rating": 3.75,
@@ -423,7 +423,7 @@
         },
         {
           "id": "3955324648124479045",
-          "likes": 466,
+          "likes": 471,
           "price_max": null,
           "price_min": null,
           "rating": 3.75,
@@ -518,7 +518,7 @@
       "posts": [
         {
           "id": "3969866635536131560",
-          "likes": 289,
+          "likes": 291,
           "price_max": null,
           "price_min": null,
           "rating": 3.75,
@@ -597,7 +597,7 @@
       "posts": [
         {
           "id": "3969219525487781146",
-          "likes": 242,
+          "likes": 268,
           "price_max": 600,
           "price_min": 400,
           "rating": 4.6,
@@ -750,7 +750,7 @@
       "posts": [
         {
           "id": "3965718546487423850",
-          "likes": 262,
+          "likes": 310,
           "price_max": 400,
           "price_min": 200,
           "rating": 4.6,
@@ -825,7 +825,7 @@
       "posts": [
         {
           "id": "3962716889754292021",
-          "likes": 227,
+          "likes": 234,
           "price_max": 2000,
           "price_min": 2000,
           "rating": 4.5,
@@ -839,7 +839,7 @@
         },
         {
           "id": "3953149893925652433",
-          "likes": 276,
+          "likes": 275,
           "price_max": null,
           "price_min": null,
           "rating": 4.0,
@@ -1068,7 +1068,7 @@
       "posts": [
         {
           "id": "3960554644988452468",
-          "likes": 210,
+          "likes": 213,
           "price_max": 3800,
           "price_min": 3800,
           "rating": 4.5,
@@ -1207,7 +1207,7 @@
       "posts": [
         {
           "id": "3957500712087032197",
-          "likes": 235,
+          "likes": 234,
           "price_max": null,
           "price_min": null,
           "rating": 4.0,
@@ -1289,7 +1289,7 @@
       "posts": [
         {
           "id": "3956923224137939628",
-          "likes": 285,
+          "likes": 297,
           "price_max": 2000,
           "price_min": 1500,
           "rating": 4.5,
@@ -1303,7 +1303,7 @@
         },
         {
           "id": "3951910023487915064",
-          "likes": 371,
+          "likes": 369,
           "price_max": null,
           "price_min": null,
           "rating": 4.0,
@@ -1418,7 +1418,7 @@
         },
         {
           "id": "3954730559947665712",
-          "likes": 839,
+          "likes": 841,
           "price_max": 1200,
           "price_min": 800,
           "rating": 4.6,
@@ -1432,7 +1432,7 @@
         },
         {
           "id": "3937209997662784361",
-          "likes": 249,
+          "likes": 248,
           "price_max": null,
           "price_min": null,
           "rating": 4.0,
@@ -1556,7 +1556,7 @@
       "posts": [
         {
           "id": "3953304983596655620",
-          "likes": 251,
+          "likes": 252,
           "price_max": 1200,
           "price_min": 800,
           "rating": 4.8,
@@ -1891,7 +1891,7 @@
       "posts": [
         {
           "id": "3950452262719976528",
-          "likes": 209,
+          "likes": 210,
           "price_max": 1500,
           "price_min": 1000,
           "rating": 4.2,
@@ -1962,7 +1962,7 @@
       "posts": [
         {
           "id": "3948907865712876475",
-          "likes": 1574,
+          "likes": 1578,
           "price_max": 250,
           "price_min": 150,
           "rating": 4.7,
@@ -2031,7 +2031,7 @@
       "posts": [
         {
           "id": "3946798065780735691",
-          "likes": 202,
+          "likes": 205,
           "price_max": 3000,
           "price_min": 3000,
           "rating": 4.5,
@@ -2045,7 +2045,7 @@
         },
         {
           "id": "3936479720363676471",
-          "likes": 343,
+          "likes": 342,
           "price_max": null,
           "price_min": null,
           "rating": 4.0,
@@ -2141,7 +2141,7 @@
       "posts": [
         {
           "id": "3945902897066018215",
-          "likes": 307,
+          "likes": 305,
           "price_max": null,
           "price_min": null,
           "rating": 3.75,
@@ -2309,7 +2309,7 @@
       "posts": [
         {
           "id": "3943900596294063739",
-          "likes": 258,
+          "likes": 259,
           "price_max": 2800,
           "price_min": 2800,
           "rating": 4.6,
@@ -2514,7 +2514,7 @@
       "posts": [
         {
           "id": "3941718509344475176",
-          "likes": 264,
+          "likes": 266,
           "price_max": 2800,
           "price_min": 2800,
           "rating": 4.6,
@@ -2528,7 +2528,7 @@
         },
         {
           "id": "3934331864127249467",
-          "likes": 341,
+          "likes": 340,
           "price_max": null,
           "price_min": null,
           "rating": 4.0,
@@ -2626,7 +2626,7 @@
       "posts": [
         {
           "id": "3940274180763619808",
-          "likes": 234,
+          "likes": 235,
           "price_max": 3000,
           "price_min": 3000,
           "rating": 4.2,
@@ -2640,7 +2640,7 @@
         },
         {
           "id": "3522119392039529005",
-          "likes": 350,
+          "likes": 351,
           "price_max": null,
           "price_min": null,
           "rating": 4.0,
@@ -2895,7 +2895,7 @@
       "posts": [
         {
           "id": "3937359666883789521",
-          "likes": 412,
+          "likes": 413,
           "price_max": 1500,
           "price_min": 1000,
           "rating": 4.4,
@@ -2909,7 +2909,7 @@
         },
         {
           "id": "3932858460027067813",
-          "likes": 402,
+          "likes": 401,
           "price_max": null,
           "price_min": null,
           "rating": 4.0,
@@ -3204,7 +3204,7 @@
       "posts": [
         {
           "id": "3935923892762139163",
-          "likes": 237,
+          "likes": 240,
           "price_max": 1680,
           "price_min": 1680,
           "rating": 4.5,
@@ -3274,7 +3274,7 @@
       "posts": [
         {
           "id": "3934525198108180362",
-          "likes": 332,
+          "likes": 335,
           "price_max": 1200,
           "price_min": 800,
           "rating": 4.5,
@@ -3446,7 +3446,7 @@
       "posts": [
         {
           "id": "3971515503839490941",
-          "likes": -1,
+          "likes": 173,
           "price_max": null,
           "price_min": null,
           "rating": 4.5,
@@ -3494,7 +3494,7 @@
         },
         {
           "id": "3921987876091253667",
-          "likes": 375,
+          "likes": 376,
           "price_max": null,
           "price_min": null,
           "rating": 4.5,
@@ -4143,7 +4143,7 @@
       "posts": [
         {
           "id": "3928768604242408942",
-          "likes": 461,
+          "likes": 463,
           "price_max": 400,
           "price_min": 250,
           "rating": 4.7,
@@ -4317,7 +4317,7 @@
       "posts": [
         {
           "id": "3927781903776559412",
-          "likes": 304,
+          "likes": 303,
           "price_max": null,
           "price_min": null,
           "rating": 3.75,
@@ -4501,7 +4501,7 @@
       "posts": [
         {
           "id": "3926334240002417088",
-          "likes": 273,
+          "likes": 275,
           "price_max": null,
           "price_min": null,
           "rating": 3.75,
@@ -4580,7 +4580,7 @@
       "posts": [
         {
           "id": "3925131888969070692",
-          "likes": 557,
+          "likes": 560,
           "price_max": 350,
           "price_min": 250,
           "rating": 4.3,
@@ -4653,7 +4653,7 @@
       "posts": [
         {
           "id": "3925100453394390387",
-          "likes": 262,
+          "likes": 261,
           "price_max": null,
           "price_min": null,
           "rating": 3.75,
@@ -4736,7 +4736,7 @@
       "posts": [
         {
           "id": "3923589851568384688",
-          "likes": 223,
+          "likes": 224,
           "price_max": 1500,
           "price_min": 1000,
           "rating": 4.5,
@@ -4894,7 +4894,7 @@
       "posts": [
         {
           "id": "3921417124840212582",
-          "likes": 209,
+          "likes": 210,
           "price_max": 2750,
           "price_min": 2750,
           "rating": 5.0,
@@ -5179,11 +5179,11 @@
       "accounts": [
         "jc_foodidi"
       ],
-      "address": "105臺北市松山區中華里敦化北路165巷20號1樓",
+      "address": "105臺北市松山區敦化北路165巷20號1樓",
       "aka": [
-        "料理屋 安家"
+        "万端 By 肝苦嘆呷郎"
       ],
-      "business_status": "CLOSED_PERMANENTLY",
+      "business_status": "OPERATIONAL",
       "categories": [
         "小吃",
         "中菜",
@@ -5193,19 +5193,19 @@
       "dinner_days": null,
       "from_roundup": false,
       "guide_stars": null,
-      "id": "loc:632442386629698",
+      "id": "loc:590890334767490",
       "last_visit": "2026-06-16T11:40:00.000Z",
       "lat": 25.0546048,
       "lng": 121.5509577,
-      "location_tag": "料理屋 安家",
+      "location_tag": "万端 By 肝苦嘆呷郎",
       "lunch_days": null,
       "name": "肝苦嘆呷郎",
-      "place_id": "ChIJlT-YBc6rQjQREvWeO75BiiE",
+      "place_id": "ChIJ9yhRSHyrQjQRYp-lXGOKUYg",
       "post_count": 1,
       "posts": [
         {
           "id": "3920750398378316227",
-          "likes": 208,
+          "likes": 209,
           "price_max": null,
           "price_min": null,
           "rating": 4.0,
@@ -5286,7 +5286,7 @@
       "posts": [
         {
           "id": "3919212754028685484",
-          "likes": 305,
+          "likes": 307,
           "price_max": 1500,
           "price_min": 1000,
           "rating": 4.3,
@@ -5481,7 +5481,7 @@
       "posts": [
         {
           "id": "3917638324055950350",
-          "likes": 475,
+          "likes": 472,
           "price_max": null,
           "price_min": null,
           "rating": 3.75,
@@ -5915,7 +5915,7 @@
       "posts": [
         {
           "id": "3911112642030998572",
-          "likes": 478,
+          "likes": 475,
           "price_max": null,
           "price_min": null,
           "rating": 3.75,
@@ -6291,7 +6291,7 @@
       "posts": [
         {
           "id": "3902418217620739576",
-          "likes": 293,
+          "likes": 292,
           "price_max": null,
           "price_min": null,
           "rating": 3.75,
@@ -9523,7 +9523,7 @@
       "posts": [
         {
           "id": "3948078397985161296",
-          "likes": 137,
+          "likes": 141,
           "price_max": null,
           "price_min": null,
           "rating": 3.75,
@@ -18079,7 +18079,7 @@
         },
         {
           "id": "3630838534547703690",
-          "likes": 307,
+          "likes": 302,
           "price_max": null,
           "price_min": null,
           "rating": 4.25,
@@ -32529,7 +32529,7 @@
       "posts": [
         {
           "id": "3739344867022835704",
-          "likes": 342,
+          "likes": 337,
           "price_max": null,
           "price_min": null,
           "rating": 4.0,
@@ -43971,7 +43971,7 @@
       "posts": [
         {
           "id": "3919105978746673768",
-          "likes": 174,
+          "likes": 177,
           "price_max": null,
           "price_min": null,
           "rating": 4.0,
