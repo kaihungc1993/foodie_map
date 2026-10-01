@@ -10223,6 +10223,19 @@
     "status": "OK",
     "version": 3
   },
+  "鮑福記 鮑魚雞湯火鍋": {
+    "formatted_address": "100023臺北市中正區金山南路一段8號",
+    "lat": 25.0423534,
+    "lng": 121.52928849999999,
+    "low_confidence": false,
+    "matched_name": "鮑福記 鮑魚雞湯火鍋",
+    "place_id": "ChIJB7Qz40KpQjQRgpjP_2ZMlio",
+    "query": "鮑福記 鮑魚雞湯火鍋 台北",
+    "score": 1.0,
+    "source": "places",
+    "status": "OK",
+    "version": 3
+  },
   "鯨KUJIRA 居酒屋": {
     "formatted_address": "104110臺北市中山區興安街16號",
     "lat": 25.0560761,
