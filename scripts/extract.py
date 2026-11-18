@@ -108,12 +108,11 @@ def read_json_result(msg):
 def classify_sync(client, todo, schema):
     out = {}
     for i, (pid, post, header) in enumerate(todo, 1):
-        try:
-            msg = client.messages.create(**request_params(post, header, schema))
-            out[pid] = read_json_result(msg)
-            print(f"  [{i}/{len(todo)}] {header['name'] or pid}: {out[pid]['categories']}")
-        except anthropic.APIStatusError as e:
-            print(f"  [{i}/{len(todo)}] {pid} failed: {e.status_code} {e.message}", file=sys.stderr)
+        msg = client.messages.create(**request_params(post, header, schema))
+        out[pid] = read_json_result(msg)
+        if out[pid] is None:
+            raise RuntimeError(f"No classification returned for post {pid}")
+        print(f"  [{i}/{len(todo)}] {header['name'] or pid}: {out[pid]['categories']}")
     return out
 
 
@@ -212,7 +211,7 @@ def classify_venues(client, posts, extracted, cats, cache, force):
             if res.result.type == "succeeded":
                 cache[ids[res.custom_id]] = read_json_result(res.result.message)
             else:
-                print(f"  {ids.get(res.custom_id)}: {res.result.type}", file=sys.stderr)
+                raise RuntimeError(f"Venue {ids.get(res.custom_id)}: {res.result.type}")
     else:
         for k, v in items:
             msg = client.messages.create(
@@ -233,9 +232,15 @@ def main():
     ap.add_argument("--force", action="store_true", help="re-extract already-cached posts")
     ap.add_argument("--sync", action="store_true", help="force sync API even for large runs")
     ap.add_argument("--limit", type=int, help="only process N posts (for testing)")
+    ap.add_argument("--check-auth", action="store_true",
+                    help="validate the Anthropic API key without classifying posts")
     args = ap.parse_args()
 
     common.require_env("ANTHROPIC_API_KEY")
+    if args.check_auth:
+        anthropic.Anthropic().models.list(limit=1)
+        print("Anthropic API key authentication succeeded")
+        return 0
     posts = common.read_json(common.RAW_POSTS, {})
     cache = {} if args.force else common.read_json(common.EXTRACTED, {})
     cats = common.categories()
@@ -269,6 +274,11 @@ def main():
         client = anthropic.Anthropic()
         use_batch = len(todo) > BATCH_THRESHOLD and not args.sync
         results = (classify_batch if use_batch else classify_sync)(client, todo, schema)
+        missing = [pid for pid, _, _ in todo if results.get(pid) is None]
+        if missing:
+            raise RuntimeError(
+                f"Classification incomplete for {len(missing)} posts; "
+                "leaving the extraction cache unchanged. Retry the refresh.")
     else:
         results = {}
 
