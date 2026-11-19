@@ -58095,5 +58095,2347 @@
     "rating": 4.5,
     "tagline": "近期挖掘到的居酒屋寶藏店，已列入居酒屋回訪名單中",
     "visits": 1
+  },
+  "3976505507326151013": {
+    "dishes": [
+      {
+        "favourite": true,
+        "name": "水蜜桃生火腿起司沙拉(400)"
+      },
+      {
+        "favourite": false,
+        "name": "椒麻肉味噌冷豆腐(180)"
+      },
+      {
+        "favourite": true,
+        "name": "爆彈(250)"
+      },
+      {
+        "favourite": true,
+        "name": "鹽味鰤魚(380)"
+      },
+      {
+        "favourite": false,
+        "name": "水針(380)"
+      },
+      {
+        "favourite": false,
+        "name": "鹽烤綠竹筍金山寺味噌(250)"
+      },
+      {
+        "favourite": true,
+        "name": "雞頸青蔥山椒燒(280)"
+      },
+      {
+        "favourite": true,
+        "name": "金絲蝦毛豆泥醬(280)"
+      },
+      {
+        "favourite": false,
+        "name": "孜然鹽味雞翅(270/3隻)"
+      },
+      {
+        "favourite": false,
+        "name": "銀杏（250）"
+      },
+      {
+        "favourite": false,
+        "name": "溫玉味噌牛筋豆腐(300)"
+      },
+      {
+        "favourite": false,
+        "name": "雞肝(180)"
+      },
+      {
+        "favourite": false,
+        "name": "稚香魚梅紫蘇冷烏龍(300)"
+      },
+      {
+        "favourite": false,
+        "name": "真鯛天婦羅番茄紫蘇冷烏龍(300)"
+      },
+      {
+        "favourite": true,
+        "name": "白胡麻巴斯克(250)"
+      },
+      {
+        "favourite": false,
+        "name": "麥茶(80)、蘇打水(100)"
+      }
+    ],
+    "extras": {},
+    "llm": {
+      "categories": [
+        "小吃"
+      ],
+      "is_restaurant": true
+    },
+    "name": "暖燈（酒肴&小料理）",
+    "parser": "born2eat_taiwan",
+    "parser_version": 1,
+    "pin_count": 1,
+    "price_max": 2000,
+    "price_min": 1000,
+    "rating": 4.7,
+    "tagline": "定期回訪的小料理專賣店，菜色吃得出用心",
+    "visits": 8
+  },
+  "3977935276348296296": {
+    "dishes": [
+      {
+        "favourite": true,
+        "name": "Sunny pork熟成菲力（1080/160g)"
+      },
+      {
+        "favourite": false,
+        "name": "Kaori pork熟成肋眼（1480/250g)"
+      }
+    ],
+    "extras": {},
+    "llm": {
+      "categories": [
+        "日本料理",
+        "餐酒館",
+        "牛排"
+      ],
+      "is_restaurant": true
+    },
+    "name": "空蟬亭 台北店",
+    "parser": "born2eat_taiwan",
+    "parser_version": 1,
+    "pin_count": 1,
+    "price_max": 1500,
+    "price_min": 1200,
+    "rating": 4.4,
+    "tagline": "京都炸豬排名店來台展店，食物水準跟環境服務都很不錯，價位偏高",
+    "visits": 1
+  },
+  "3979197213351827747": {
+    "dishes": [
+      {
+        "favourite": false,
+        "name": "水蜜桃布拉塔(580)"
+      },
+      {
+        "favourite": true,
+        "name": "雞肝慕斯(280)"
+      },
+      {
+        "favourite": false,
+        "name": "雞肝肉派(450)"
+      },
+      {
+        "favourite": true,
+        "name": "油封雞胗(260)"
+      },
+      {
+        "favourite": false,
+        "name": "花滔煎牛肚(420)"
+      },
+      {
+        "favourite": false,
+        "name": "炸香魚(380)"
+      },
+      {
+        "favourite": false,
+        "name": "托斯卡尼黑胡椒燉牛肉(1280)"
+      },
+      {
+        "favourite": true,
+        "name": "西西里沙丁魚麵(580)"
+      },
+      {
+        "favourite": true,
+        "name": "青醬虎蝦貓耳朵(520)"
+      },
+      {
+        "favourite": false,
+        "name": "栗子冰淇淋(190)"
+      },
+      {
+        "favourite": false,
+        "name": "西西里檸檬凍(200)"
+      },
+      {
+        "favourite": true,
+        "name": "開心果布蕾(150)"
+      }
+    ],
+    "extras": {},
+    "llm": {
+      "categories": [
+        "義式",
+        "餐酒館"
+      ],
+      "is_restaurant": true
+    },
+    "name": "花滔廚房",
+    "parser": "born2eat_taiwan",
+    "parser_version": 1,
+    "pin_count": 1,
+    "price_max": 2000,
+    "price_min": 1200,
+    "rating": 4.8,
+    "tagline": "定期回訪的義式料理，每次來都能解鎖新菜色",
+    "visits": 11
+  },
+  "3980032640350936907": {
+    "dishes": [
+      {
+        "favourite": false,
+        "name": "莓瑰蜜桃冰淇淋聖代",
+        "price": 830
+      },
+      {
+        "favourite": false,
+        "name": "滿滿日本水蜜桃冰淇淋聖代",
+        "price": 880
+      }
+    ],
+    "extras": {
+      "address_text": "台北市萬華區和平西路三段61號",
+      "hours_text": "每週日21:00開放下週預約",
+      "phone": "網路預約制",
+      "visited_on": "2026-08-01"
+    },
+    "llm": {
+      "categories": [
+        "甜點"
+      ],
+      "is_restaurant": true
+    },
+    "name": "自自 zizi",
+    "parser": "jc_foodidi",
+    "parser_version": 1,
+    "pin_count": 0,
+    "price_max": null,
+    "price_min": null,
+    "rating": 4.25,
+    "rating_axes": {
+      "revisit": 4.25,
+      "taste": 4.25
+    },
+    "tagline": "台北最美最好吃的帕菲杯😀",
+    "visits": 3
+  },
+  "3980843420708794410": {
+    "dishes": [
+      {
+        "favourite": false,
+        "name": "近江牛赤身肉三吃飯(1500)"
+      }
+    ],
+    "extras": {},
+    "llm": {
+      "categories": [
+        "燒肉",
+        "日本料理"
+      ],
+      "is_restaurant": true
+    },
+    "name": "燒肉牛匠新 台北春大直店",
+    "parser": "born2eat_taiwan",
+    "parser_version": 1,
+    "pin_count": 1,
+    "price_max": 1500,
+    "price_min": 1500,
+    "rating": 4.3,
+    "tagline": "春大直近期開幕的高檔燒肉，嚴選日本頂級近江牛，提供全程專人代烤",
+    "visits": 1
+  },
+  "3982129968691763453": {
+    "dishes": [
+      {
+        "favourite": false,
+        "name": "Sunny Pork 里肌 200g",
+        "price": 1080
+      },
+      {
+        "favourite": false,
+        "name": "Kaori Pork 菲力 160g",
+        "price": 1280
+      },
+      {
+        "favourite": false,
+        "name": "空蟬亭特調生薑氣泡飲",
+        "price": 190
+      }
+    ],
+    "extras": {
+      "address_text": "臺北市大安區仁愛里忠孝東路四段146巷43號",
+      "hours_text": null,
+      "phone": "網路預約制",
+      "visited_on": "2026-09-08"
+    },
+    "llm": {
+      "categories": [
+        "日本料理",
+        "日本料理",
+        "日本料理"
+      ],
+      "is_restaurant": true
+    },
+    "name": "空蟬亭 台北店",
+    "parser": "jc_foodidi",
+    "parser_version": 1,
+    "pin_count": 0,
+    "price_max": null,
+    "price_min": null,
+    "rating": 3.0,
+    "rating_axes": {
+      "revisit": 2.0,
+      "taste": 3.0
+    },
+    "tagline": "日本知名品牌卻令人失望🙂",
+    "visits": null
+  },
+  "3982395433712309048": {
+    "dishes": [
+      {
+        "favourite": true,
+        "name": "麻辣牛筋豆腐煮（220）"
+      },
+      {
+        "favourite": false,
+        "name": "金脆糖醋藕（180）"
+      },
+      {
+        "favourite": false,
+        "name": "炙燒明太薯（280）"
+      },
+      {
+        "favourite": false,
+        "name": "豆乳雞軟骨（200）"
+      },
+      {
+        "favourite": true,
+        "name": "焦香翼板牛炒飯（220）"
+      },
+      {
+        "favourite": true,
+        "name": "手作焦糖布丁（60）"
+      },
+      {
+        "favourite": true,
+        "name": "梅見冰（300）"
+      },
+      {
+        "favourite": false,
+        "name": "蘋果玫瑰沙瓦（160）"
+      }
+    ],
+    "extras": {},
+    "llm": {
+      "categories": [
+        "居酒屋"
+      ],
+      "is_restaurant": true
+    },
+    "name": "一福IPPUKU串燒酒場",
+    "parser": "born2eat_taiwan",
+    "parser_version": 1,
+    "pin_count": 1,
+    "price_max": 1200,
+    "price_min": 800,
+    "rating": 4.5,
+    "tagline": "大爆點也無雷且不傷荷包的串燒酒場，酒類的選擇也很多樣",
+    "visits": 2
+  },
+  "3983599270443703946": {
+    "dishes": [
+      {
+        "favourite": false,
+        "name": "低消",
+        "price": 500
+      }
+    ],
+    "extras": {
+      "address_text": "台北市大安區忠孝東路三段300號 3F（復興Sogo）",
+      "hours_text": "週一到週日 11:00-22:00營業時間（目前試營運期間以現場實際營業時間為主）",
+      "phone": "02-8772-9628",
+      "visited_on": "2026-08-30"
+    },
+    "llm": {
+      "categories": [
+        "義式",
+        "義式"
+      ],
+      "is_restaurant": true
+    },
+    "name": "Cova  Sogo復興店",
+    "parser": "jc_foodidi",
+    "parser_version": 1,
+    "pin_count": 0,
+    "price_max": null,
+    "price_min": null,
+    "rating": 3.75,
+    "rating_axes": {
+      "revisit": 3.75,
+      "taste": 3.75
+    },
+    "tagline": "精緻的義大利風味全新開幕☺️",
+    "visits": null
+  },
+  "3983734785024327713": {
+    "dishes": [
+      {
+        "favourite": false,
+        "name": "綜合三口味禮盒（430）"
+      },
+      {
+        "favourite": false,
+        "name": "蜜香紅茶土鳳梨酥（500／8入）"
+      },
+      {
+        "favourite": false,
+        "name": "茶裡相逢小旅行"
+      },
+      {
+        "favourite": false,
+        "name": "茶葉販售、坪林家常小吃"
+      }
+    ],
+    "extras": {},
+    "llm": {
+      "categories": [
+        "中菜"
+      ],
+      "is_restaurant": true
+    },
+    "name": "茶裡相逢",
+    "parser": "born2eat_taiwan",
+    "parser_version": 1,
+    "pin_count": 2,
+    "price_max": null,
+    "price_min": null,
+    "rating": null,
+    "tagline": null,
+    "venues": [
+      {
+        "blurb": "",
+        "guide_stars": null,
+        "ig": null,
+        "name": "茶裡相逢",
+        "rating": null,
+        "region": null,
+        "visits": null
+      },
+      {
+        "blurb": "",
+        "guide_stars": null,
+        "ig": null,
+        "name": "全興茶園",
+        "rating": null,
+        "region": null,
+        "visits": null
+      }
+    ],
+    "visits": null
+  },
+  "3985931023904905612": {
+    "dishes": [
+      {
+        "favourite": false,
+        "name": "香魚天婦羅冷麵"
+      },
+      {
+        "favourite": false,
+        "name": "旺旺仙貝"
+      },
+      {
+        "favourite": false,
+        "name": "松葉蟹真丈"
+      },
+      {
+        "favourite": false,
+        "name": "松葉蟹無花果春捲"
+      },
+      {
+        "favourite": false,
+        "name": "太刀魚天婦羅"
+      },
+      {
+        "favourite": true,
+        "name": "烤喜知次"
+      },
+      {
+        "favourite": false,
+        "name": "鰻魚手卷"
+      },
+      {
+        "favourite": false,
+        "name": "黑鮪魚腦天釜飯"
+      },
+      {
+        "favourite": false,
+        "name": "味噌湯"
+      },
+      {
+        "favourite": false,
+        "name": "玉子燒"
+      },
+      {
+        "favourite": false,
+        "name": "哈密瓜"
+      }
+    ],
+    "extras": {},
+    "llm": {
+      "categories": [
+        "壽司",
+        "日本料理",
+        "無菜單料理"
+      ],
+      "is_restaurant": true
+    },
+    "name": "樂魚料亭",
+    "parser": "born2eat_taiwan",
+    "parser_version": 1,
+    "pin_count": 1,
+    "price_max": 2500,
+    "price_min": 2500,
+    "rating": 4.9,
+    "tagline": "即使要等半年還是會乖乖訂下一次的板前日料，每次回訪都期待能遇到什麼新菜",
+    "visits": 11
+  },
+  "3988074786198640960": {
+    "dishes": [
+      {
+        "favourite": false,
+        "name": "爆米花(招待)"
+      },
+      {
+        "favourite": true,
+        "name": "酸種麵包｜自製麵包棍｜海藻奶油(可免費續)"
+      },
+      {
+        "favourite": true,
+        "name": "美國乾式18天熟成帶骨肋眼牛排(3280/560g 兩人分食)"
+      },
+      {
+        "favourite": false,
+        "name": "加購套餐(430) 含鴨肉漢堡、布拉塔沙拉"
+      },
+      {
+        "favourite": true,
+        "name": "蘑菇卡布奇諾濃湯+酥皮(200+80)"
+      },
+      {
+        "favourite": false,
+        "name": "炙烤櫛瓜(180)"
+      },
+      {
+        "favourite": false,
+        "name": "水資(90)"
+      },
+      {
+        "favourite": false,
+        "name": "迷你慶生蛋糕(招待)"
+      }
+    ],
+    "extras": {},
+    "llm": {
+      "categories": [
+        "牛排",
+        "餐酒館"
+      ],
+      "is_restaurant": true
+    },
+    "name": "AJ grill",
+    "parser": "born2eat_taiwan",
+    "parser_version": 1,
+    "pin_count": 1,
+    "price_max": 2500,
+    "price_min": 1200,
+    "rating": 4.5,
+    "tagline": "乾式熟成牛排好吃又划算，有機會想試試商業午餐！",
+    "visits": 1
+  },
+  "3991027411893166540": {
+    "dishes": [
+      {
+        "favourite": false,
+        "name": "自製麵包（120）"
+      },
+      {
+        "favourite": false,
+        "name": "北義鍋烤厚底披薩（560）"
+      },
+      {
+        "favourite": false,
+        "name": "肉醬千層麵（560）"
+      },
+      {
+        "favourite": false,
+        "name": "番紅花燉飯（620）"
+      },
+      {
+        "favourite": false,
+        "name": "無酒精調酒-橙莓之丘（340）"
+      },
+      {
+        "favourite": true,
+        "name": "檸檬戚風蛋糕（360）"
+      },
+      {
+        "favourite": true,
+        "name": "水果小塔-覆盆莓、葡萄、藍莓、水蜜桃（120/個）"
+      },
+      {
+        "favourite": false,
+        "name": "單杯白酒（320）"
+      },
+      {
+        "favourite": true,
+        "name": "燻鮭魚鮮蝦酪梨沙拉（招待）"
+      }
+    ],
+    "extras": {},
+    "llm": {
+      "categories": [
+        "義式",
+        "披薩",
+        "甜點"
+      ],
+      "is_restaurant": true
+    },
+    "name": "Cova復興SOGO店",
+    "parser": "born2eat_taiwan",
+    "parser_version": 1,
+    "pin_count": 1,
+    "price_max": 500,
+    "price_min": 500,
+    "rating": 4.2,
+    "tagline": "義大利百年歷史的知名甜點品牌，除了厲害的甜點，還有不少鹹食可供選擇",
+    "visits": 1
+  },
+  "3997522182909418606": {
+    "dishes": [
+      {
+        "favourite": true,
+        "name": "冷製豆乳擔擔沾麵（360）"
+      },
+      {
+        "favourite": true,
+        "name": "濃厚螃蟹沾麵+糖心蛋（350+30）"
+      },
+      {
+        "favourite": false,
+        "name": "干貝生薑醬油清湯（290）"
+      },
+      {
+        "favourite": true,
+        "name": "螃蟹清湯拉麵（330）"
+      }
+    ],
+    "extras": {},
+    "llm": {
+      "categories": [
+        "拉麵"
+      ],
+      "is_restaurant": true
+    },
+    "name": "湮鯱",
+    "parser": "born2eat_taiwan",
+    "parser_version": 1,
+    "pin_count": 1,
+    "price_max": 350,
+    "price_min": 250,
+    "rating": 4.5,
+    "tagline": "東區超人氣螃蟹系拉麵，喜歡到兩天後直接二訪",
+    "visits": 2
+  },
+  "3998969530592234351": {
+    "dishes": [
+      {
+        "favourite": true,
+        "name": "濟南鮮湯包(220)"
+      },
+      {
+        "favourite": true,
+        "name": "老皮嫩肉(280)"
+      },
+      {
+        "favourite": false,
+        "name": "招牌東坡肉(520)"
+      },
+      {
+        "favourite": false,
+        "name": "鮮蝦腐皮捲(200)"
+      },
+      {
+        "favourite": false,
+        "name": "蒜味小黃瓜(60)"
+      },
+      {
+        "favourite": false,
+        "name": "芝麻流沙包(100)"
+      }
+    ],
+    "extras": {},
+    "llm": {
+      "categories": [
+        "小吃"
+      ],
+      "is_restaurant": true
+    },
+    "name": "濟南鮮湯包 總店",
+    "parser": "born2eat_taiwan",
+    "parser_version": 1,
+    "pin_count": 1,
+    "price_max": 800,
+    "price_min": 500,
+    "rating": 4.4,
+    "tagline": "用料實在的湯包店，食物水準中上，適合聚餐",
+    "visits": 1
+  },
+  "4000278785282578771": {
+    "dishes": [
+      {
+        "favourite": false,
+        "name": "生日當天有好吃的料理、朋友的陪伴，這一餐吃得很幸福😀",
+        "price": 3200
+      }
+    ],
+    "extras": {
+      "address_text": "台北市松山區復興北路313巷37號",
+      "hours_text": "週一到週日 19:00-22:00",
+      "phone": null,
+      "visited_on": "2026-09-18"
+    },
+    "llm": {
+      "categories": [
+        "中菜",
+        "餐酒館"
+      ],
+      "is_restaurant": true
+    },
+    "name": "徐家私廚",
+    "parser": "jc_foodidi",
+    "parser_version": 1,
+    "pin_count": 0,
+    "price_max": null,
+    "price_min": null,
+    "rating": 4.0,
+    "rating_axes": {
+      "revisit": 4.0,
+      "taste": 4.0
+    },
+    "tagline": "銷魂的生日私廚饗宴😍",
+    "visits": 2
+  },
+  "4000473086193278489": {
+    "dishes": [
+      {
+        "favourite": true,
+        "name": "蕃茄半筋半肉(220)"
+      },
+      {
+        "favourite": true,
+        "name": "涼拌綜合(220)"
+      },
+      {
+        "favourite": false,
+        "name": "牛雜湯-小(60)"
+      },
+      {
+        "favourite": true,
+        "name": "苦瓜牛肉(140)"
+      },
+      {
+        "favourite": false,
+        "name": "青椒牛心(140)"
+      },
+      {
+        "favourite": false,
+        "name": "白飯(10)"
+      }
+    ],
+    "extras": {},
+    "llm": {
+      "categories": [
+        "熱炒",
+        "台菜",
+        "小吃"
+      ],
+      "is_restaurant": true
+    },
+    "name": "老李牛雜",
+    "parser": "born2eat_taiwan",
+    "parser_version": 1,
+    "pin_count": 1,
+    "price_max": 600,
+    "price_min": 400,
+    "rating": 4.7,
+    "tagline": "用料實在且價格親民的牛肉快炒店，愛吃牛的朋友可以收藏！",
+    "visits": 3
+  },
+  "4002702683425177005": {
+    "dishes": [
+      {
+        "favourite": true,
+        "name": "肋排牛腩麵-番茄（240）"
+      },
+      {
+        "favourite": true,
+        "name": "川味担担麵（110）"
+      },
+      {
+        "favourite": true,
+        "name": "紅油抄手（100）"
+      },
+      {
+        "favourite": false,
+        "name": "涼拌川耳（40）"
+      },
+      {
+        "favourite": false,
+        "name": "胡麻秋葵（40）"
+      },
+      {
+        "favourite": false,
+        "name": "紅油豬耳（40）"
+      }
+    ],
+    "extras": {},
+    "llm": {
+      "categories": [
+        "川菜",
+        "麵包烘焙"
+      ],
+      "is_restaurant": true
+    },
+    "name": "川味麵典",
+    "parser": "born2eat_taiwan",
+    "parser_version": 1,
+    "pin_count": 1,
+    "price_max": 300,
+    "price_min": 150,
+    "rating": 4.6,
+    "tagline": "品質穩定的川味麵食館，價格合理又好吃",
+    "visits": 4
+  },
+  "4004775301414360144": {
+    "dishes": [
+      {
+        "favourite": false,
+        "name": "梭子蟹｜水雲醋"
+      },
+      {
+        "favourite": false,
+        "name": "鮪魚中腹｜軟絲｜味噌醬"
+      },
+      {
+        "favourite": true,
+        "name": "清酒蒸鮑魚｜鮑魚肝醬"
+      },
+      {
+        "favourite": false,
+        "name": "櫻花蝦玉米天婦羅｜梅醬"
+      },
+      {
+        "favourite": false,
+        "name": "文蛤碗物"
+      },
+      {
+        "favourite": true,
+        "name": "沙丁魚卷"
+      },
+      {
+        "favourite": false,
+        "name": "北寄貝味噌湯"
+      },
+      {
+        "favourite": false,
+        "name": "玉子燒"
+      },
+      {
+        "favourite": false,
+        "name": "哈密瓜｜麝香葡萄"
+      },
+      {
+        "favourite": true,
+        "name": "雲丹 大極上(700)"
+      },
+      {
+        "favourite": true,
+        "name": "唐津赤雲丹(760)"
+      },
+      {
+        "favourite": false,
+        "name": "無酒精氣泡酒(240)"
+      },
+      {
+        "favourite": true,
+        "name": "辛口薑汁汽水(160)"
+      }
+    ],
+    "extras": {},
+    "llm": {
+      "categories": [
+        "壽司",
+        "日本料理"
+      ],
+      "is_restaurant": true
+    },
+    "name": "鮨志郎",
+    "parser": "born2eat_taiwan",
+    "parser_version": 1,
+    "pin_count": 1,
+    "price_max": 4400,
+    "price_min": 4400,
+    "rating": 4.6,
+    "tagline": "吃過就心心念念的福岡板前壽司，選用魚料很講究，處理食材也相當細膩",
+    "visits": 2
+  },
+  "4005350435237790556": {
+    "dishes": [
+      {
+        "favourite": false,
+        "name": "當日套餐",
+        "price": 15400
+      },
+      {
+        "favourite": false,
+        "name": "ノンアルコールオペレーター（白ブドウジュース＋ジンジャエール）",
+        "price": 825
+      },
+      {
+        "favourite": false,
+        "name": "ノンアルコールキティ（赤ブドウジュース＋ジンジャエール）",
+        "price": 825
+      }
+    ],
+    "extras": {
+      "address_text": "福岡県福岡市中央区警固１丁目１−10 2F",
+      "hours_text": "週三到週日 12:00-15:00 18:00-22:00",
+      "phone": "+81 92 713 5239",
+      "visited_on": "2026-09-25"
+    },
+    "llm": {
+      "categories": [
+        "日本料理",
+        "法餐"
+      ],
+      "is_restaurant": true
+    },
+    "name": "Le comptoir de TABATA",
+    "parser": "jc_foodidi",
+    "parser_version": 1,
+    "pin_count": 0,
+    "price_max": null,
+    "price_min": null,
+    "rating": 4.25,
+    "rating_axes": {
+      "revisit": 4.25,
+      "taste": 4.25
+    },
+    "tagline": "細膩又美味的福岡日法料理😀",
+    "visits": 2
+  },
+  "4006211457930711550": {
+    "dishes": [
+      {
+        "favourite": false,
+        "name": "綠蘆筍 / 發酵芋頭/辣根酸奶醬/熟成火腿（330）"
+      },
+      {
+        "favourite": true,
+        "name": "綠番茄/ 絲綢乳酪/ 雷莫拉鯷魚醬（420）"
+      },
+      {
+        "favourite": true,
+        "name": "東北角小卷/發酵番茄莎莎/鷹嘴豆泥（450）"
+      },
+      {
+        "favourite": false,
+        "name": "胭脂蝦/手抓海鮮醬/玉米/羽衣甘藍（680）"
+      },
+      {
+        "favourite": true,
+        "name": "BRAND NEW 自製手工漢堡（480）"
+      },
+      {
+        "favourite": false,
+        "name": "澳洲和牛紐約客 / 波本威士忌 / 綠胡椒醬 / 青木瓜（1580）"
+      },
+      {
+        "favourite": false,
+        "name": "Apple Kombucha 蘋果/鼠尾草/迷迭香（220）"
+      }
+    ],
+    "extras": {},
+    "llm": {
+      "categories": [
+        "美式",
+        "餐酒館"
+      ],
+      "is_restaurant": true
+    },
+    "name": "Brand New Grill Lab & Wine",
+    "parser": "born2eat_taiwan",
+    "parser_version": 1,
+    "pin_count": 1,
+    "price_max": 1500,
+    "price_min": 1200,
+    "rating": 4.5,
+    "tagline": "新開幕的東區美式餐酒館，以直火與煙燻為主打，餐點口味有特色值得一試",
+    "visits": 1
+  },
+  "4006296833277894254": {
+    "dishes": [
+      {
+        "favourite": false,
+        "name": "本季套餐",
+        "price": 3500
+      },
+      {
+        "favourite": false,
+        "name": "Wine pairing 2/3/5杯",
+        "price": 1200
+      },
+      {
+        "favourite": false,
+        "name": "SAICHO茶香檳（大吉嶺之華&茉莉花之舞）",
+        "price": 350
+      }
+    ],
+    "extras": {
+      "address_text": "臺中市北屯區山西路三段99號2F",
+      "hours_text": "週三17:30-21:00",
+      "phone": "04-24225903",
+      "visited_on": "2026-10-09"
+    },
+    "llm": {
+      "categories": [
+        "法餐",
+        "fine dining"
+      ],
+      "is_restaurant": true
+    },
+    "name": "Marché Restaurant 瑪榭法式餐廳",
+    "parser": "jc_foodidi",
+    "parser_version": 1,
+    "pin_count": 0,
+    "price_max": null,
+    "price_min": null,
+    "rating": 3.75,
+    "rating_axes": {
+      "revisit": 3.75,
+      "taste": 3.75
+    },
+    "tagline": "台中優雅的獨棟現代法餐☺️",
+    "visits": null
+  },
+  "4007669305004984434": {
+    "dishes": [],
+    "extras": {},
+    "llm": {
+      "categories": [
+        "日本料理",
+        "早午餐"
+      ],
+      "is_restaurant": true
+    },
+    "name": "白金茶房（圖2-5）",
+    "parser": "born2eat_taiwan",
+    "parser_version": 1,
+    "pin_count": 4,
+    "price_max": null,
+    "price_min": null,
+    "rating": null,
+    "tagline": null,
+    "venues": [
+      {
+        "blurb": "兼具顏值與美味的鬆餅早餐盤，鬆餅、太陽蛋、德式香腸每一樣都很有水準！獨棟建築隱身在庭院之中，整體環境也相當漂亮，很適合悠閒地開啟一天",
+        "guide_stars": null,
+        "ig": null,
+        "name": "白金茶房（圖2-5）",
+        "rating": 4.75,
+        "region": null,
+        "visits": null
+      },
+      {
+        "blurb": "一早就能吃到現做的魚料理定食，店內還有透明魚缸，可以看到活魚現撈。竹莢魚炸得外酥內嫩，鮭魚鮭魚卵釜飯更是兼具份量與價格，CP值很可以！",
+        "guide_stars": null,
+        "ig": null,
+        "name": "十魚十色",
+        "rating": 5.0,
+        "region": "JyuGyoJyuSyoku（圖6-9）",
+        "visits": null
+      },
+      {
+        "blurb": "麵包種類多到讓人瞬間陷入選擇障礙🤣，雖然熱門時段需要排上一陣子，但真的值得等！最推薦烤香腸麵包，香氣十足、口感也很有記憶點，有到訪記得點",
+        "guide_stars": null,
+        "ig": null,
+        "name": "Dacomecca（圖10-11）",
+        "rating": 4.0,
+        "region": null,
+        "visits": null
+      },
+      {
+        "blurb": "早上7:00就開門的牛舌定食，最基本的牛舌定食只要790日圓，早餐吃牛舌還這麼便宜，實在很可以！也能依照食量加價升級生雞蛋、牛舌加量或山藥泥，想吃得簡單或豪華一點都能自己搭配  大家還有推薦什麼厲害的福岡早餐嗎？歡迎留言告訴我，也讓我下次去福岡繼續吃好吃滿🤣🇯🇵",
+        "guide_stars": null,
+        "ig": null,
+        "name": "TANYA博多",
+        "rating": 4.25,
+        "region": "博多一番街店（圖10-14）",
+        "visits": null
+      }
+    ],
+    "visits": null
+  },
+  "4009116518730143232": {
+    "dishes": [
+      {
+        "favourite": false,
+        "name": "鵝肝烤布蕾可麗餅"
+      },
+      {
+        "favourite": false,
+        "name": "冷製馬鈴薯濃湯/甘海老/高湯凍"
+      },
+      {
+        "favourite": true,
+        "name": "鰹魚/茄子/秋葵"
+      },
+      {
+        "favourite": true,
+        "name": "鮑魚/海苔/雞油菌"
+      },
+      {
+        "favourite": false,
+        "name": "金目鯛/皇宮菜/淡菜"
+      },
+      {
+        "favourite": true,
+        "name": "七谷鴨/紅菊苣/甜菜根"
+      },
+      {
+        "favourite": true,
+        "name": "無花果"
+      },
+      {
+        "favourite": false,
+        "name": "栗子蒙布朗/黑醋栗/莓果巧克力馬卡龍"
+      },
+      {
+        "favourite": false,
+        "name": "草本茶（+100升級） ✨無酒精琴通寧（176）"
+      },
+      {
+        "favourite": false,
+        "name": "無酒精白葡萄酒（176）"
+      }
+    ],
+    "extras": {},
+    "llm": {
+      "categories": [
+        "法餐"
+      ],
+      "is_restaurant": true
+    },
+    "name": "Le comptoir de TABATA （コントワール タバタ）薬院大通",
+    "parser": "born2eat_taiwan",
+    "parser_version": 1,
+    "pin_count": 1,
+    "price_max": 3080,
+    "price_min": 3080,
+    "rating": 4.7,
+    "tagline": "醬汁調味細膩的福岡法餐，吃完列入未來的福岡必訪愛店",
+    "visits": 1
+  },
+  "4010423166073423588": {
+    "dishes": [
+      {
+        "favourite": false,
+        "name": "青甘·檸檬醬油·新鮮香草",
+        "price": 360
+      },
+      {
+        "favourite": false,
+        "name": "漁夫綜合海鮮烘蛋",
+        "price": 380
+      },
+      {
+        "favourite": false,
+        "name": "炭烤澎湖小卷·肉腸·阿根廷青醬",
+        "price": 380
+      },
+      {
+        "favourite": false,
+        "name": "36月熟成Parmigiano燉飯·風乾豬頸火腿",
+        "price": 460
+      },
+      {
+        "favourite": false,
+        "name": "炭烤究好豬扇子肉與羅勒青醬和芥蘭苗",
+        "price": 780
+      }
+    ],
+    "extras": {
+      "address_text": "台北市內湖區南京東路六段451巷51號",
+      "hours_text": "週二到週六 12:00-15:00 18:00-21:00",
+      "phone": "02-87912986",
+      "visited_on": "2026-10-03"
+    },
+    "llm": {
+      "categories": [
+        "餐酒館"
+      ],
+      "is_restaurant": true
+    },
+    "name": "Herring Studio 鯡魚工作室",
+    "parser": "jc_foodidi",
+    "parser_version": 1,
+    "pin_count": 0,
+    "price_max": null,
+    "price_min": null,
+    "rating": 4.25,
+    "rating_axes": {
+      "revisit": 4.25,
+      "taste": 4.25
+    },
+    "tagline": "內湖好吃ㄧ直吃愛店餐酒館😀",
+    "visits": 6
+  },
+  "4013464942447392306": {
+    "dishes": [
+      {
+        "favourite": false,
+        "name": "風岸|東北角軟絲•昆布•刺蔥"
+      },
+      {
+        "favourite": true,
+        "name": "腴香|桃園黑豬•北埔柿餅•紐西蘭鹿肉"
+      },
+      {
+        "favourite": false,
+        "name": "枯木| 焦化洋蔥•栗子•肉豆蔻"
+      },
+      {
+        "favourite": false,
+        "name": "秋暉|國王鮭魚•南瓜•柑橘•菊花"
+      },
+      {
+        "favourite": false,
+        "name": "歸炊 |宜蘭鴨腿•酸芥菜•台梗9號米•正山小種"
+      },
+      {
+        "favourite": false,
+        "name": "汐田|馬頭魚（當天改成金目鯛）•官田菱角•海藻•皮蛋"
+      },
+      {
+        "favourite": true,
+        "name": "土息|竹地雞胸•羊肚菌•牛蒡•花雕"
+      },
+      {
+        "favourite": false,
+        "name": "桂野 | 海濱和羊鞍•防風根•桂花•假蒟葉"
+      },
+      {
+        "favourite": false,
+        "name": "豐醇|和牛•茄子•孢子甘藍(主餐加價680升級）"
+      },
+      {
+        "favourite": false,
+        "name": "紫暮|大甲芋頭•莓果•紫羅蘭"
+      },
+      {
+        "favourite": false,
+        "name": "茶粿|甘露梨•眉豆•湖南臘肉"
+      },
+      {
+        "favourite": false,
+        "name": "茶點|無花果•牛奶巧克力•太妃糖"
+      },
+      {
+        "favourite": false,
+        "name": "non-alcohol pairing 3 glass(980)"
+      }
+    ],
+    "extras": {},
+    "llm": {
+      "categories": [
+        "法餐",
+        "fine dining"
+      ],
+      "is_restaurant": true
+    },
+    "name": "君尹 Brisé",
+    "parser": "born2eat_taiwan",
+    "parser_version": 1,
+    "pin_count": 1,
+    "price_max": 2680,
+    "price_min": 2680,
+    "rating": 4.3,
+    "tagline": "米其林新入選的法式餐廳，用餐氣氛佳適合約會慶生",
+    "visits": 1
+  },
+  "4014031559963134783": {
+    "dishes": [
+      {
+        "favourite": false,
+        "name": "Omakase 套餐",
+        "price": 1580
+      },
+      {
+        "favourite": false,
+        "name": "白桃氣泡果汁",
+        "price": 180
+      }
+    ],
+    "extras": {
+      "address_text": "臺北市大安區仁愛路四段27巷28弄1號",
+      "hours_text": "11:00-14:30 17:00-21:30（不定期休）",
+      "phone": "網路預約制",
+      "visited_on": "2026-10-17"
+    },
+    "llm": {
+      "categories": [
+        "日本料理",
+        "壽司",
+        "牛排"
+      ],
+      "is_restaurant": true
+    },
+    "name": "成蔵 台北店",
+    "parser": "jc_foodidi",
+    "parser_version": 1,
+    "pin_count": 0,
+    "price_max": null,
+    "price_min": null,
+    "rating": 4.25,
+    "rating_axes": {
+      "revisit": 4.25,
+      "taste": 4.25
+    },
+    "tagline": "極致相遇的美味東京神級豬排😀",
+    "visits": null
+  },
+  "4014921894977330149": {
+    "dishes": [
+      {
+        "favourite": false,
+        "name": "前菜三品："
+      },
+      {
+        "favourite": false,
+        "name": "時令沙拉"
+      },
+      {
+        "favourite": false,
+        "name": "烤菇茶碗蒸"
+      },
+      {
+        "favourite": true,
+        "name": "烤地瓜"
+      },
+      {
+        "favourite": true,
+        "name": "醋製雞肉｜西洋芹"
+      },
+      {
+        "favourite": false,
+        "name": "雞肉菇菇鍋"
+      },
+      {
+        "favourite": false,
+        "name": "雞肉丸｜提燈"
+      },
+      {
+        "favourite": true,
+        "name": "烤飯糰-明太子"
+      },
+      {
+        "favourite": false,
+        "name": "烤飯糰-提燈柴魚"
+      },
+      {
+        "favourite": true,
+        "name": "焙茶冰淇淋最中餅"
+      }
+    ],
+    "extras": {},
+    "llm": {
+      "categories": [
+        "燒肉",
+        "日本料理"
+      ],
+      "is_restaurant": true
+    },
+    "name": "AOKI 土を喰う 焼とり あお季",
+    "parser": "born2eat_taiwan",
+    "parser_version": 1,
+    "pin_count": 1,
+    "price_max": 1200,
+    "price_min": 1200,
+    "rating": 4.5,
+    "tagline": "價格划算的福岡燒鳥店，套餐內容豐富且飽足感十足",
+    "visits": 1
+  },
+  "4015501273864176761": {
+    "dishes": [
+      {
+        "favourite": false,
+        "name": "綜合生魚片拼盤",
+        "price": 2600
+      },
+      {
+        "favourite": false,
+        "name": "麝香葡萄·起司生火腿",
+        "price": 500
+      },
+      {
+        "favourite": false,
+        "name": "無花果·豆腐泥白醬",
+        "price": 900
+      },
+      {
+        "favourite": false,
+        "name": "鮪魚腹醃蘿蔔卷",
+        "price": 850
+      },
+      {
+        "favourite": false,
+        "name": "炙燒醋漬鯖魚棒壽司",
+        "price": 600
+      },
+      {
+        "favourite": false,
+        "name": "鮮蝦鑲香菇天婦羅",
+        "price": 1000
+      },
+      {
+        "favourite": false,
+        "name": "日式炸雞翅",
+        "price": 440
+      },
+      {
+        "favourite": false,
+        "name": "豬頸肉杏鮑菇奶油燒",
+        "price": 420
+      },
+      {
+        "favourite": false,
+        "name": "和牛菲力牛排三明治",
+        "price": 1700
+      },
+      {
+        "favourite": false,
+        "name": "秋刀魚土鍋飯",
+        "price": 3600
+      },
+      {
+        "favourite": false,
+        "name": "大人風焦糖冰淇淋",
+        "price": 420
+      },
+      {
+        "favourite": false,
+        "name": "蜂蜜檸檬汽水",
+        "price": 650
+      },
+      {
+        "favourite": false,
+        "name": "烏龍茶",
+        "price": 650
+      }
+    ],
+    "extras": {
+      "address_text": "福岡県福岡市中央区警固１丁目６−4",
+      "hours_text": "週一到週日 13:00-22:00（不定休）",
+      "phone": "+81 92 753 8358",
+      "visited_on": "2026-09-27"
+    },
+    "llm": {
+      "categories": [
+        "居酒屋",
+        "日本料理"
+      ],
+      "is_restaurant": true
+    },
+    "name": "Koyama Parking めしや コヤマパーキング",
+    "parser": "jc_foodidi",
+    "parser_version": 1,
+    "pin_count": 0,
+    "price_max": null,
+    "price_min": null,
+    "rating": 4.0,
+    "rating_axes": {
+      "revisit": 4.0,
+      "taste": 4.0
+    },
+    "tagline": "福岡人氣美味的小料理居酒屋😀",
+    "visits": null
+  },
+  "4016359069375751401": {
+    "dishes": [
+      {
+        "favourite": true,
+        "name": "綜合水煮（420）"
+      },
+      {
+        "favourite": true,
+        "name": "塔香烘蛋（260）"
+      },
+      {
+        "favourite": false,
+        "name": "蛋鬆白菜(260）"
+      },
+      {
+        "favourite": false,
+        "name": "花娘小炒（360）"
+      },
+      {
+        "favourite": false,
+        "name": "炒土豆絲（240）"
+      },
+      {
+        "favourite": false,
+        "name": "白飯（20）"
+      }
+    ],
+    "extras": {},
+    "llm": {
+      "categories": [
+        "川菜"
+      ],
+      "is_restaurant": true
+    },
+    "name": "花娘小館（南京店）",
+    "parser": "born2eat_taiwan",
+    "parser_version": 1,
+    "pin_count": 1,
+    "price_max": 600,
+    "price_min": 400,
+    "rating": 4.6,
+    "tagline": "以「黃仁勳愛店」聞名的川味料理，價格親民、份量充足，適合聚餐",
+    "visits": 1
+  },
+  "4017798121706720188": {
+    "dishes": [
+      {
+        "favourite": true,
+        "name": "放山茶燻雞-半雞（550）"
+      },
+      {
+        "favourite": true,
+        "name": "塔香蛤蜊（250）"
+      },
+      {
+        "favourite": false,
+        "name": "炒山豬肉（280）"
+      },
+      {
+        "favourite": true,
+        "name": "鹹蛋苦瓜（250）"
+      },
+      {
+        "favourite": false,
+        "name": "三杯中卷（380）"
+      },
+      {
+        "favourite": false,
+        "name": "蔥爆牛（250）"
+      },
+      {
+        "favourite": false,
+        "name": "白飯（15）"
+      }
+    ],
+    "extras": {},
+    "llm": {
+      "categories": [
+        "熱炒",
+        "中菜"
+      ],
+      "is_restaurant": true
+    },
+    "name": "呷雞啦餐館",
+    "parser": "born2eat_taiwan",
+    "parser_version": 1,
+    "pin_count": 1,
+    "price_max": 500,
+    "price_min": 300,
+    "rating": 4.6,
+    "tagline": "青菜園第三代在板橋開的小餐館，餐點份量大、價格實惠、適合聚餐",
+    "visits": 2
+  },
+  "4018388072437568504": {
+    "dishes": [
+      {
+        "favourite": false,
+        "name": "晚間套餐",
+        "price": 5980
+      },
+      {
+        "favourite": false,
+        "name": "烏龍茶",
+        "price": 420
+      }
+    ],
+    "extras": {
+      "address_text": "福岡県福岡市中央区大名１丁目１４−5 有光ビル 1FＣ区",
+      "hours_text": "週一到週日 11:00-15:00 17:00-00:00(二休）",
+      "phone": "+81 50 5488 6313",
+      "visited_on": "2026-09-26"
+    },
+    "llm": {
+      "categories": [
+        "燒肉"
+      ],
+      "is_restaurant": true
+    },
+    "name": "AOKI 土を喰う 焼とり あお季",
+    "parser": "jc_foodidi",
+    "parser_version": 1,
+    "pin_count": 0,
+    "price_max": null,
+    "price_min": null,
+    "rating": 4.0,
+    "rating_axes": {
+      "revisit": 4.0,
+      "taste": 4.0
+    },
+    "tagline": "福岡高 CP 值的道地燒鳥小店 😀",
+    "visits": null
+  },
+  "4020567677357263690": {
+    "dishes": [
+      {
+        "favourite": false,
+        "name": "透明人間鹽味清湯牛肉麵",
+        "price": 380
+      },
+      {
+        "favourite": false,
+        "name": "万端麻婆豆腐麵",
+        "price": 280
+      },
+      {
+        "favourite": false,
+        "name": "炭香青甘刺身",
+        "price": 320
+      },
+      {
+        "favourite": false,
+        "name": "紹興漬生蝦",
+        "price": 250
+      },
+      {
+        "favourite": false,
+        "name": "白滷牛肉",
+        "price": 280
+      },
+      {
+        "favourite": false,
+        "name": "蟹肉蝦仁清湯抄手",
+        "price": 180
+      },
+      {
+        "favourite": false,
+        "name": "粉蒸肉",
+        "price": 250
+      },
+      {
+        "favourite": false,
+        "name": "醋凍時蔬",
+        "price": 120
+      },
+      {
+        "favourite": false,
+        "name": "脆皮桂丁雞翅",
+        "price": 160
+      },
+      {
+        "favourite": false,
+        "name": "招牌炸黑豬排骨",
+        "price": 180
+      },
+      {
+        "favourite": false,
+        "name": "軟絲燒賣",
+        "price": 160
+      },
+      {
+        "favourite": false,
+        "name": "偉偉流燒賣皇",
+        "price": 160
+      },
+      {
+        "favourite": false,
+        "name": "魚翅餃",
+        "price": 160
+      }
+    ],
+    "extras": {
+      "address_text": "臺北市松山區敦化北路165巷20號1樓",
+      "hours_text": "星期一到星期日17:00-22:00（二三休）",
+      "phone": "02-25468556",
+      "visited_on": "2026-10-17"
+    },
+    "llm": {
+      "categories": [
+        "牛排",
+        "中菜"
+      ],
+      "is_restaurant": true
+    },
+    "name": "万端",
+    "parser": "jc_foodidi",
+    "parser_version": 1,
+    "pin_count": 0,
+    "price_max": null,
+    "price_min": null,
+    "rating": 4.0,
+    "rating_axes": {
+      "revisit": 4.0,
+      "taste": 4.0
+    },
+    "tagline": "台北最帥的美味牛肉麵小料理 😀",
+    "visits": 1
+  },
+  "4020720155579381617": {
+    "dishes": [
+      {
+        "favourite": true,
+        "name": "鹽焗石斑魚（488）"
+      },
+      {
+        "favourite": true,
+        "name": "干貝辣醬炒竹筍松阪豬（180）"
+      },
+      {
+        "favourite": false,
+        "name": "炙燒青甘握壽司 柚子胡椒風味（80/貫）"
+      },
+      {
+        "favourite": false,
+        "name": "主廚特選刺身盤-11片（680）"
+      },
+      {
+        "favourite": false,
+        "name": "鮮蝦蘆筍手卷（80）"
+      },
+      {
+        "favourite": false,
+        "name": "麓島和牛炒飯（280）"
+      },
+      {
+        "favourite": true,
+        "name": "澳洲厚切和牛舌3.5oz (580)"
+      },
+      {
+        "favourite": false,
+        "name": "雞里香串(70)"
+      },
+      {
+        "favourite": false,
+        "name": "串烤手羽先(80)"
+      },
+      {
+        "favourite": true,
+        "name": "檸檬海鹽氣泡飲（60）"
+      },
+      {
+        "favourite": false,
+        "name": "麻糬冰(餐後招待)"
+      }
+    ],
+    "extras": {},
+    "llm": {
+      "categories": [
+        "居酒屋",
+        "日本料理"
+      ],
+      "is_restaurant": true
+    },
+    "name": "麓島 居酒聚場 ROADO",
+    "parser": "born2eat_taiwan",
+    "parser_version": 1,
+    "pin_count": 1,
+    "price_max": 1000,
+    "price_min": 600,
+    "rating": 4.4,
+    "tagline": "餐點選擇多樣化且品質在水準之上，價格也落在舒服的範圍，適合聚餐",
+    "visits": 1
+  },
+  "4022167546413170568": {
+    "dishes": [
+      {
+        "favourite": false,
+        "name": "布里歐麵包(可續)"
+      },
+      {
+        "favourite": true,
+        "name": "精選三拼-憤怒蝦、香煎干貝、蟹肉餅(2000/2人份)"
+      },
+      {
+        "favourite": false,
+        "name": "紅屋牛排42 oz.(10190)"
+      },
+      {
+        "favourite": false,
+        "name": "炒櫛瓜(400)"
+      },
+      {
+        "favourite": false,
+        "name": "巨大巧克力蛋糕(590)"
+      },
+      {
+        "favourite": false,
+        "name": "小蛋糕(慶祝招待)"
+      },
+      {
+        "favourite": false,
+        "name": "水資(90)"
+      }
+    ],
+    "extras": {},
+    "llm": {
+      "categories": [
+        "牛排",
+        "美式"
+      ],
+      "is_restaurant": true
+    },
+    "name": "Smith & Wollensky - Taipei",
+    "parser": "born2eat_taiwan",
+    "parser_version": 1,
+    "pin_count": 1,
+    "price_max": 5000,
+    "price_min": 3500,
+    "rating": 4.3,
+    "tagline": "位於47樓，可以享受高樓景觀的經典牛排館，巨大巧克力蛋糕必點！",
+    "visits": 1
+  },
+  "4022212159752471297": {
+    "dishes": [
+      {
+        "favourite": false,
+        "name": "醋漬鮮魚麵包塔",
+        "price": 280
+      },
+      {
+        "favourite": false,
+        "name": "炸橄欖",
+        "price": 260
+      },
+      {
+        "favourite": false,
+        "name": "煙燻生海鱺與蘋果絲瓜",
+        "price": 520
+      },
+      {
+        "favourite": false,
+        "name": "炸雞翅",
+        "price": 260
+      },
+      {
+        "favourite": false,
+        "name": "馬祖淡菜粗圓麵",
+        "price": 720
+      },
+      {
+        "favourite": false,
+        "name": "黑色幽墨魚燉飯",
+        "price": 720
+      },
+      {
+        "favourite": false,
+        "name": "巧克力塔",
+        "price": 320
+      }
+    ],
+    "extras": {
+      "address_text": "臺北市士林區中山北路七段36-1號",
+      "hours_text": "週一到週日 17:30-22:30（二三休）",
+      "phone": "02-77259478",
+      "visited_on": "2026-10-26"
+    },
+    "llm": {
+      "categories": [
+        "義式",
+        "餐酒館"
+      ],
+      "is_restaurant": true
+    },
+    "name": "Pecora",
+    "parser": "jc_foodidi",
+    "parser_version": 1,
+    "pin_count": 0,
+    "price_max": null,
+    "price_min": null,
+    "rating": 4.0,
+    "rating_axes": {
+      "revisit": 4.0,
+      "taste": 4.0
+    },
+    "tagline": "天母美味的寶藏義式餐館 😀",
+    "visits": 2
+  },
+  "4023605624449205140": {
+    "dishes": [
+      {
+        "favourite": false,
+        "name": "鮪魚塔塔/辣伯納西/炸麵糰（380）"
+      },
+      {
+        "favourite": true,
+        "name": "蝦湯滑蛋/大虎蝦/雞松阪/煎生蠔（680）"
+      },
+      {
+        "favourite": false,
+        "name": "蘆筍百合/剝皮辣椒/wine reduction(380)"
+      },
+      {
+        "favourite": false,
+        "name": "和羊鞍/果凍/青蘋果豆腐乳奶油（1080）"
+      },
+      {
+        "favourite": true,
+        "name": "菠菜麻花麵/橄欖油/大蒜/去殼蝦（360）"
+      },
+      {
+        "favourite": false,
+        "name": "覆盆莓優酪奶昔（180）"
+      },
+      {
+        "favourite": true,
+        "name": "仙度瑞拉（200）"
+      }
+    ],
+    "extras": {},
+    "llm": {
+      "categories": [
+        "餐酒館",
+        "義式"
+      ],
+      "is_restaurant": true
+    },
+    "name": "Pasta Notte夜義",
+    "parser": "born2eat_taiwan",
+    "parser_version": 1,
+    "pin_count": 1,
+    "price_max": 1200,
+    "price_min": 800,
+    "rating": 4.3,
+    "tagline": "主打手工義大利麵，料理中能吃到一些少見的食材組合",
+    "visits": 1
+  },
+  "4025068913783939583": {
+    "dishes": [
+      {
+        "favourite": false,
+        "name": "大閘蟹土佐醋凍"
+      },
+      {
+        "favourite": false,
+        "name": "大閘蟹秋菜柚子醋味噌"
+      },
+      {
+        "favourite": false,
+        "name": "鮪魚中腹刺身佐大閘蟹肉"
+      },
+      {
+        "favourite": true,
+        "name": "拆解大閘蟹"
+      },
+      {
+        "favourite": true,
+        "name": "海膽大閘蟹素麵"
+      },
+      {
+        "favourite": false,
+        "name": "大閘蟹南瓜可樂餅柴魚高湯"
+      },
+      {
+        "favourite": false,
+        "name": "蟹黃手捲"
+      },
+      {
+        "favourite": false,
+        "name": "蟹味噌湯"
+      },
+      {
+        "favourite": false,
+        "name": "玉子燒"
+      },
+      {
+        "favourite": false,
+        "name": "義式奶酪佐橘子醬"
+      }
+    ],
+    "extras": {},
+    "llm": {
+      "categories": [
+        "壽司",
+        "日本料理",
+        "米其林",
+        "fine dining"
+      ],
+      "is_restaurant": true
+    },
+    "name": "壽司芳 台北 Sushiyoshi Taipei",
+    "parser": "born2eat_taiwan",
+    "parser_version": 1,
+    "pin_count": 1,
+    "price_max": 10800,
+    "price_min": 10800,
+    "rating": 4.3,
+    "tagline": "大閘蟹宴連續幾年受到老饕們關注，值得一試",
+    "visits": 3
+  },
+  "4025836199876294854": {
+    "dishes": [
+      {
+        "favourite": false,
+        "name": "日本國展F1和牛三部位拼盤",
+        "price": 1880
+      },
+      {
+        "favourite": false,
+        "name": "厚切牛舌2片",
+        "price": 880
+      },
+      {
+        "favourite": false,
+        "name": "澳洲內橫隔膜厚切3片",
+        "price": 720
+      },
+      {
+        "favourite": false,
+        "name": "內臟綜合小拼盤",
+        "price": 480
+      },
+      {
+        "favourite": false,
+        "name": "韓式泡菜",
+        "price": 100
+      },
+      {
+        "favourite": false,
+        "name": "烏龍茶",
+        "price": 90
+      }
+    ],
+    "extras": {
+      "address_text": "臺中市西區華美西街一段32號",
+      "hours_text": "週一到週日 17:00-23:30（二三休）",
+      "phone": "04-23255228",
+      "visited_on": "2026-10-09"
+    },
+    "llm": {
+      "categories": [
+        "燒肉",
+        "居酒屋"
+      ],
+      "is_restaurant": true
+    },
+    "name": "燒肉本氣",
+    "parser": "jc_foodidi",
+    "parser_version": 1,
+    "pin_count": 0,
+    "price_max": null,
+    "price_min": null,
+    "rating": 3.75,
+    "rating_axes": {
+      "revisit": 3.75,
+      "taste": 3.75
+    },
+    "tagline": "台中人氣燒肉內臟居酒屋😀",
+    "visits": 1
+  },
+  "4026501131295197103": {
+    "dishes": [
+      {
+        "favourite": false,
+        "name": "透明人間鹽味清湯牛肉麵（380）"
+      },
+      {
+        "favourite": true,
+        "name": "万端麻婆豆腐麵（280）"
+      },
+      {
+        "favourite": false,
+        "name": "炭香青甘刺身（320）"
+      },
+      {
+        "favourite": false,
+        "name": "紹興漬生蝦（250/2隻）"
+      },
+      {
+        "favourite": true,
+        "name": "白滷牛肉（280）"
+      },
+      {
+        "favourite": false,
+        "name": "蟹肉蝦仁清湯抄手（180/4顆）"
+      },
+      {
+        "favourite": false,
+        "name": "粉蒸肉（250）"
+      },
+      {
+        "favourite": true,
+        "name": "醋凍時蔬（120）"
+      },
+      {
+        "favourite": false,
+        "name": "脆皮桂丁雞翅（160/3隻）"
+      },
+      {
+        "favourite": false,
+        "name": "招牌炸黑豬排骨（180）"
+      },
+      {
+        "favourite": false,
+        "name": "軟絲燒賣（160/3顆）"
+      },
+      {
+        "favourite": true,
+        "name": "偉偉流燒賣皇（160/3顆）"
+      },
+      {
+        "favourite": false,
+        "name": "魚翅餃（160/3顆）"
+      },
+      {
+        "favourite": false,
+        "name": "假仙蝦捲（120/2卷）"
+      },
+      {
+        "favourite": false,
+        "name": "白飯（30）"
+      },
+      {
+        "favourite": false,
+        "name": "無糖烏龍茶（80）"
+      },
+      {
+        "favourite": false,
+        "name": "可樂（80）"
+      }
+    ],
+    "extras": {},
+    "llm": {
+      "categories": [
+        "小吃",
+        "中菜"
+      ],
+      "is_restaurant": true
+    },
+    "name": "万端 By 肝苦嘆呷郎",
+    "parser": "born2eat_taiwan",
+    "parser_version": 1,
+    "pin_count": 1,
+    "price_max": 800,
+    "price_min": 600,
+    "rating": 4.5,
+    "tagline": "肝苦嘆呷郎終於開店，開幕後就一直很夯，麻婆豆腐麵必點！",
+    "visits": 1
+  },
+  "4027960353186845596": {
+    "dishes": [
+      {
+        "favourite": true,
+        "name": "香箱蟹｜醋凍"
+      },
+      {
+        "favourite": false,
+        "name": "河豚白子茶碗蒸｜義大利秋松露"
+      },
+      {
+        "favourite": false,
+        "name": "松葉蟹腿刺身｜蟹高湯醬油"
+      },
+      {
+        "favourite": true,
+        "name": "馬糞海膽小手卷"
+      },
+      {
+        "favourite": true,
+        "name": "涮松葉蟹腳 |松葉蟹膏"
+      },
+      {
+        "favourite": true,
+        "name": "烤鱈場蟹腳"
+      },
+      {
+        "favourite": false,
+        "name": "松葉蟹鉗天婦羅｜咖哩鹽｜松葉蟹膏"
+      },
+      {
+        "favourite": false,
+        "name": "鱈場蟹土鍋飯"
+      },
+      {
+        "favourite": true,
+        "name": "松葉蟹高湯蛋捲"
+      },
+      {
+        "favourite": false,
+        "name": "蟹膏赤味噌湯"
+      },
+      {
+        "favourite": false,
+        "name": "地瓜布丁｜地瓜燒酎焦糖醬"
+      }
+    ],
+    "extras": {},
+    "llm": {
+      "categories": [
+        "壽司",
+        "日本料理",
+        "無菜單料理"
+      ],
+      "is_restaurant": true
+    },
+    "name": "鮨馬",
+    "parser": "born2eat_taiwan",
+    "parser_version": 1,
+    "pin_count": 1,
+    "price_max": 2200,
+    "price_min": 2200,
+    "rating": 4.5,
+    "tagline": "季節限定的包場蟹宴非常優秀，值得一試",
+    "visits": 1
+  },
+  "4029412644385433172": {
+    "dishes": [
+      {
+        "favourite": false,
+        "name": "鮮蚵／水梨／醬油漬(280)"
+      },
+      {
+        "favourite": true,
+        "name": "軟絲／墨魚醬／肯瓊香料(350)"
+      },
+      {
+        "favourite": true,
+        "name": "肉醬／馬背起司／麵包(320)"
+      },
+      {
+        "favourite": false,
+        "name": "海藻球／蟹肉／明太子(320)"
+      },
+      {
+        "favourite": true,
+        "name": "雞心／韭菜花／花椒(280)"
+      },
+      {
+        "favourite": false,
+        "name": "根莖類／季節時蔬／雞油(350)"
+      },
+      {
+        "favourite": true,
+        "name": "豬腱／豬腱骨／韓式辣醬(590)"
+      },
+      {
+        "favourite": true,
+        "name": "牛小排／芥蘭苗／咖哩(820)"
+      },
+      {
+        "favourite": false,
+        "name": "kohl日出蘋果汁(250)"
+      }
+    ],
+    "extras": {},
+    "llm": {
+      "categories": [
+        "餐酒館"
+      ],
+      "is_restaurant": true
+    },
+    "name": "SEN",
+    "parser": "born2eat_taiwan",
+    "parser_version": 1,
+    "pin_count": 1,
+    "price_max": 1000,
+    "price_min": 700,
+    "rating": 4.9,
+    "tagline": "讓我特地前往基隆的唯一原因，這季菜單依舊出色",
+    "visits": 10
+  },
+  "4030741102956351363": {
+    "dishes": [
+      {
+        "favourite": false,
+        "name": "謝謝小霖師傅每次帶來的美味與驚喜，明天見～",
+        "price": 2500
+      }
+    ],
+    "extras": {
+      "address_text": "桃園市中壢區中正路302巷6號",
+      "hours_text": "週一到週日12:00-14:30 18:00-21:30（二休）",
+      "phone": "0986-996265",
+      "visited_on": "2026-11-07"
+    },
+    "llm": {
+      "categories": [
+        "壽司",
+        "日本料理"
+      ],
+      "is_restaurant": true
+    },
+    "name": "樂魚料亭",
+    "parser": "jc_foodidi",
+    "parser_version": 1,
+    "pin_count": 0,
+    "price_max": null,
+    "price_min": null,
+    "rating": 4.0,
+    "rating_axes": {
+      "revisit": 4.0,
+      "taste": 4.0
+    },
+    "tagline": "再遠也值得奔赴的一餐日料 😀",
+    "visits": 6
+  },
+  "4032386479145551115": {
+    "dishes": [
+      {
+        "favourite": true,
+        "name": "THE OG (350）"
+      },
+      {
+        "favourite": false,
+        "name": "The AL DENTE（350）"
+      },
+      {
+        "favourite": true,
+        "name": "附餐升級薯片（10）"
+      },
+      {
+        "favourite": true,
+        "name": "花椒炸雞翅（260）"
+      },
+      {
+        "favourite": false,
+        "name": "Zestea 洛神花康普茶（180）"
+      },
+      {
+        "favourite": false,
+        "name": "可口可樂（100）"
+      }
+    ],
+    "extras": {},
+    "llm": {
+      "categories": [
+        "美式",
+        "漢堡"
+      ],
+      "is_restaurant": true
+    },
+    "name": "臺虎 啜飲室大安",
+    "parser": "born2eat_taiwan",
+    "parser_version": 1,
+    "pin_count": 1,
+    "price_max": 600,
+    "price_min": 300,
+    "rating": 4.4,
+    "tagline": "許多人戲稱為「被啤酒耽誤的漢堡店」，美式漢堡爽度極高",
+    "visits": 1
   }
 }

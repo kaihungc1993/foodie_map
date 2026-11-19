@@ -61,6 +61,12 @@
     ],
     "is_restaurant": true
   },
+  "rv:dacomecca圖1011": {
+    "categories": [
+      "麵包烘焙"
+    ],
+    "is_restaurant": true
+  },
   "rv:divinotaipei": {
     "categories": [
       "義式",
@@ -178,6 +184,14 @@
     ],
     "is_restaurant": true
   },
+  "rv:tanya博多": {
+    "categories": [
+      "日本料理",
+      "牛排",
+      "早午餐"
+    ],
+    "is_restaurant": true
+  },
   "rv:tempuratanaka": {
     "categories": [
       "天婦羅",
@@ -257,6 +271,17 @@
       "義式",
       "餐酒館",
       "fine dining"
+    ],
+    "is_restaurant": true
+  },
+  "rv:全興茶園": {
+    "categories": [],
+    "is_restaurant": false
+  },
+  "rv:十魚十色": {
+    "categories": [
+      "日本料理",
+      "日本料理"
     ],
     "is_restaurant": true
   },
@@ -413,6 +438,12 @@
     ],
     "is_restaurant": true
   },
+  "rv:白金茶房圖25": {
+    "categories": [
+      "早午餐"
+    ],
+    "is_restaurant": true
+  },
   "rv:絢鳥炭火燒鳥": {
     "categories": [
       "日本料理",
@@ -435,6 +466,10 @@
       "餐酒館"
     ],
     "is_restaurant": true
+  },
+  "rv:茶裡相逢": {
+    "categories": [],
+    "is_restaurant": false
   },
   "rv:薰心syunsin": {
     "categories": [

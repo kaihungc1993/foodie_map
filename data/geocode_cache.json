@@ -415,6 +415,19 @@
     "status": "OK",
     "version": 3
   },
+  "1016945804": {
+    "formatted_address": "106臺北市大安區民輝里濟南路三段20號",
+    "lat": 25.0400694,
+    "lng": 121.5343642,
+    "low_confidence": false,
+    "matched_name": "濟南鮮湯包 總店",
+    "place_id": "ChIJFXOByn2pQjQRchJYlGYxFeU",
+    "query": "濟南鮮湯包",
+    "score": 1.0,
+    "source": "places",
+    "status": "OK",
+    "version": 3
+  },
   "101713081412835": {
     "formatted_address": "104臺北市中山區行政里農安街166巷11號",
     "lat": 25.0639383,
@@ -2924,6 +2937,19 @@
     "status": "OK",
     "version": 3
   },
+  "111719668563445": {
+    "formatted_address": "106臺北市大安區誠安里市民大道三段302號",
+    "lat": 25.044532999999998,
+    "lng": 121.54315919999999,
+    "low_confidence": true,
+    "matched_name": "Yanliu",
+    "place_id": "ChIJdQarGN-rQjQRk5CKflnle1Y",
+    "query": "湮鯱 東區",
+    "score": 0.0,
+    "source": "places",
+    "status": "OK",
+    "version": 3
+  },
   "111790375216550": {
     "formatted_address": "110臺北市信義區安康里信義路六段15巷2號",
     "lat": 25.034499,
@@ -3418,6 +3444,32 @@
     "status": "OK",
     "version": 3
   },
+  "1228374300359164": {
+    "formatted_address": "110台北市信义区西村里松智路17號47F",
+    "lat": 25.0342883,
+    "lng": 121.56735219999997,
+    "low_confidence": false,
+    "matched_name": "Smith & Wollensky - Taipei",
+    "place_id": "ChIJES0K7O-rQjQRH9WSuqTxBbc",
+    "query": "Smith & Wollensky TW 台北",
+    "score": 1.0,
+    "source": "places",
+    "status": "OK",
+    "version": 3
+  },
+  "1232839369905443": {
+    "formatted_address": "106臺北市大安區安東街52-1號",
+    "lat": 25.042586,
+    "lng": 121.5425239,
+    "low_confidence": false,
+    "matched_name": "Brand New Grill Lab & Wine",
+    "place_id": "ChIJbaEIKwqrQjQRbS1cM5uL3mk",
+    "query": "Brand New Grill Lab & Wine 台北",
+    "score": 1.0,
+    "source": "places",
+    "status": "OK",
+    "version": 3
+  },
   "1236455086475122": {
     "formatted_address": "241新北市三重區富貴里集賢路150號2樓",
     "lat": 25.0899228,
@@ -3428,6 +3480,19 @@
     "query": "浜江日式燒肉店 三重",
     "score": 1.0,
     "source": "places",
+    "status": "OK",
+    "version": 3
+  },
+  "1270565916139634": {
+    "formatted_address": "106臺北市大安區仁愛路四段27巷28弄1號",
+    "lat": 25.0407174,
+    "lng": 121.5449077,
+    "low_confidence": false,
+    "matched_name": "成蔵",
+    "place_id": "ChIJizussf2rQjQRXFDTVh_DIp0",
+    "query": "臺北市大安區仁愛路四段27巷28弄1號",
+    "score": 1.0,
+    "source": "places-address",
     "status": "OK",
     "version": 3
   },
@@ -3452,6 +3517,19 @@
     "matched_name": "VG the Seafood Bar",
     "place_id": "ChIJ1SEboM2rQjQR7qAUBryB_9U",
     "query": "VG The Seafood Bar Taipei 信義安和",
+    "score": 1.0,
+    "source": "places",
+    "status": "OK",
+    "version": 3
+  },
+  "128770048754064": {
+    "formatted_address": "10458臺北市中山區中吉里四平街2號",
+    "lat": 25.0535347,
+    "lng": 121.5302961,
+    "low_confidence": false,
+    "matched_name": "一福IPPUKU串燒酒場",
+    "place_id": "ChIJ-3k8CDWpQjQR_w1SoS3cC3g",
+    "query": "一福Ippuku串燒酒場 台北",
     "score": 1.0,
     "source": "places",
     "status": "OK",
@@ -3532,6 +3610,19 @@
     "query": "頁小館 大直",
     "score": 1.0,
     "source": "places",
+    "status": "OK",
+    "version": 3
+  },
+  "137269666476835": {
+    "formatted_address": "106臺北市大安區忠孝東路三段300號3樓",
+    "lat": 25.0411149,
+    "lng": 121.54317789999999,
+    "low_confidence": false,
+    "matched_name": "COVA 遠東SOGO復興店",
+    "place_id": "ChIJsxVGHSirQjQRae1mgKnrYok",
+    "query": "台北市大安區忠孝東路三段300號 3F（復興Sogo）",
+    "score": 1.0,
+    "source": "places-address",
     "status": "OK",
     "version": 3
   },
@@ -5212,6 +5303,19 @@
     "status": "OK",
     "version": 3
   },
+  "240692880077849": {
+    "formatted_address": "日本〒810-0041 Fukuoka, Chuo Ward, Daimyō, 1-chōme−14−５ 有光ビル 1FＣ区",
+    "lat": 33.5875633,
+    "lng": 130.3964421,
+    "low_confidence": false,
+    "matched_name": "AOKI",
+    "place_id": "ChIJKY5VidKRQTURdUF-Oow6CfY",
+    "query": "AOKI 土を喰う 焼とり あお季 福岡",
+    "score": 1.0,
+    "source": "places",
+    "status": "OK",
+    "version": 3
+  },
   "241196525": {
     "formatted_address": "104臺北市中山區力行里遼寧街48號",
     "lat": 25.049029599999997,
@@ -6083,6 +6187,19 @@
     "status": "OK",
     "version": 3
   },
+  "341399172987098": {
+    "formatted_address": "1-chōme-6-4 Kego, Chuo Ward, Fukuoka, 810-0023日本",
+    "lat": 33.5844185,
+    "lng": 130.3953991,
+    "low_confidence": false,
+    "matched_name": "Koyama Parking",
+    "place_id": "ChIJPQw4RYGRQTURotlyvXBg3xA",
+    "query": "福岡県福岡市中央区警固１丁目６−4",
+    "score": 1.0,
+    "source": "places-address",
+    "status": "OK",
+    "version": 3
+  },
   "344969418707463": {
     "formatted_address": "10551臺北市松山區吉仁里延吉街30巷5號1樓",
     "lat": 25.046024199999998,
@@ -6382,6 +6499,19 @@
     "status": "OK",
     "version": 3
   },
+  "378489485356321": {
+    "formatted_address": "105臺北市松山區吉祥里南京東路五段6號2樓",
+    "lat": 25.051361099999998,
+    "lng": 121.55825139999999,
+    "low_confidence": false,
+    "matched_name": "花娘小館（南京店）",
+    "place_id": "ChIJJdgKCLSrQjQR2ddPPbU77P8",
+    "query": "花娘小館（南京店） 台北",
+    "score": 1.0,
+    "source": "places",
+    "status": "OK",
+    "version": 3
+  },
   "378706412004012": {
     "formatted_address": "200001基隆市仁愛區文昌里忠二路68號2樓",
     "lat": 25.1309644,
@@ -6598,6 +6728,19 @@
     "matched_name": "阿鄭伯古早味小吃（營業時間請參照google地圖）",
     "place_id": "ChIJAWoXtPeraTQRI4cD1G_Zxdk",
     "query": "阿鄭伯 苗栗",
+    "score": 1.0,
+    "source": "places",
+    "status": "OK",
+    "version": 3
+  },
+  "430952": {
+    "formatted_address": "106臺北市大安區通安里安和路二段59巷8號",
+    "lat": 25.030796,
+    "lng": 121.55291749999999,
+    "low_confidence": false,
+    "matched_name": "老李牛雜",
+    "place_id": "ChIJGze8k8yrQjQRoQSxSsO4KsQ",
+    "query": "老李牛雜",
     "score": 1.0,
     "source": "places",
     "status": "OK",
@@ -7422,6 +7565,19 @@
     "status": "OK",
     "version": 3
   },
+  "656661920859044": {
+    "formatted_address": "406臺中市北屯區仁和里山西路三段99號2F",
+    "lat": 24.185717699999998,
+    "lng": 120.68353459999999,
+    "low_confidence": false,
+    "matched_name": "Marché Restaurant 瑪榭法式餐廳",
+    "place_id": "ChIJBzXg--cXaTQRx2uPlM77xIc",
+    "query": "臺中市北屯區山西路三段99號2F",
+    "score": 1.0,
+    "source": "places-address",
+    "status": "OK",
+    "version": 3
+  },
   "666378784": {
     "formatted_address": "100臺北市中正區幸福里忠孝東路一段12號2樓",
     "lat": 25.0446985,
@@ -7786,6 +7942,19 @@
     "status": "OK",
     "version": 3
   },
+  "819293124603938": {
+    "formatted_address": "106臺北市大安區德安里仁愛路四段48巷16號",
+    "lat": 25.036880200000002,
+    "lng": 121.54703219999999,
+    "low_confidence": false,
+    "matched_name": "鮨馬 Sushi Uma Omakase（無現金支付. Credit Cards Only）",
+    "place_id": "ChIJb3L_eiqrQjQRyqS8yFr9Jco",
+    "query": "鮨 馬 台北",
+    "score": 1.0,
+    "source": "places",
+    "status": "OK",
+    "version": 3
+  },
   "824226794348384": {
     "formatted_address": "106臺北市大安區仁慈里大安路一段192號",
     "lat": 25.035673199999998,
@@ -7861,6 +8030,19 @@
     "query": "台北市大安區光復南路260巷34號",
     "score": 1.0,
     "source": "places-address",
+    "status": "OK",
+    "version": 3
+  },
+  "859861143885445": {
+    "formatted_address": "220新北市板橋區西安里縣民大道二段178號",
+    "lat": 25.0167306,
+    "lng": 121.4686753,
+    "low_confidence": false,
+    "matched_name": "呷雞啦餐館",
+    "place_id": "ChIJW--rGACpQjQRxSZZIV2SlC0",
+    "query": "呷雞啦餐館-板橋店",
+    "score": 1.0,
+    "source": "places",
     "status": "OK",
     "version": 3
   },
@@ -7976,6 +8158,19 @@
     "matched_name": "GiraPizza 旋轉披薩",
     "place_id": "ChIJkwhy1ZKrQjQR7TwgoE858CE",
     "query": "Gira Pizza 旋轉披薩 台北",
+    "score": 1.0,
+    "source": "places",
+    "status": "OK",
+    "version": 3
+  },
+  "903606186158803": {
+    "formatted_address": "100006臺北市中正區黎明里懷寧街100號",
+    "lat": 25.0420579,
+    "lng": 121.513932,
+    "low_confidence": false,
+    "matched_name": "Pasta Notte夜義",
+    "place_id": "ChIJpcc14MqpQjQRTJLILFePjwo",
+    "query": "PastaNotte夜義 中正區",
     "score": 1.0,
     "source": "places",
     "status": "OK",
@@ -8238,6 +8433,19 @@
     "query": "A STAND x 蜷尾家",
     "score": 0.3,
     "source": "places",
+    "status": "OK",
+    "version": 3
+  },
+  "AOKI 土を喰う 焼とり あお季": {
+    "formatted_address": "日本〒810-0041 Fukuoka, Chuo Ward, Daimyō, 1-chōme−14−５ 有光ビル 1FＣ区",
+    "lat": 33.5875633,
+    "lng": 130.3964421,
+    "low_confidence": false,
+    "matched_name": "AOKI",
+    "place_id": "ChIJKY5VidKRQTURdUF-Oow6CfY",
+    "query": "福岡県福岡市中央区大名１丁目１４−5 有光ビル 1FＣ区",
+    "score": 1.0,
+    "source": "places-address",
     "status": "OK",
     "version": 3
   },
@@ -8612,6 +8820,19 @@
     "status": "OK",
     "version": 3
   },
+  "rv:dacomecca圖1011": {
+    "formatted_address": "日本〒812-0011 Fukuoka, Hakata Ward, Hakata Ekimae, 4-chōme−14−１ 博多深見パークビルディング",
+    "lat": 33.5874397,
+    "lng": 130.4193439,
+    "low_confidence": false,
+    "matched_name": "Dacomecca",
+    "place_id": "ChIJ4_Q4wR6RQTURLNTuF7CUUyo",
+    "query": "Dacomecca（圖10-11） 福岡",
+    "score": 1.0,
+    "source": "places",
+    "status": "OK",
+    "version": 3
+  },
   "rv:divinotaipei": {
     "formatted_address": "106臺北市大安區通安里安和路二段71巷15號",
     "lat": 25.030027399999998,
@@ -8807,6 +9028,19 @@
     "status": "OK",
     "version": 3
   },
+  "rv:tanya博多": {
+    "formatted_address": "日本〒812-0012 Fukuoka, Hakata Ward, Hakataekichūōgai, 1−１ B1F博多１番街",
+    "lat": 33.5904071,
+    "lng": 130.4199963,
+    "low_confidence": false,
+    "matched_name": "TANYA博多 博多一番街店",
+    "place_id": "ChIJBVmI6seRQTURy3iSW_Cdebc",
+    "query": "TANYA博多 福岡",
+    "score": 1.0,
+    "source": "places",
+    "status": "OK",
+    "version": 3
+  },
   "rv:tempuratanaka": {
     "formatted_address": "日本〒810-0023 Fukuoka, Chuo Ward, Kego, 2-chōme−2−１ ルピエレジデンス赤坂南1F",
     "lat": 33.5831638,
@@ -8946,6 +9180,32 @@
     "place_id": "ChIJofU4IwCrQjQRRYDEpyduIZQ",
     "query": "你家樓下downstairs 台北",
     "score": 1.0,
+    "source": "places",
+    "status": "OK",
+    "version": 3
+  },
+  "rv:全興茶園": {
+    "formatted_address": "232新北市坪林區坪林里北宜路八段262號",
+    "lat": 24.9349652,
+    "lng": 121.7095081,
+    "low_confidence": false,
+    "matched_name": "全興茶園",
+    "place_id": "ChIJPbGtQU__ZzQRDH64pQvTSG8",
+    "query": "全興茶園",
+    "score": 1.0,
+    "source": "places",
+    "status": "OK",
+    "version": 3
+  },
+  "rv:十魚十色": {
+    "formatted_address": "日本〒810-0004 Fukuoka, Chuo Ward, Watanabedōri, 2-chōme−2−１ 1f",
+    "lat": 33.582094600000005,
+    "lng": 130.40448849999999,
+    "low_confidence": true,
+    "matched_name": "JyuGyoJyuSyoku",
+    "place_id": "ChIJG2W-XciRQTUROtVE3UtZYuk",
+    "query": "十魚十色 福岡",
+    "score": 0.0,
     "source": "places",
     "status": "OK",
     "version": 3
@@ -9210,6 +9470,19 @@
     "status": "OK",
     "version": 3
   },
+  "rv:白金茶房圖25": {
+    "formatted_address": "1-chōme-11-7 Shirogane, Chuo Ward, Fukuoka, 810-0012日本",
+    "lat": 33.5783366,
+    "lng": 130.4053765,
+    "low_confidence": false,
+    "matched_name": "白金茶房",
+    "place_id": "ChIJM7gX0Z2RQTURrpXX3iru31E",
+    "query": "白金茶房（圖2-5） 福岡",
+    "score": 1.0,
+    "source": "places",
+    "status": "OK",
+    "version": 3
+  },
   "rv:絢鳥炭火燒鳥": {
     "formatted_address": "10459臺北市中山區中庄里錦州街204號",
     "lat": 25.0602815,
@@ -9244,6 +9517,19 @@
     "matched_name": "花滔廚房",
     "place_id": "ChIJT5KYxWCrQjQRQNYOWTUIuHw",
     "query": "花滔廚房 台北",
+    "score": 1.0,
+    "source": "places",
+    "status": "OK",
+    "version": 3
+  },
+  "rv:茶裡相逢": {
+    "formatted_address": "300新竹市東區竹蓮街15號2樓47攤位",
+    "lat": 24.796856899999998,
+    "lng": 120.97192020000001,
+    "low_confidence": false,
+    "matched_name": "茶裡相逢 竹蓮市場店（2樓47號攤位）",
+    "place_id": "ChIJ1xaSYEU1aDQRu-ujgkpgHag",
+    "query": "茶裡相逢",
     "score": 1.0,
     "source": "places",
     "status": "OK",
@@ -9600,6 +9886,19 @@
     "status": "OK",
     "version": 3
   },
+  "双円燒肉•板前 HYOTAN 台北": {
+    "formatted_address": "106臺北市大安區光武里敦化南路一段160巷56號",
+    "lat": 25.0435248,
+    "lng": 121.54674179999999,
+    "low_confidence": false,
+    "matched_name": "双円燒肉•板前 HYOTAN 台北",
+    "place_id": "ChIJaTBcXgCrQjQRoBFh3IjkSJA",
+    "query": "双円燒肉•板前 HYOTAN 台北",
+    "score": 1.0,
+    "source": "places",
+    "status": "OK",
+    "version": 3
+  },
   "吾居 UCHI 私廚": {
     "formatted_address": "105臺北市松山區松基里復興北路225號1樓",
     "lat": 25.056801699999998,
@@ -9725,6 +10024,19 @@
     "place_id": "ChIJD7h_kgKrQjQRZD0m5LSv70k",
     "query": "小隱茶庵 信義店 信義區",
     "score": 0.25,
+    "source": "places",
+    "status": "OK",
+    "version": 3
+  },
+  "居酒屋 風小路": {
+    "formatted_address": "106臺北市大安區正聲里光復南路308巷32號",
+    "lat": 25.0389391,
+    "lng": 121.5560973,
+    "low_confidence": false,
+    "matched_name": "居酒屋 風小路",
+    "place_id": "ChIJRcH1ncirQjQRoJzaR3soYPE",
+    "query": "居酒屋 風小路 台北",
+    "score": 1.0,
     "source": "places",
     "status": "OK",
     "version": 3
@@ -10106,6 +10418,19 @@
     "status": "OK",
     "version": 3
   },
+  "空蟬亭 台北店": {
+    "formatted_address": "106429臺北市大安區忠孝東路四段146巷23號",
+    "lat": 25.040009899999998,
+    "lng": 121.5498425,
+    "low_confidence": false,
+    "matched_name": "空蟬亭 Taipei",
+    "place_id": "ChIJz2hcQwCrQjQRg8KikBtuWhM",
+    "query": "臺北市大安區仁愛里忠孝東路四段146巷43號",
+    "score": 1.0,
+    "source": "places-address",
+    "status": "OK",
+    "version": 3
+  },
   "老撈麻辣火鍋": {
     "formatted_address": "105臺北市松山區中正里敦化北路4巷53號",
     "lat": 25.050077299999998,
@@ -10114,6 +10439,19 @@
     "matched_name": "老撈麻辣火鍋鴛鴦火鍋(Spicy Hot Pot)(マーラー鍋)",
     "place_id": "ChIJq4o1tyKrQjQRsU2eYnNhT0I",
     "query": "老撈麻辣火鍋 松山區",
+    "score": 1.0,
+    "source": "places",
+    "status": "OK",
+    "version": 3
+  },
+  "臺虎 啜飲室大安": {
+    "formatted_address": "106臺北市大安區仁愛里仁愛路四段27巷34號",
+    "lat": 25.041112299999998,
+    "lng": 121.54508339999998,
+    "low_confidence": false,
+    "matched_name": "臺虎 啜飲室大安",
+    "place_id": "ChIJyZrbUtqrQjQRBZz46BCOlsk",
+    "query": "臺虎 啜飲室大安 台北",
     "score": 1.0,
     "source": "places",
     "status": "OK",
@@ -10245,6 +10583,19 @@
     "place_id": "ChIJ1U_hVfarQjQRJpqEBt1DpHs",
     "query": "鯨KUJIRA 居酒屋 中山區",
     "score": 0.9090909090909091,
+    "source": "places",
+    "status": "OK",
+    "version": 3
+  },
+  "麓島 居酒聚場 ROADO": {
+    "formatted_address": "330桃園市桃園區莊敬里南平路296號",
+    "lat": 25.018750999999998,
+    "lng": 121.299012,
+    "low_confidence": false,
+    "matched_name": "麓島 居酒聚場|桃園區串燒聚餐餐廳",
+    "place_id": "ChIJWR8TNoUfaDQRgyoNC9mx2Lo",
+    "query": "麓島 居酒聚場 ROADO 桃園",
+    "score": 0.4666666666666667,
     "source": "places",
     "status": "OK",
     "version": 3

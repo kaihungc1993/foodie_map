@@ -554,6 +554,105 @@
       "星期日: 11:30 – 14:30, 17:30 – 21:30"
     ]
   },
+  "ChIJ-3k8CDWpQjQR_w1SoS3cC3g": {
+    "business_status": "OPERATIONAL",
+    "periods": [
+      {
+        "close": {
+          "day": 1,
+          "hour": 0,
+          "minute": 0
+        },
+        "open": {
+          "day": 0,
+          "hour": 17,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 2,
+          "hour": 0,
+          "minute": 0
+        },
+        "open": {
+          "day": 1,
+          "hour": 17,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 3,
+          "hour": 0,
+          "minute": 0
+        },
+        "open": {
+          "day": 2,
+          "hour": 17,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 4,
+          "hour": 0,
+          "minute": 0
+        },
+        "open": {
+          "day": 3,
+          "hour": 17,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 5,
+          "hour": 0,
+          "minute": 0
+        },
+        "open": {
+          "day": 4,
+          "hour": 17,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 6,
+          "hour": 0,
+          "minute": 0
+        },
+        "open": {
+          "day": 5,
+          "hour": 17,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 0,
+          "hour": 0,
+          "minute": 0
+        },
+        "open": {
+          "day": 6,
+          "hour": 17,
+          "minute": 30
+        }
+      }
+    ],
+    "status": "OK",
+    "weekday_text": [
+      "星期一: 17:30 – 00:00",
+      "星期二: 17:30 – 00:00",
+      "星期三: 17:30 – 00:00",
+      "星期四: 17:30 – 00:00",
+      "星期五: 17:30 – 00:00",
+      "星期六: 17:30 – 00:00",
+      "星期日: 17:30 – 00:00"
+    ]
+  },
   "ChIJ-4ecEFmpQjQRlD8LPuCxZ2I": {
     "business_status": "OPERATIONAL",
     "periods": [
@@ -3515,6 +3614,45 @@
       "星期日: 12:00 – 15:00, 17:00 – 22:00"
     ]
   },
+  "ChIJ1xaSYEU1aDQRu-ujgkpgHag": {
+    "business_status": "OPERATIONAL",
+    "periods": [
+      {
+        "close": {
+          "day": 0,
+          "hour": 13,
+          "minute": 0
+        },
+        "open": {
+          "day": 0,
+          "hour": 8,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 6,
+          "hour": 13,
+          "minute": 0
+        },
+        "open": {
+          "day": 6,
+          "hour": 8,
+          "minute": 0
+        }
+      }
+    ],
+    "status": "OK",
+    "weekday_text": [
+      "星期一: 休息",
+      "星期二: 休息",
+      "星期三: 休息",
+      "星期四: 休息",
+      "星期五: 休息",
+      "星期六: 08:00 – 13:00",
+      "星期日: 08:00 – 13:00"
+    ]
+  },
   "ChIJ1y-h0JqrQjQRmxycPO4WtS0": {
     "business_status": "OPERATIONAL",
     "periods": [
@@ -5355,6 +5493,105 @@
       "星期五: 12:00 – 15:30, 18:00 – 21:00",
       "星期六: 12:00 – 15:30, 17:30 – 21:00",
       "星期日: 12:00 – 15:30, 17:30 – 21:00"
+    ]
+  },
+  "ChIJ4_Q4wR6RQTURLNTuF7CUUyo": {
+    "business_status": "OPERATIONAL",
+    "periods": [
+      {
+        "close": {
+          "day": 0,
+          "hour": 19,
+          "minute": 0
+        },
+        "open": {
+          "day": 0,
+          "hour": 7,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 1,
+          "hour": 19,
+          "minute": 0
+        },
+        "open": {
+          "day": 1,
+          "hour": 7,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 2,
+          "hour": 19,
+          "minute": 0
+        },
+        "open": {
+          "day": 2,
+          "hour": 7,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 3,
+          "hour": 19,
+          "minute": 0
+        },
+        "open": {
+          "day": 3,
+          "hour": 7,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 4,
+          "hour": 19,
+          "minute": 0
+        },
+        "open": {
+          "day": 4,
+          "hour": 7,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 5,
+          "hour": 19,
+          "minute": 0
+        },
+        "open": {
+          "day": 5,
+          "hour": 7,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 6,
+          "hour": 19,
+          "minute": 0
+        },
+        "open": {
+          "day": 6,
+          "hour": 7,
+          "minute": 0
+        }
+      }
+    ],
+    "status": "OK",
+    "weekday_text": [
+      "星期一: 07:00 – 19:00",
+      "星期二: 07:00 – 19:00",
+      "星期三: 07:00 – 19:00",
+      "星期四: 07:00 – 19:00",
+      "星期五: 07:00 – 19:00",
+      "星期六: 07:00 – 19:00",
+      "星期日: 07:00 – 19:00"
     ]
   },
   "ChIJ4cpvoSSrQjQR5W4pYJS6iQw": {
@@ -14555,6 +14792,105 @@
       "星期日: 11:00 – 15:00, 17:00 – 21:00"
     ]
   },
+  "ChIJBVmI6seRQTURy3iSW_Cdebc": {
+    "business_status": "OPERATIONAL",
+    "periods": [
+      {
+        "close": {
+          "day": 0,
+          "hour": 22,
+          "minute": 0
+        },
+        "open": {
+          "day": 0,
+          "hour": 7,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 1,
+          "hour": 22,
+          "minute": 0
+        },
+        "open": {
+          "day": 1,
+          "hour": 7,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 2,
+          "hour": 22,
+          "minute": 0
+        },
+        "open": {
+          "day": 2,
+          "hour": 7,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 3,
+          "hour": 22,
+          "minute": 0
+        },
+        "open": {
+          "day": 3,
+          "hour": 7,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 4,
+          "hour": 22,
+          "minute": 0
+        },
+        "open": {
+          "day": 4,
+          "hour": 7,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 5,
+          "hour": 22,
+          "minute": 0
+        },
+        "open": {
+          "day": 5,
+          "hour": 7,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 6,
+          "hour": 22,
+          "minute": 0
+        },
+        "open": {
+          "day": 6,
+          "hour": 7,
+          "minute": 0
+        }
+      }
+    ],
+    "status": "OK",
+    "weekday_text": [
+      "星期一: 07:00 – 22:00",
+      "星期二: 07:00 – 22:00",
+      "星期三: 07:00 – 22:00",
+      "星期四: 07:00 – 22:00",
+      "星期五: 07:00 – 22:00",
+      "星期六: 07:00 – 22:00",
+      "星期日: 07:00 – 22:00"
+    ]
+  },
   "ChIJBWXu792rQjQRRTO5EtdpkuQ": {
     "business_status": "OPERATIONAL",
     "periods": [
@@ -15480,6 +15816,117 @@
       "星期五: 10:00 – 22:00",
       "星期六: 10:00 – 22:00",
       "星期日: 10:00 – 22:00"
+    ]
+  },
+  "ChIJBzXg--cXaTQRx2uPlM77xIc": {
+    "business_status": "OPERATIONAL",
+    "periods": [
+      {
+        "close": {
+          "day": 0,
+          "hour": 14,
+          "minute": 30
+        },
+        "open": {
+          "day": 0,
+          "hour": 12,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 3,
+          "hour": 21,
+          "minute": 0
+        },
+        "open": {
+          "day": 3,
+          "hour": 17,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 4,
+          "hour": 14,
+          "minute": 30
+        },
+        "open": {
+          "day": 4,
+          "hour": 12,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 4,
+          "hour": 21,
+          "minute": 0
+        },
+        "open": {
+          "day": 4,
+          "hour": 17,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 5,
+          "hour": 14,
+          "minute": 30
+        },
+        "open": {
+          "day": 5,
+          "hour": 12,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 5,
+          "hour": 21,
+          "minute": 0
+        },
+        "open": {
+          "day": 5,
+          "hour": 17,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 6,
+          "hour": 14,
+          "minute": 30
+        },
+        "open": {
+          "day": 6,
+          "hour": 12,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 6,
+          "hour": 21,
+          "minute": 0
+        },
+        "open": {
+          "day": 6,
+          "hour": 17,
+          "minute": 30
+        }
+      }
+    ],
+    "status": "OK",
+    "weekday_text": [
+      "星期一: 休息",
+      "星期二: 休息",
+      "星期三: 17:30 – 21:00",
+      "星期四: 12:00 – 14:30, 17:30 – 21:00",
+      "星期五: 12:00 – 14:30, 17:30 – 21:00",
+      "星期六: 12:00 – 14:30, 17:30 – 21:00",
+      "星期日: 12:00 – 14:30"
     ]
   },
   "ChIJC52KxJ6pQjQRIMSrRb8ccUA": {
@@ -18143,6 +18590,105 @@
       "星期日: 休息"
     ]
   },
+  "ChIJES0K7O-rQjQRH9WSuqTxBbc": {
+    "business_status": "OPERATIONAL",
+    "periods": [
+      {
+        "close": {
+          "day": 0,
+          "hour": 22,
+          "minute": 0
+        },
+        "open": {
+          "day": 0,
+          "hour": 11,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 1,
+          "hour": 22,
+          "minute": 0
+        },
+        "open": {
+          "day": 1,
+          "hour": 11,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 2,
+          "hour": 22,
+          "minute": 0
+        },
+        "open": {
+          "day": 2,
+          "hour": 11,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 3,
+          "hour": 22,
+          "minute": 0
+        },
+        "open": {
+          "day": 3,
+          "hour": 11,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 4,
+          "hour": 22,
+          "minute": 0
+        },
+        "open": {
+          "day": 4,
+          "hour": 11,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 5,
+          "hour": 23,
+          "minute": 0
+        },
+        "open": {
+          "day": 5,
+          "hour": 11,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 6,
+          "hour": 23,
+          "minute": 0
+        },
+        "open": {
+          "day": 6,
+          "hour": 11,
+          "minute": 30
+        }
+      }
+    ],
+    "status": "OK",
+    "weekday_text": [
+      "星期一: 11:30 – 22:00",
+      "星期二: 11:30 – 22:00",
+      "星期三: 11:30 – 22:00",
+      "星期四: 11:30 – 22:00",
+      "星期五: 11:30 – 23:00",
+      "星期六: 11:30 – 23:00",
+      "星期日: 11:30 – 22:00"
+    ]
+  },
   "ChIJEUxrrgxPXTQRhC3x7Qyv6D4": {
     "business_status": "OPERATIONAL",
     "periods": null,
@@ -18720,6 +19266,189 @@
       "星期五: 09:30 – 17:00",
       "星期六: 09:30 – 17:00",
       "星期日: 09:30 – 17:00"
+    ]
+  },
+  "ChIJFXOByn2pQjQRchJYlGYxFeU": {
+    "business_status": "OPERATIONAL",
+    "periods": [
+      {
+        "close": {
+          "day": 0,
+          "hour": 14,
+          "minute": 30
+        },
+        "open": {
+          "day": 0,
+          "hour": 11,
+          "minute": 20
+        }
+      },
+      {
+        "close": {
+          "day": 0,
+          "hour": 20,
+          "minute": 30
+        },
+        "open": {
+          "day": 0,
+          "hour": 17,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 1,
+          "hour": 14,
+          "minute": 30
+        },
+        "open": {
+          "day": 1,
+          "hour": 11,
+          "minute": 20
+        }
+      },
+      {
+        "close": {
+          "day": 1,
+          "hour": 20,
+          "minute": 30
+        },
+        "open": {
+          "day": 1,
+          "hour": 17,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 2,
+          "hour": 14,
+          "minute": 30
+        },
+        "open": {
+          "day": 2,
+          "hour": 11,
+          "minute": 20
+        }
+      },
+      {
+        "close": {
+          "day": 2,
+          "hour": 20,
+          "minute": 30
+        },
+        "open": {
+          "day": 2,
+          "hour": 17,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 3,
+          "hour": 14,
+          "minute": 30
+        },
+        "open": {
+          "day": 3,
+          "hour": 11,
+          "minute": 20
+        }
+      },
+      {
+        "close": {
+          "day": 3,
+          "hour": 20,
+          "minute": 30
+        },
+        "open": {
+          "day": 3,
+          "hour": 17,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 4,
+          "hour": 14,
+          "minute": 30
+        },
+        "open": {
+          "day": 4,
+          "hour": 11,
+          "minute": 20
+        }
+      },
+      {
+        "close": {
+          "day": 4,
+          "hour": 20,
+          "minute": 30
+        },
+        "open": {
+          "day": 4,
+          "hour": 17,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 5,
+          "hour": 14,
+          "minute": 30
+        },
+        "open": {
+          "day": 5,
+          "hour": 11,
+          "minute": 20
+        }
+      },
+      {
+        "close": {
+          "day": 5,
+          "hour": 20,
+          "minute": 30
+        },
+        "open": {
+          "day": 5,
+          "hour": 17,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 6,
+          "hour": 14,
+          "minute": 30
+        },
+        "open": {
+          "day": 6,
+          "hour": 11,
+          "minute": 20
+        }
+      },
+      {
+        "close": {
+          "day": 6,
+          "hour": 20,
+          "minute": 30
+        },
+        "open": {
+          "day": 6,
+          "hour": 17,
+          "minute": 0
+        }
+      }
+    ],
+    "status": "OK",
+    "weekday_text": [
+      "星期一: 11:20 – 14:30, 17:00 – 20:30",
+      "星期二: 11:20 – 14:30, 17:00 – 20:30",
+      "星期三: 11:20 – 14:30, 17:00 – 20:30",
+      "星期四: 11:20 – 14:30, 17:00 – 20:30",
+      "星期五: 11:20 – 14:30, 17:00 – 20:30",
+      "星期六: 11:20 – 14:30, 17:00 – 20:30",
+      "星期日: 11:20 – 14:30, 17:00 – 20:30"
     ]
   },
   "ChIJFZLRRSurQjQRtabin9U8wzw": {
@@ -19489,6 +20218,177 @@
       "星期五: 24 小時營業",
       "星期六: 24 小時營業",
       "星期日: 24 小時營業"
+    ]
+  },
+  "ChIJG2W-XciRQTUROtVE3UtZYuk": {
+    "business_status": "OPERATIONAL",
+    "periods": [
+      {
+        "close": {
+          "day": 0,
+          "hour": 13,
+          "minute": 0
+        },
+        "open": {
+          "day": 0,
+          "hour": 7,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 0,
+          "hour": 23,
+          "minute": 0
+        },
+        "open": {
+          "day": 0,
+          "hour": 18,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 1,
+          "hour": 13,
+          "minute": 0
+        },
+        "open": {
+          "day": 1,
+          "hour": 7,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 1,
+          "hour": 23,
+          "minute": 0
+        },
+        "open": {
+          "day": 1,
+          "hour": 18,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 2,
+          "hour": 13,
+          "minute": 0
+        },
+        "open": {
+          "day": 2,
+          "hour": 7,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 2,
+          "hour": 23,
+          "minute": 0
+        },
+        "open": {
+          "day": 2,
+          "hour": 18,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 3,
+          "hour": 13,
+          "minute": 0
+        },
+        "open": {
+          "day": 3,
+          "hour": 7,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 3,
+          "hour": 23,
+          "minute": 0
+        },
+        "open": {
+          "day": 3,
+          "hour": 18,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 4,
+          "hour": 13,
+          "minute": 0
+        },
+        "open": {
+          "day": 4,
+          "hour": 7,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 5,
+          "hour": 13,
+          "minute": 0
+        },
+        "open": {
+          "day": 5,
+          "hour": 7,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 5,
+          "hour": 23,
+          "minute": 0
+        },
+        "open": {
+          "day": 5,
+          "hour": 18,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 6,
+          "hour": 13,
+          "minute": 0
+        },
+        "open": {
+          "day": 6,
+          "hour": 7,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 6,
+          "hour": 23,
+          "minute": 0
+        },
+        "open": {
+          "day": 6,
+          "hour": 18,
+          "minute": 0
+        }
+      }
+    ],
+    "status": "OK",
+    "weekday_text": [
+      "星期一: 07:00 – 13:00, 18:00 – 23:00",
+      "星期二: 07:00 – 13:00, 18:00 – 23:00",
+      "星期三: 07:00 – 13:00, 18:00 – 23:00",
+      "星期四: 07:00 – 13:00",
+      "星期五: 07:00 – 13:00, 18:00 – 23:00",
+      "星期六: 07:00 – 13:00, 18:00 – 23:00",
+      "星期日: 07:00 – 13:00, 18:00 – 23:00"
     ]
   },
   "ChIJG2nsXs-rQjQRpRJ_Nf_Z6K8": {
@@ -20929,6 +21829,81 @@
       "星期五: 12:00 – 14:00, 18:00 – 21:00",
       "星期六: 12:00 – 14:00, 18:00 – 21:00",
       "星期日: 12:00 – 14:00, 18:00 – 21:00"
+    ]
+  },
+  "ChIJGze8k8yrQjQRoQSxSsO4KsQ": {
+    "business_status": "OPERATIONAL",
+    "periods": [
+      {
+        "close": {
+          "day": 2,
+          "hour": 22,
+          "minute": 0
+        },
+        "open": {
+          "day": 2,
+          "hour": 11,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 3,
+          "hour": 22,
+          "minute": 0
+        },
+        "open": {
+          "day": 3,
+          "hour": 11,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 4,
+          "hour": 22,
+          "minute": 0
+        },
+        "open": {
+          "day": 4,
+          "hour": 11,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 5,
+          "hour": 22,
+          "minute": 0
+        },
+        "open": {
+          "day": 5,
+          "hour": 11,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 6,
+          "hour": 22,
+          "minute": 0
+        },
+        "open": {
+          "day": 6,
+          "hour": 11,
+          "minute": 0
+        }
+      }
+    ],
+    "status": "OK",
+    "weekday_text": [
+      "星期一: 休息",
+      "星期二: 11:00 – 22:00",
+      "星期三: 11:00 – 22:00",
+      "星期四: 11:00 – 22:00",
+      "星期五: 11:00 – 22:00",
+      "星期六: 11:00 – 22:00",
+      "星期日: 休息"
     ]
   },
   "ChIJH0e8YMyrQjQRhOLWTT8l2Xk": {
@@ -24447,6 +25422,189 @@
       "星期日: 09:00 – 17:00"
     ]
   },
+  "ChIJJdgKCLSrQjQR2ddPPbU77P8": {
+    "business_status": "OPERATIONAL",
+    "periods": [
+      {
+        "close": {
+          "day": 0,
+          "hour": 14,
+          "minute": 30
+        },
+        "open": {
+          "day": 0,
+          "hour": 11,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 0,
+          "hour": 21,
+          "minute": 30
+        },
+        "open": {
+          "day": 0,
+          "hour": 17,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 1,
+          "hour": 14,
+          "minute": 30
+        },
+        "open": {
+          "day": 1,
+          "hour": 11,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 1,
+          "hour": 21,
+          "minute": 30
+        },
+        "open": {
+          "day": 1,
+          "hour": 17,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 2,
+          "hour": 14,
+          "minute": 30
+        },
+        "open": {
+          "day": 2,
+          "hour": 11,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 2,
+          "hour": 21,
+          "minute": 30
+        },
+        "open": {
+          "day": 2,
+          "hour": 17,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 3,
+          "hour": 14,
+          "minute": 30
+        },
+        "open": {
+          "day": 3,
+          "hour": 11,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 3,
+          "hour": 21,
+          "minute": 30
+        },
+        "open": {
+          "day": 3,
+          "hour": 17,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 4,
+          "hour": 14,
+          "minute": 30
+        },
+        "open": {
+          "day": 4,
+          "hour": 11,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 4,
+          "hour": 21,
+          "minute": 30
+        },
+        "open": {
+          "day": 4,
+          "hour": 17,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 5,
+          "hour": 14,
+          "minute": 30
+        },
+        "open": {
+          "day": 5,
+          "hour": 11,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 5,
+          "hour": 21,
+          "minute": 30
+        },
+        "open": {
+          "day": 5,
+          "hour": 17,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 6,
+          "hour": 14,
+          "minute": 30
+        },
+        "open": {
+          "day": 6,
+          "hour": 11,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 6,
+          "hour": 21,
+          "minute": 30
+        },
+        "open": {
+          "day": 6,
+          "hour": 17,
+          "minute": 30
+        }
+      }
+    ],
+    "status": "OK",
+    "weekday_text": [
+      "星期一: 11:30 – 14:30, 17:30 – 21:30",
+      "星期二: 11:30 – 14:30, 17:30 – 21:30",
+      "星期三: 11:30 – 14:30, 17:30 – 21:30",
+      "星期四: 11:30 – 14:30, 17:30 – 21:30",
+      "星期五: 11:30 – 14:30, 17:30 – 21:30",
+      "星期六: 11:30 – 14:30, 17:30 – 21:30",
+      "星期日: 11:30 – 14:30, 17:30 – 21:30"
+    ]
+  },
   "ChIJJe8CUwapQjQRqsGbiKzAMxs": {
     "business_status": "OPERATIONAL",
     "periods": [
@@ -26071,6 +27229,165 @@
       "星期五: 11:00 – 22:00",
       "星期六: 11:00 – 22:00",
       "星期日: 11:00 – 21:30"
+    ]
+  },
+  "ChIJKY5VidKRQTURdUF-Oow6CfY": {
+    "business_status": "OPERATIONAL",
+    "periods": [
+      {
+        "close": {
+          "day": 0,
+          "hour": 15,
+          "minute": 0
+        },
+        "open": {
+          "day": 0,
+          "hour": 11,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 1,
+          "hour": 0,
+          "minute": 0
+        },
+        "open": {
+          "day": 0,
+          "hour": 17,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 1,
+          "hour": 15,
+          "minute": 0
+        },
+        "open": {
+          "day": 1,
+          "hour": 11,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 2,
+          "hour": 0,
+          "minute": 0
+        },
+        "open": {
+          "day": 1,
+          "hour": 17,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 2,
+          "hour": 15,
+          "minute": 0
+        },
+        "open": {
+          "day": 2,
+          "hour": 11,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 3,
+          "hour": 0,
+          "minute": 0
+        },
+        "open": {
+          "day": 2,
+          "hour": 17,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 4,
+          "hour": 15,
+          "minute": 0
+        },
+        "open": {
+          "day": 4,
+          "hour": 11,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 5,
+          "hour": 0,
+          "minute": 0
+        },
+        "open": {
+          "day": 4,
+          "hour": 17,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 5,
+          "hour": 15,
+          "minute": 0
+        },
+        "open": {
+          "day": 5,
+          "hour": 11,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 6,
+          "hour": 0,
+          "minute": 0
+        },
+        "open": {
+          "day": 5,
+          "hour": 17,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 6,
+          "hour": 15,
+          "minute": 0
+        },
+        "open": {
+          "day": 6,
+          "hour": 11,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 0,
+          "hour": 0,
+          "minute": 0
+        },
+        "open": {
+          "day": 6,
+          "hour": 17,
+          "minute": 0
+        }
+      }
+    ],
+    "status": "OK",
+    "weekday_text": [
+      "星期一: 11:00 – 15:00, 17:00 – 00:00",
+      "星期二: 11:00 – 15:00, 17:00 – 00:00",
+      "星期三: 休息",
+      "星期四: 11:00 – 15:00, 17:00 – 00:00",
+      "星期五: 11:00 – 15:00, 17:00 – 00:00",
+      "星期六: 11:00 – 15:00, 17:00 – 00:00",
+      "星期日: 11:00 – 15:00, 17:00 – 00:00"
     ]
   },
   "ChIJKZ6oCACvQjQREDmdwyyaHWw": {
@@ -27787,6 +29104,105 @@
       "星期五: 11:30 – 14:30, 17:00 – 23:30",
       "星期六: 11:30 – 14:30, 17:00 – 23:30",
       "星期日: 11:30 – 14:30, 17:00 – 23:00"
+    ]
+  },
+  "ChIJM7gX0Z2RQTURrpXX3iru31E": {
+    "business_status": "OPERATIONAL",
+    "periods": [
+      {
+        "close": {
+          "day": 0,
+          "hour": 18,
+          "minute": 30
+        },
+        "open": {
+          "day": 0,
+          "hour": 8,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 1,
+          "hour": 17,
+          "minute": 30
+        },
+        "open": {
+          "day": 1,
+          "hour": 8,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 2,
+          "hour": 17,
+          "minute": 30
+        },
+        "open": {
+          "day": 2,
+          "hour": 8,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 3,
+          "hour": 17,
+          "minute": 30
+        },
+        "open": {
+          "day": 3,
+          "hour": 8,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 4,
+          "hour": 17,
+          "minute": 30
+        },
+        "open": {
+          "day": 4,
+          "hour": 8,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 5,
+          "hour": 17,
+          "minute": 30
+        },
+        "open": {
+          "day": 5,
+          "hour": 8,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 6,
+          "hour": 18,
+          "minute": 30
+        },
+        "open": {
+          "day": 6,
+          "hour": 8,
+          "minute": 0
+        }
+      }
+    ],
+    "status": "OK",
+    "weekday_text": [
+      "星期一: 08:00 – 17:30",
+      "星期二: 08:00 – 17:30",
+      "星期三: 08:00 – 17:30",
+      "星期四: 08:00 – 17:30",
+      "星期五: 08:00 – 17:30",
+      "星期六: 08:00 – 18:30",
+      "星期日: 08:00 – 18:30"
     ]
   },
   "ChIJM834Jc6tQjQRT3zMtLAQtn4": {
@@ -31584,6 +33000,105 @@
       "星期日: 11:00 – 13:30, 17:00 – 20:30"
     ]
   },
+  "ChIJPQw4RYGRQTURotlyvXBg3xA": {
+    "business_status": "OPERATIONAL",
+    "periods": [
+      {
+        "close": {
+          "day": 0,
+          "hour": 22,
+          "minute": 0
+        },
+        "open": {
+          "day": 0,
+          "hour": 13,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 1,
+          "hour": 22,
+          "minute": 0
+        },
+        "open": {
+          "day": 1,
+          "hour": 13,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 2,
+          "hour": 22,
+          "minute": 0
+        },
+        "open": {
+          "day": 2,
+          "hour": 13,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 3,
+          "hour": 22,
+          "minute": 0
+        },
+        "open": {
+          "day": 3,
+          "hour": 13,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 4,
+          "hour": 22,
+          "minute": 0
+        },
+        "open": {
+          "day": 4,
+          "hour": 13,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 5,
+          "hour": 22,
+          "minute": 0
+        },
+        "open": {
+          "day": 5,
+          "hour": 13,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 6,
+          "hour": 22,
+          "minute": 0
+        },
+        "open": {
+          "day": 6,
+          "hour": 13,
+          "minute": 0
+        }
+      }
+    ],
+    "status": "OK",
+    "weekday_text": [
+      "星期一: 13:00 – 22:00",
+      "星期二: 13:00 – 22:00",
+      "星期三: 13:00 – 22:00",
+      "星期四: 13:00 – 22:00",
+      "星期五: 13:00 – 22:00",
+      "星期六: 13:00 – 22:00",
+      "星期日: 13:00 – 22:00"
+    ]
+  },
   "ChIJPTb63QurQjQR0im9oA2FXp4": {
     "business_status": "OPERATIONAL",
     "periods": [
@@ -31888,6 +33403,105 @@
       "星期五: 11:30 – 14:30, 17:30 – 21:30",
       "星期六: 11:30 – 14:30, 17:30 – 21:30",
       "星期日: 11:30 – 14:30, 17:30 – 21:30"
+    ]
+  },
+  "ChIJPbGtQU__ZzQRDH64pQvTSG8": {
+    "business_status": "OPERATIONAL",
+    "periods": [
+      {
+        "close": {
+          "day": 0,
+          "hour": 21,
+          "minute": 0
+        },
+        "open": {
+          "day": 0,
+          "hour": 9,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 1,
+          "hour": 21,
+          "minute": 0
+        },
+        "open": {
+          "day": 1,
+          "hour": 9,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 2,
+          "hour": 21,
+          "minute": 0
+        },
+        "open": {
+          "day": 2,
+          "hour": 9,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 3,
+          "hour": 21,
+          "minute": 0
+        },
+        "open": {
+          "day": 3,
+          "hour": 9,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 4,
+          "hour": 21,
+          "minute": 0
+        },
+        "open": {
+          "day": 4,
+          "hour": 9,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 5,
+          "hour": 21,
+          "minute": 0
+        },
+        "open": {
+          "day": 5,
+          "hour": 9,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 6,
+          "hour": 21,
+          "minute": 0
+        },
+        "open": {
+          "day": 6,
+          "hour": 9,
+          "minute": 0
+        }
+      }
+    ],
+    "status": "OK",
+    "weekday_text": [
+      "星期一: 09:00 – 21:00",
+      "星期二: 09:00 – 21:00",
+      "星期三: 09:00 – 21:00",
+      "星期四: 09:00 – 21:00",
+      "星期五: 09:00 – 21:00",
+      "星期六: 09:00 – 21:00",
+      "星期日: 09:00 – 21:00"
     ]
   },
   "ChIJPbfiK2J2bjQRM3Z_9EcilLU": {
@@ -38091,6 +39705,165 @@
       "星期日: 18:00 – 23:00"
     ]
   },
+  "ChIJW--rGACpQjQRxSZZIV2SlC0": {
+    "business_status": "OPERATIONAL",
+    "periods": [
+      {
+        "close": {
+          "day": 0,
+          "hour": 14,
+          "minute": 0
+        },
+        "open": {
+          "day": 0,
+          "hour": 11,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 0,
+          "hour": 20,
+          "minute": 0
+        },
+        "open": {
+          "day": 0,
+          "hour": 17,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 2,
+          "hour": 14,
+          "minute": 0
+        },
+        "open": {
+          "day": 2,
+          "hour": 11,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 2,
+          "hour": 20,
+          "minute": 0
+        },
+        "open": {
+          "day": 2,
+          "hour": 17,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 3,
+          "hour": 14,
+          "minute": 0
+        },
+        "open": {
+          "day": 3,
+          "hour": 11,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 3,
+          "hour": 20,
+          "minute": 0
+        },
+        "open": {
+          "day": 3,
+          "hour": 17,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 4,
+          "hour": 14,
+          "minute": 0
+        },
+        "open": {
+          "day": 4,
+          "hour": 11,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 4,
+          "hour": 20,
+          "minute": 0
+        },
+        "open": {
+          "day": 4,
+          "hour": 17,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 5,
+          "hour": 14,
+          "minute": 0
+        },
+        "open": {
+          "day": 5,
+          "hour": 11,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 5,
+          "hour": 20,
+          "minute": 0
+        },
+        "open": {
+          "day": 5,
+          "hour": 17,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 6,
+          "hour": 14,
+          "minute": 0
+        },
+        "open": {
+          "day": 6,
+          "hour": 11,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 6,
+          "hour": 20,
+          "minute": 0
+        },
+        "open": {
+          "day": 6,
+          "hour": 17,
+          "minute": 0
+        }
+      }
+    ],
+    "status": "OK",
+    "weekday_text": [
+      "星期一: 休息",
+      "星期二: 11:00 – 14:00, 17:00 – 20:00",
+      "星期三: 11:00 – 14:00, 17:00 – 20:00",
+      "星期四: 11:00 – 14:00, 17:00 – 20:00",
+      "星期五: 11:00 – 14:00, 17:00 – 20:00",
+      "星期六: 11:00 – 14:00, 17:00 – 20:00",
+      "星期日: 11:00 – 14:00, 17:00 – 20:00"
+    ]
+  },
   "ChIJW-9WfASpQjQRAX4Fzs6BzN8": {
     "business_status": "OPERATIONAL",
     "periods": [
@@ -38824,6 +40597,105 @@
       "星期五: 11:30 – 13:30, 17:00 – 20:30",
       "星期六: 11:30 – 13:30, 17:00 – 20:30",
       "星期日: 11:30 – 13:30, 17:00 – 20:30"
+    ]
+  },
+  "ChIJWR8TNoUfaDQRgyoNC9mx2Lo": {
+    "business_status": "OPERATIONAL",
+    "periods": [
+      {
+        "close": {
+          "day": 1,
+          "hour": 0,
+          "minute": 0
+        },
+        "open": {
+          "day": 0,
+          "hour": 11,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 2,
+          "hour": 0,
+          "minute": 0
+        },
+        "open": {
+          "day": 1,
+          "hour": 11,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 3,
+          "hour": 0,
+          "minute": 0
+        },
+        "open": {
+          "day": 2,
+          "hour": 11,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 4,
+          "hour": 0,
+          "minute": 0
+        },
+        "open": {
+          "day": 3,
+          "hour": 11,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 5,
+          "hour": 0,
+          "minute": 0
+        },
+        "open": {
+          "day": 4,
+          "hour": 11,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 6,
+          "hour": 0,
+          "minute": 0
+        },
+        "open": {
+          "day": 5,
+          "hour": 11,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 0,
+          "hour": 0,
+          "minute": 0
+        },
+        "open": {
+          "day": 6,
+          "hour": 11,
+          "minute": 30
+        }
+      }
+    ],
+    "status": "OK",
+    "weekday_text": [
+      "星期一: 11:30 – 00:00",
+      "星期二: 11:30 – 00:00",
+      "星期三: 11:30 – 00:00",
+      "星期四: 11:30 – 00:00",
+      "星期五: 11:30 – 00:00",
+      "星期六: 11:30 – 00:00",
+      "星期日: 11:30 – 00:00"
     ]
   },
   "ChIJWSrdbHOrQjQRUBnsOzPfyE8": {
@@ -47598,6 +49470,141 @@
       "星期日: 12:30 – 18:30"
     ]
   },
+  "ChIJb3L_eiqrQjQRyqS8yFr9Jco": {
+    "business_status": "OPERATIONAL",
+    "periods": [
+      {
+        "close": {
+          "day": 2,
+          "hour": 14,
+          "minute": 30
+        },
+        "open": {
+          "day": 2,
+          "hour": 12,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 2,
+          "hour": 21,
+          "minute": 30
+        },
+        "open": {
+          "day": 2,
+          "hour": 18,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 3,
+          "hour": 14,
+          "minute": 30
+        },
+        "open": {
+          "day": 3,
+          "hour": 12,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 3,
+          "hour": 21,
+          "minute": 30
+        },
+        "open": {
+          "day": 3,
+          "hour": 18,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 4,
+          "hour": 14,
+          "minute": 30
+        },
+        "open": {
+          "day": 4,
+          "hour": 12,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 4,
+          "hour": 21,
+          "minute": 30
+        },
+        "open": {
+          "day": 4,
+          "hour": 18,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 5,
+          "hour": 14,
+          "minute": 30
+        },
+        "open": {
+          "day": 5,
+          "hour": 12,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 5,
+          "hour": 21,
+          "minute": 30
+        },
+        "open": {
+          "day": 5,
+          "hour": 18,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 6,
+          "hour": 14,
+          "minute": 30
+        },
+        "open": {
+          "day": 6,
+          "hour": 12,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 6,
+          "hour": 21,
+          "minute": 30
+        },
+        "open": {
+          "day": 6,
+          "hour": 18,
+          "minute": 30
+        }
+      }
+    ],
+    "status": "OK",
+    "weekday_text": [
+      "星期一: 休息",
+      "星期二: 12:30 – 14:30, 18:30 – 21:30",
+      "星期三: 12:30 – 14:30, 18:30 – 21:30",
+      "星期四: 12:30 – 14:30, 18:30 – 21:30",
+      "星期五: 12:30 – 14:30, 18:30 – 21:30",
+      "星期六: 12:30 – 14:30, 18:30 – 21:30",
+      "星期日: 休息"
+    ]
+  },
   "ChIJb5E4fwCpQjQR8e16LKU1TDA": {
     "business_status": "OPERATIONAL",
     "periods": [
@@ -48481,6 +50488,93 @@
       "星期五: 12:00 – 15:00, 17:30 – 22:00",
       "星期六: 12:00 – 15:00, 17:30 – 22:00",
       "星期日: 12:00 – 15:00, 17:30 – 22:00"
+    ]
+  },
+  "ChIJbaEIKwqrQjQRbS1cM5uL3mk": {
+    "business_status": "OPERATIONAL",
+    "periods": [
+      {
+        "close": {
+          "day": 1,
+          "hour": 0,
+          "minute": 0
+        },
+        "open": {
+          "day": 0,
+          "hour": 17,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 3,
+          "hour": 0,
+          "minute": 0
+        },
+        "open": {
+          "day": 2,
+          "hour": 17,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 4,
+          "hour": 0,
+          "minute": 0
+        },
+        "open": {
+          "day": 3,
+          "hour": 17,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 5,
+          "hour": 0,
+          "minute": 0
+        },
+        "open": {
+          "day": 4,
+          "hour": 17,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 6,
+          "hour": 0,
+          "minute": 0
+        },
+        "open": {
+          "day": 5,
+          "hour": 17,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 0,
+          "hour": 0,
+          "minute": 0
+        },
+        "open": {
+          "day": 6,
+          "hour": 17,
+          "minute": 30
+        }
+      }
+    ],
+    "status": "OK",
+    "weekday_text": [
+      "星期一: 休息",
+      "星期二: 17:30 – 00:00",
+      "星期三: 17:30 – 00:00",
+      "星期四: 17:30 – 00:00",
+      "星期五: 17:30 – 00:00",
+      "星期六: 17:30 – 00:00",
+      "星期日: 17:30 – 00:00"
     ]
   },
   "ChIJbamMQUWpQjQRiFWnBTPPj_Y": {
@@ -51126,6 +53220,165 @@
     "periods": null,
     "status": "OK",
     "weekday_text": null
+  },
+  "ChIJdQarGN-rQjQRk5CKflnle1Y": {
+    "business_status": "OPERATIONAL",
+    "periods": [
+      {
+        "close": {
+          "day": 1,
+          "hour": 14,
+          "minute": 0
+        },
+        "open": {
+          "day": 1,
+          "hour": 11,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 1,
+          "hour": 21,
+          "minute": 0
+        },
+        "open": {
+          "day": 1,
+          "hour": 17,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 2,
+          "hour": 14,
+          "minute": 0
+        },
+        "open": {
+          "day": 2,
+          "hour": 11,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 2,
+          "hour": 21,
+          "minute": 0
+        },
+        "open": {
+          "day": 2,
+          "hour": 17,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 3,
+          "hour": 14,
+          "minute": 0
+        },
+        "open": {
+          "day": 3,
+          "hour": 11,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 3,
+          "hour": 21,
+          "minute": 0
+        },
+        "open": {
+          "day": 3,
+          "hour": 17,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 4,
+          "hour": 14,
+          "minute": 0
+        },
+        "open": {
+          "day": 4,
+          "hour": 11,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 4,
+          "hour": 21,
+          "minute": 0
+        },
+        "open": {
+          "day": 4,
+          "hour": 17,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 5,
+          "hour": 14,
+          "minute": 0
+        },
+        "open": {
+          "day": 5,
+          "hour": 11,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 5,
+          "hour": 21,
+          "minute": 0
+        },
+        "open": {
+          "day": 5,
+          "hour": 17,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 6,
+          "hour": 14,
+          "minute": 0
+        },
+        "open": {
+          "day": 6,
+          "hour": 11,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 6,
+          "hour": 21,
+          "minute": 0
+        },
+        "open": {
+          "day": 6,
+          "hour": 17,
+          "minute": 0
+        }
+      }
+    ],
+    "status": "OK",
+    "weekday_text": [
+      "星期一: 11:30 – 14:00, 17:00 – 21:00",
+      "星期二: 11:30 – 14:00, 17:00 – 21:00",
+      "星期三: 11:30 – 14:00, 17:00 – 21:00",
+      "星期四: 11:30 – 14:00, 17:00 – 21:00",
+      "星期五: 11:30 – 14:00, 17:00 – 21:00",
+      "星期六: 11:30 – 14:00, 17:00 – 21:00",
+      "星期日: 休息"
+    ]
   },
   "ChIJdT1Nz0OpQjQRYRn-Nwsmcw8": {
     "business_status": "OPERATIONAL",
@@ -57308,6 +59561,189 @@
       "星期五: 11:00 – 23:00",
       "星期六: 11:00 – 23:00",
       "星期日: 11:00 – 23:00"
+    ]
+  },
+  "ChIJizussf2rQjQRXFDTVh_DIp0": {
+    "business_status": "OPERATIONAL",
+    "periods": [
+      {
+        "close": {
+          "day": 0,
+          "hour": 14,
+          "minute": 30
+        },
+        "open": {
+          "day": 0,
+          "hour": 11,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 0,
+          "hour": 21,
+          "minute": 30
+        },
+        "open": {
+          "day": 0,
+          "hour": 17,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 1,
+          "hour": 14,
+          "minute": 30
+        },
+        "open": {
+          "day": 1,
+          "hour": 11,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 1,
+          "hour": 21,
+          "minute": 30
+        },
+        "open": {
+          "day": 1,
+          "hour": 17,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 2,
+          "hour": 14,
+          "minute": 30
+        },
+        "open": {
+          "day": 2,
+          "hour": 11,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 2,
+          "hour": 21,
+          "minute": 30
+        },
+        "open": {
+          "day": 2,
+          "hour": 17,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 3,
+          "hour": 14,
+          "minute": 30
+        },
+        "open": {
+          "day": 3,
+          "hour": 11,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 3,
+          "hour": 21,
+          "minute": 30
+        },
+        "open": {
+          "day": 3,
+          "hour": 17,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 4,
+          "hour": 14,
+          "minute": 30
+        },
+        "open": {
+          "day": 4,
+          "hour": 11,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 4,
+          "hour": 21,
+          "minute": 30
+        },
+        "open": {
+          "day": 4,
+          "hour": 17,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 5,
+          "hour": 14,
+          "minute": 30
+        },
+        "open": {
+          "day": 5,
+          "hour": 11,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 5,
+          "hour": 21,
+          "minute": 30
+        },
+        "open": {
+          "day": 5,
+          "hour": 17,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 6,
+          "hour": 14,
+          "minute": 30
+        },
+        "open": {
+          "day": 6,
+          "hour": 11,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 6,
+          "hour": 21,
+          "minute": 30
+        },
+        "open": {
+          "day": 6,
+          "hour": 17,
+          "minute": 0
+        }
+      }
+    ],
+    "status": "OK",
+    "weekday_text": [
+      "星期一: 11:00 – 14:30, 17:00 – 21:30",
+      "星期二: 11:00 – 14:30, 17:00 – 21:30",
+      "星期三: 11:00 – 14:30, 17:00 – 21:30",
+      "星期四: 11:00 – 14:30, 17:00 – 21:30",
+      "星期五: 11:00 – 14:30, 17:00 – 21:30",
+      "星期六: 11:00 – 14:30, 17:00 – 21:30",
+      "星期日: 11:00 – 14:30, 17:00 – 21:30"
     ]
   },
   "ChIJj1yyjUirQjQRYeAkwrwVqus": {
@@ -64555,6 +66991,105 @@
       "星期日: 18:00 – 22:00"
     ]
   },
+  "ChIJpcc14MqpQjQRTJLILFePjwo": {
+    "business_status": "OPERATIONAL",
+    "periods": [
+      {
+        "close": {
+          "day": 1,
+          "hour": 0,
+          "minute": 0
+        },
+        "open": {
+          "day": 0,
+          "hour": 18,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 2,
+          "hour": 0,
+          "minute": 0
+        },
+        "open": {
+          "day": 1,
+          "hour": 18,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 3,
+          "hour": 0,
+          "minute": 0
+        },
+        "open": {
+          "day": 2,
+          "hour": 18,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 4,
+          "hour": 0,
+          "minute": 0
+        },
+        "open": {
+          "day": 3,
+          "hour": 18,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 5,
+          "hour": 0,
+          "minute": 0
+        },
+        "open": {
+          "day": 4,
+          "hour": 18,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 6,
+          "hour": 0,
+          "minute": 0
+        },
+        "open": {
+          "day": 5,
+          "hour": 18,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 0,
+          "hour": 0,
+          "minute": 0
+        },
+        "open": {
+          "day": 6,
+          "hour": 18,
+          "minute": 0
+        }
+      }
+    ],
+    "status": "OK",
+    "weekday_text": [
+      "星期一: 18:00 – 00:00",
+      "星期二: 18:00 – 00:00",
+      "星期三: 18:00 – 00:00",
+      "星期四: 18:00 – 00:00",
+      "星期五: 18:00 – 00:00",
+      "星期六: 18:00 – 00:00",
+      "星期日: 18:00 – 00:00"
+    ]
+  },
   "ChIJpcs2V_ipQjQRBytHl1Yv2d0": {
     "business_status": "OPERATIONAL",
     "periods": null,
@@ -68696,6 +71231,105 @@
       "星期五: 12:00 – 14:00, 18:00 – 22:00",
       "星期六: 12:00 – 14:00, 18:00 – 22:00",
       "星期日: 休息"
+    ]
+  },
+  "ChIJsxVGHSirQjQRae1mgKnrYok": {
+    "business_status": "OPERATIONAL",
+    "periods": [
+      {
+        "close": {
+          "day": 0,
+          "hour": 21,
+          "minute": 30
+        },
+        "open": {
+          "day": 0,
+          "hour": 11,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 1,
+          "hour": 21,
+          "minute": 30
+        },
+        "open": {
+          "day": 1,
+          "hour": 11,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 2,
+          "hour": 21,
+          "minute": 30
+        },
+        "open": {
+          "day": 2,
+          "hour": 11,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 3,
+          "hour": 21,
+          "minute": 30
+        },
+        "open": {
+          "day": 3,
+          "hour": 11,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 4,
+          "hour": 21,
+          "minute": 30
+        },
+        "open": {
+          "day": 4,
+          "hour": 11,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 5,
+          "hour": 22,
+          "minute": 0
+        },
+        "open": {
+          "day": 5,
+          "hour": 11,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 6,
+          "hour": 22,
+          "minute": 0
+        },
+        "open": {
+          "day": 6,
+          "hour": 11,
+          "minute": 0
+        }
+      }
+    ],
+    "status": "OK",
+    "weekday_text": [
+      "星期一: 11:00 – 21:30",
+      "星期二: 11:00 – 21:30",
+      "星期三: 11:00 – 21:30",
+      "星期四: 11:00 – 21:30",
+      "星期五: 11:00 – 22:00",
+      "星期六: 11:00 – 22:00",
+      "星期日: 11:00 – 21:30"
     ]
   },
   "ChIJsxbO1YORQTURYl-JxvIl93M": {
@@ -75590,6 +78224,105 @@
       "星期日: 11:15 – 13:00, 13:15 – 14:45, 17:15 – 19:00, 19:15 – 21:30"
     ]
   },
+  "ChIJyZrbUtqrQjQRBZz46BCOlsk": {
+    "business_status": "OPERATIONAL",
+    "periods": [
+      {
+        "close": {
+          "day": 0,
+          "hour": 23,
+          "minute": 30
+        },
+        "open": {
+          "day": 0,
+          "hour": 12,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 1,
+          "hour": 23,
+          "minute": 30
+        },
+        "open": {
+          "day": 1,
+          "hour": 16,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 2,
+          "hour": 23,
+          "minute": 30
+        },
+        "open": {
+          "day": 2,
+          "hour": 16,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 3,
+          "hour": 23,
+          "minute": 30
+        },
+        "open": {
+          "day": 3,
+          "hour": 16,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 4,
+          "hour": 23,
+          "minute": 30
+        },
+        "open": {
+          "day": 4,
+          "hour": 16,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 6,
+          "hour": 0,
+          "minute": 30
+        },
+        "open": {
+          "day": 5,
+          "hour": 12,
+          "minute": 0
+        }
+      },
+      {
+        "close": {
+          "day": 0,
+          "hour": 0,
+          "minute": 30
+        },
+        "open": {
+          "day": 6,
+          "hour": 12,
+          "minute": 0
+        }
+      }
+    ],
+    "status": "OK",
+    "weekday_text": [
+      "星期一: 16:00 – 23:30",
+      "星期二: 16:00 – 23:30",
+      "星期三: 16:00 – 23:30",
+      "星期四: 16:00 – 23:30",
+      "星期五: 12:00 – 00:30",
+      "星期六: 12:00 – 00:30",
+      "星期日: 12:00 – 23:30"
+    ]
+  },
   "ChIJybeynOWpQjQR_stpYBVIXEI": {
     "business_status": "CLOSED_PERMANENTLY",
     "periods": null,
@@ -76482,6 +79215,129 @@
       "星期五: 11:00 – 14:00, 17:00 – 19:00",
       "星期六: 11:00 – 19:50",
       "星期日: 11:00 – 19:50"
+    ]
+  },
+  "ChIJz2hcQwCrQjQRg8KikBtuWhM": {
+    "business_status": "OPERATIONAL",
+    "periods": [
+      {
+        "close": {
+          "day": 0,
+          "hour": 14,
+          "minute": 30
+        },
+        "open": {
+          "day": 0,
+          "hour": 11,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 0,
+          "hour": 20,
+          "minute": 30
+        },
+        "open": {
+          "day": 0,
+          "hour": 17,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 3,
+          "hour": 20,
+          "minute": 30
+        },
+        "open": {
+          "day": 3,
+          "hour": 17,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 4,
+          "hour": 14,
+          "minute": 30
+        },
+        "open": {
+          "day": 4,
+          "hour": 11,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 4,
+          "hour": 20,
+          "minute": 30
+        },
+        "open": {
+          "day": 4,
+          "hour": 17,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 5,
+          "hour": 14,
+          "minute": 30
+        },
+        "open": {
+          "day": 5,
+          "hour": 11,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 5,
+          "hour": 20,
+          "minute": 30
+        },
+        "open": {
+          "day": 5,
+          "hour": 17,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 6,
+          "hour": 14,
+          "minute": 30
+        },
+        "open": {
+          "day": 6,
+          "hour": 11,
+          "minute": 30
+        }
+      },
+      {
+        "close": {
+          "day": 6,
+          "hour": 20,
+          "minute": 30
+        },
+        "open": {
+          "day": 6,
+          "hour": 17,
+          "minute": 30
+        }
+      }
+    ],
+    "status": "OK",
+    "weekday_text": [
+      "星期一: 休息",
+      "星期二: 休息",
+      "星期三: 17:30 – 20:30",
+      "星期四: 11:30 – 14:30, 17:30 – 20:30",
+      "星期五: 11:30 – 14:30, 17:30 – 20:30",
+      "星期六: 11:30 – 14:30, 17:30 – 20:30",
+      "星期日: 11:30 – 14:30, 17:30 – 20:30"
     ]
   },
   "ChIJz4HVNT6pQjQRG_hiwyazI1E": {

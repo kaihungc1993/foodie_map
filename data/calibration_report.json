@@ -1,7 +1,7 @@
 {
   "accounts": {
     "born2eat_taiwan": {
-      "distinct_values": 17,
+      "distinct_values": 18,
       "frozen_cuts": [
         4.3,
         4.4,
@@ -17,20 +17,20 @@
         4.5,
         4.6
       ],
-      "rated": 486,
+      "rated": 510,
       "tier_counts": [
-        107,
-        95,
-        98,
-        78,
-        108
+        109,
+        100,
+        102,
+        85,
+        114
       ],
       "tier_share": [
-        0.22,
-        0.195,
-        0.202,
-        0.16,
-        0.222
+        0.214,
+        0.196,
+        0.2,
+        0.167,
+        0.224
       ],
       "warnings": []
     },
@@ -48,21 +48,21 @@
         3.75,
         4.0
       ],
-      "rated": 295,
+      "rated": 302,
       "tier_counts": [
-        39,
-        135,
-        94,
-        27
+        40,
+        138,
+        96,
+        28
       ],
       "tier_share": [
         0.132,
-        0.458,
-        0.319,
-        0.092
+        0.457,
+        0.318,
+        0.093
       ],
       "warnings": [
-        "a tier holds over 45% — the single value 3.75 covers 45.8% of his ratings, so this is his rating habit, not a bad cut"
+        "a tier holds over 45% — the single value 3.75 covers 45.7% of his ratings, so this is his rating habit, not a bad cut"
       ]
     }
   },
@@ -77,17 +77,17 @@
       },
       {
         "born2eat_taiwan": 4.4,
+        "delta": -1.4,
+        "id": "name:空蟬亭台北店",
+        "jc_foodidi": 3.0,
+        "name": "空蟬亭 台北店"
+      },
+      {
+        "born2eat_taiwan": 4.4,
         "delta": -1.15,
         "id": "loc:108984025070139",
         "jc_foodidi": 3.25,
         "name": "立志壽司"
-      },
-      {
-        "born2eat_taiwan": 5.0,
-        "delta": -1.0,
-        "id": "loc:107694871458810",
-        "jc_foodidi": 4.0,
-        "name": "樂魚料亭"
       },
       {
         "born2eat_taiwan": 4.7,
@@ -102,6 +102,20 @@
         "id": "loc:855332124812120",
         "jc_foodidi": 3.25,
         "name": "山男 Yamasan"
+      },
+      {
+        "born2eat_taiwan": 4.9,
+        "delta": -0.9,
+        "id": "loc:378706412004012",
+        "jc_foodidi": 4.0,
+        "name": "SEN"
+      },
+      {
+        "born2eat_taiwan": 4.9,
+        "delta": -0.9,
+        "id": "loc:107694871458810",
+        "jc_foodidi": 4.0,
+        "name": "樂魚料亭"
       },
       {
         "born2eat_taiwan": 4.4,
@@ -137,13 +151,6 @@
         "id": "loc:1650870218314108",
         "jc_foodidi": 3.75,
         "name": "麗芳老樓"
-      },
-      {
-        "born2eat_taiwan": 4.8,
-        "delta": -0.8,
-        "id": "loc:378706412004012",
-        "jc_foodidi": 4.0,
-        "name": "SEN"
       },
       {
         "born2eat_taiwan": 4.3,
@@ -207,6 +214,13 @@
         "id": "loc:249065419",
         "jc_foodidi": 3.75,
         "name": "Botega del vin"
+      },
+      {
+        "born2eat_taiwan": 4.5,
+        "delta": -0.75,
+        "id": "loc:170814166859812",
+        "jc_foodidi": 3.75,
+        "name": "燒肉本氣"
       },
       {
         "born2eat_taiwan": 4.5,
@@ -330,6 +344,13 @@
       {
         "born2eat_taiwan": 4.6,
         "delta": -0.6,
+        "id": "loc:230981826759263",
+        "jc_foodidi": 4.0,
+        "name": "鮨志郎"
+      },
+      {
+        "born2eat_taiwan": 4.6,
+        "delta": -0.6,
         "id": "loc:104701688883560",
         "jc_foodidi": 4.0,
         "name": "破壞者珈琲食堂"
@@ -365,13 +386,6 @@
       {
         "born2eat_taiwan": 4.6,
         "delta": -0.6,
-        "id": "loc:230981826759263",
-        "jc_foodidi": 4.0,
-        "name": "鮨志郎"
-      },
-      {
-        "born2eat_taiwan": 4.6,
-        "delta": -0.6,
         "id": "loc:366958673172107",
         "jc_foodidi": 4.0,
         "name": "Aroma Trattoria Toscana"
@@ -382,6 +396,13 @@
         "id": "loc:114380901961856",
         "jc_foodidi": 4.0,
         "name": "A cut"
+      },
+      {
+        "born2eat_taiwan": 4.3,
+        "delta": -0.55,
+        "id": "loc:490459781431543",
+        "jc_foodidi": 3.75,
+        "name": "燒肉牛匠新 台北春大直店"
       },
       {
         "born2eat_taiwan": 4.3,
@@ -477,6 +498,27 @@
       {
         "born2eat_taiwan": 4.5,
         "delta": -0.5,
+        "id": "loc:590890334767490",
+        "jc_foodidi": 4.0,
+        "name": "万端 By 肝苦嘆呷郎"
+      },
+      {
+        "born2eat_taiwan": 4.5,
+        "delta": -0.5,
+        "id": "loc:240692880077849",
+        "jc_foodidi": 4.0,
+        "name": "AOKI 土を喰う 焼とり あお季"
+      },
+      {
+        "born2eat_taiwan": 4.5,
+        "delta": -0.5,
+        "id": "loc:101335469727673",
+        "jc_foodidi": 4.0,
+        "name": "AJ grill"
+      },
+      {
+        "born2eat_taiwan": 4.5,
+        "delta": -0.5,
         "id": "loc:101367265878664",
         "jc_foodidi": 4.0,
         "name": "好食曆食堂"
@@ -529,6 +571,20 @@
         "id": "loc:237721616",
         "jc_foodidi": 4.0,
         "name": "雨人麵包餐館"
+      },
+      {
+        "born2eat_taiwan": 4.7,
+        "delta": -0.45,
+        "id": "loc:1785752281452759",
+        "jc_foodidi": 4.25,
+        "name": "Le comptoir de TABATA （コントワール タバタ）薬院大通"
+      },
+      {
+        "born2eat_taiwan": 4.2,
+        "delta": -0.45,
+        "id": "loc:137269666476835",
+        "jc_foodidi": 3.75,
+        "name": "Cova復興SOGO店"
       },
       {
         "born2eat_taiwan": 4.2,
@@ -592,6 +648,13 @@
         "id": "loc:136429532888136",
         "jc_foodidi": 3.75,
         "name": "續 無菜單精緻料理"
+      },
+      {
+        "born2eat_taiwan": 4.3,
+        "delta": -0.3,
+        "id": "loc:108484112275456",
+        "jc_foodidi": 4.0,
+        "name": "君尹 Brisé"
       },
       {
         "born2eat_taiwan": 4.8,
