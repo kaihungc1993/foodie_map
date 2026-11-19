@@ -24,6 +24,13 @@ on:
         description: "Crawl only this account (blank = all)"
         required: false
         default: ""
+      provider:
+        description: "Classification API provider"
+        type: choice
+        options:
+          - openai
+          - anthropic
+        default: openai
 
 # Never let two refreshes race: both would commit to main.
 concurrency:
@@ -37,6 +44,8 @@ jobs:
   refresh:
     runs-on: ubuntu-latest
     timeout-minutes: 90
+    env:
+      LLM_PROVIDER: ${{ inputs.provider || 'openai' }}
     steps:
       - uses: actions/checkout@v4
 
@@ -47,8 +56,12 @@ jobs:
 
       - run: pip install -r requirements.txt
 
+      - name: Test extraction
+        run: python -m unittest discover -s tests -v
+
       - name: Check classification credentials
         env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python scripts/extract.py --check-auth
 
@@ -69,6 +82,7 @@ jobs:
 
       - name: Extract structured fields
         env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
           if [ "${{ inputs.force_extract }}" = "true" ]; then

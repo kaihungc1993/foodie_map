@@ -16,12 +16,12 @@ Account setup and API keys: **[SETUP.md](SETUP.md)**.
 
     crawl.py → extract.py → geocode.py → hours.py → build.py → docs/
     (Apify)    (parsers +     (Places)      (Places)   (aggregate) (Pages)
-                Opus)
+                LLM)
 
 | Step | Input | Output | Notes |
 |---|---|---|---|
 | `crawl.py` | Instagram via Apify | `data/raw_posts.json` | Incremental; `--backfill` for full history |
-| `extract.py` | raw posts | `data/extracted.json` | Per-account parser + Claude classification, cached per post |
+| `extract.py` | raw posts | `data/extracted.json` | Per-account parser + OpenAI classification (Anthropic optional), cached per post |
 | `geocode.py` | IG location tags | `data/geocode_cache.json` | One lookup per venue, cached forever |
 | `hours.py` | place ids | `data/hours_cache.json` | Lunch / dinner / closed days, Enterprise SKU |
 | `build.py` | all of the above | `docs/data/restaurants.json` | Groups posts into restaurants |
@@ -65,9 +65,16 @@ His captions open with a rigid header:
     目前心中台北最愛的義式披薩，快去訂位！
 
 Name, price, visit count and rating are parsed by regex — deterministic and free.
-Claude (`claude-opus-5`) handles only what needs judgement: whether the post is a
+OpenAI (`gpt-4.1-mini`) handles only what needs judgement: whether the post is a
 restaurant review at all, and which categories from `config/categories.json` apply.
-Runs of more than 20 new posts go through the Batch API at 50% cost.
+It uses the Responses API with a strict JSON schema for both posts and roundup
+venues. Existing classifications stay cached when switching providers.
+
+`extract.py` defaults to `--provider openai`; select `--provider anthropic` to use
+Claude (`claude-opus-5`) instead. Set `LLM_PROVIDER` in `.env.local` or pass the
+flag explicitly. Override models with `--model`, `OPENAI_MODEL`, or
+`ANTHROPIC_MODEL`. Anthropic runs of more than 20 posts use its Batch API unless
+`--sync` is set; OpenAI runs use synchronous requests.
 
 ### Roundup posts
 
@@ -151,6 +158,10 @@ map will not load.
 `.github/workflows/refresh.yml` runs on the 1st of each month at 10:00 Taipei, and
 on demand from the Actions tab with three inputs: `limit`, `backfill`, and
 `force_extract` (re-classify everything after editing the category list).
+
+The optional `provider` input defaults to `openai`, including scheduled runs.
+Credentials and model access are checked before crawling. Classification failures
+stop the refresh instead of publishing incomplete results.
 
 The job commits directly to `main`; Pages serves `/docs` from that branch.
 Pushes retry with rebase because the browser writes notes to the same branch.

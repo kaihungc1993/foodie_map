@@ -7,7 +7,7 @@ Two-stage by design:
      and rating are parsed deterministically for free. An LLM would give the same
      answer when it works and a hallucinated rating when it doesn't.
 
-  2. Claude for the parts that need judgement: is this a restaurant post at all,
+  2. An LLM for the parts that need judgement: is this a restaurant post at all,
      and which categories from the closed vocabulary apply.
 
 Results are cached in data/extracted.json keyed by post id, so re-runs cost
@@ -15,17 +15,20 @@ nothing. Use --force to re-extract (e.g. after editing config/categories.json).
 """
 import argparse
 import json
+import os
 import re
 import sys
 import time
 
 import anthropic
+import openai
 
 sys.path.insert(0, str(__import__("pathlib").Path(__file__).resolve().parent))
 import common
 import parsers
 
 MODEL = "claude-opus-5"
+OPENAI_MODEL = "gpt-4.1-mini"
 BATCH_THRESHOLD = 20  # above this, use the Batch API at 50% cost
 
 # --- Stage 1: deterministic header parsing ------------------------------------
@@ -34,7 +37,7 @@ BATCH_THRESHOLD = 20  # above this, use the Batch API at 50% cost
 # one author's rules to the other's posts.
 
 
-# --- Stage 2: Claude for classification ---------------------------------------
+# --- Stage 2: LLM classification ---------------------------------------------
 
 SYSTEM = """You classify Taiwanese food blog posts from Instagram.
 
@@ -87,9 +90,9 @@ def build_prompt(post, header):
     }, ensure_ascii=False)
 
 
-def request_params(post, header, schema):
+def request_params(post, header, schema, model=MODEL):
     return {
-        "model": MODEL,
+        "model": model,
         "max_tokens": 2000,
         "system": SYSTEM,
         "messages": [{"role": "user", "content": build_prompt(post, header)}],
@@ -105,10 +108,10 @@ def read_json_result(msg):
     return json.loads(text)
 
 
-def classify_sync(client, todo, schema):
+def classify_sync(client, todo, schema, model=MODEL):
     out = {}
     for i, (pid, post, header) in enumerate(todo, 1):
-        msg = client.messages.create(**request_params(post, header, schema))
+        msg = client.messages.create(**request_params(post, header, schema, model))
         out[pid] = read_json_result(msg)
         if out[pid] is None:
             raise RuntimeError(f"No classification returned for post {pid}")
@@ -116,13 +119,13 @@ def classify_sync(client, todo, schema):
     return out
 
 
-def classify_batch(client, todo, schema):
+def classify_batch(client, todo, schema, model=MODEL):
     from anthropic.types.message_create_params import MessageCreateParamsNonStreaming
     from anthropic.types.messages.batch_create_params import Request
 
     reqs = [
         Request(custom_id=pid, params=MessageCreateParamsNonStreaming(
-            **request_params(post, header, schema)))
+            **request_params(post, header, schema, model)))
         for pid, post, header in todo
     ]
     print(f"  submitting batch of {len(reqs)} (50% pricing)...")
@@ -149,6 +152,39 @@ def classify_batch(client, todo, schema):
     return out
 
 
+def openai_verdict(client, system, prompt, schema, model):
+    response = client.responses.create(
+        model=model,
+        instructions=system,
+        input=prompt,
+        max_output_tokens=2000,
+        store=False,
+        text={"format": {
+            "type": "json_schema", "name": "food_classification",
+            "strict": True, "schema": schema,
+        }},
+    )
+    if response.status != "completed" or not response.output_text:
+        raise RuntimeError(
+            f"OpenAI classification returned no complete result (status={response.status})")
+    verdict = json.loads(response.output_text)
+    allowed = schema["properties"]["categories"]["items"]["enum"]
+    if (not isinstance(verdict, dict)
+            or type(verdict.get("is_restaurant")) is not bool
+            or not isinstance(verdict.get("categories"), list)
+            or any(c not in allowed for c in verdict["categories"])):
+        raise RuntimeError("OpenAI classification does not match the category schema")
+    return verdict
+
+
+def classify_openai(client, todo, schema, model):
+    out = {}
+    for i, (pid, post, header) in enumerate(todo, 1):
+        out[pid] = openai_verdict(client, SYSTEM, build_prompt(post, header), schema, model)
+        print(f"  [{i}/{len(todo)}] {header['name'] or pid}: {out[pid]['categories']}")
+    return out
+
+
 VENUE_SYSTEM = """You classify a single restaurant mentioned inside a Taiwanese
 food blogger's roundup post ("five best burger joints in Taipei").
 
@@ -161,7 +197,8 @@ Decide two things:
    venue takes only what fits it. Never invent a category outside the list."""
 
 
-def classify_venues(client, posts, extracted, cats, cache, force):
+def classify_venues(client, posts, extracted, cats, cache, force,
+                    provider="anthropic", model=MODEL):
     """Roundup venues get their own classification. Inheriting the post's
     categories would tag every venue in a Fukuoka roundup as 壽司 + 拉麵 +
     燒肉 at once."""
@@ -188,6 +225,11 @@ def classify_venues(client, posts, extracted, cats, cache, force):
 
     print(f"  classifying {len(todo)} roundup venues")
     items = list(todo.items())
+    if provider == "openai":
+        for key, venue in items:
+            cache[key] = openai_verdict(
+                client, VENUE_SYSTEM, json.dumps(venue, ensure_ascii=False), schema, model)
+        return cache
     if len(items) > BATCH_THRESHOLD:
         from anthropic.types.message_create_params import MessageCreateParamsNonStreaming
         from anthropic.types.messages.batch_create_params import Request
@@ -195,7 +237,7 @@ def classify_venues(client, posts, extracted, cats, cache, force):
         # the batch is indexed and mapped back afterwards.
         ids = {f"v{i}": k for i, (k, _) in enumerate(items)}
         reqs = [Request(custom_id=f"v{i}", params=MessageCreateParamsNonStreaming(
-                    model=MODEL, max_tokens=2000, system=VENUE_SYSTEM,
+                    model=model, max_tokens=2000, system=VENUE_SYSTEM,
                     messages=[{"role": "user", "content": json.dumps(v, ensure_ascii=False)}],
                     output_config={"effort": "low",
                                    "format": {"type": "json_schema", "schema": schema}}))
@@ -215,7 +257,7 @@ def classify_venues(client, posts, extracted, cats, cache, force):
     else:
         for k, v in items:
             msg = client.messages.create(
-                model=MODEL, max_tokens=2000, system=VENUE_SYSTEM,
+                model=model, max_tokens=2000, system=VENUE_SYSTEM,
                 messages=[{"role": "user", "content": json.dumps(v, ensure_ascii=False)}],
                 output_config={"effort": "low",
                                "format": {"type": "json_schema", "schema": schema}})
@@ -233,13 +275,24 @@ def main():
     ap.add_argument("--sync", action="store_true", help="force sync API even for large runs")
     ap.add_argument("--limit", type=int, help="only process N posts (for testing)")
     ap.add_argument("--check-auth", action="store_true",
-                    help="validate the Anthropic API key without classifying posts")
+                    help="validate provider credentials and model access without classifying posts")
+    common.load_env()
+    ap.add_argument("--provider", choices=["openai", "anthropic"],
+                    default=os.environ.get("LLM_PROVIDER", "openai"))
+    ap.add_argument("--model", help="override the selected provider's model")
     args = ap.parse_args()
 
-    common.require_env("ANTHROPIC_API_KEY")
+    if args.provider not in ("openai", "anthropic"):
+        ap.error(f"unsupported LLM_PROVIDER: {args.provider}")
+    if args.provider == "openai":
+        model = args.model or os.environ.get("OPENAI_MODEL") or OPENAI_MODEL
+        client = openai.OpenAI(api_key=common.require_env("OPENAI_API_KEY"), timeout=60)
+    else:
+        model = args.model or os.environ.get("ANTHROPIC_MODEL") or MODEL
+        client = anthropic.Anthropic(api_key=common.require_env("ANTHROPIC_API_KEY"))
     if args.check_auth:
-        anthropic.Anthropic().models.list(limit=1)
-        print("Anthropic API key authentication succeeded")
+        client.models.retrieve(model)
+        print(f"{args.provider} API key and model access succeeded: {model}")
         return 0
     posts = common.read_json(common.RAW_POSTS, {})
     cache = {} if args.force else common.read_json(common.EXTRACTED, {})
@@ -268,12 +321,14 @@ def main():
     if args.limit:
         todo = todo[: args.limit]
 
-    print(f"{len(posts)} posts, {len(todo)} need classification")
+    print(f"{len(posts)} posts, {len(todo)} need classification ({args.provider}/{model})")
 
     if todo:
-        client = anthropic.Anthropic()
-        use_batch = len(todo) > BATCH_THRESHOLD and not args.sync
-        results = (classify_batch if use_batch else classify_sync)(client, todo, schema)
+        if args.provider == "openai":
+            results = classify_openai(client, todo, schema, model)
+        else:
+            use_batch = len(todo) > BATCH_THRESHOLD and not args.sync
+            results = (classify_batch if use_batch else classify_sync)(client, todo, schema, model)
         missing = [pid for pid, _, _ in todo if results.get(pid) is None]
         if missing:
             raise RuntimeError(
@@ -291,13 +346,12 @@ def main():
             continue
         merged[pid] = {"llm": verdict, **headers[pid]}
 
-    common.write_json(common.EXTRACTED, merged)
-
     vcache = {} if args.force else common.read_json(common.VENUES, {})
     if any((v.get("pin_count") or 0) > 1 for v in merged.values()):
-        client = client if "client" in dir() else anthropic.Anthropic()
-        vcache = classify_venues(client, posts, merged, cats, vcache, args.force)
+        vcache = classify_venues(
+            client, posts, merged, cats, vcache, args.force, args.provider, model)
         common.write_json(common.VENUES, vcache)
+    common.write_json(common.EXTRACTED, merged)
     restaurants = sum(1 for v in merged.values() if v["llm"]["is_restaurant"])
     print(f"extracted {len(merged)} posts, {restaurants} are restaurant posts")
     return 0
